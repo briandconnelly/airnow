@@ -49,7 +49,7 @@ ZIP code as a data frame:
 ``` r
 library(airnow)
 
-get_airnow_conditions(zip = 98101)
+get_airnow_conditions(zip = "98101")
 #> # A tibble: 2 × 11
 #>   date_observed hour_obs…¹ local…² repor…³ state…⁴ latit…⁵ longi…⁶ param…⁷   aqi
 #>   <date>             <int> <fct>   <fct>   <fct>     <dbl>   <dbl> <fct>   <int>

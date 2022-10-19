@@ -56,7 +56,7 @@ Here, we’ll get the current conditions in Seattle by ZIP code as a data frame:
 ```{r}
 library(airnow)
 
-get_airnow_conditions(zip = 98101)
+get_airnow_conditions(zip = "98101")
 ```
 
 If [tibble](https://CRAN.R-project.org/package=tibble) is installed, airnow's `get_airnow_` functions will return `tbl_df`s.
@@ -68,5 +68,3 @@ This package and its author are not affiliated with [AirNow](https://www.airnow.
 See the [Data Exchange Guidelines](https://docs.airnowapi.org/docs/DataUseGuidelines.pdf) for more details about this data set and how it should be used.
 Please be kind to this service and limit your request rate.
 Data are typically refreshed once per hour.
-
-
