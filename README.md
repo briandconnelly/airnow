@@ -9,6 +9,7 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/airnow)](https://CRAN.R-project.org/package=airnow)
+[![R-CMD-check](https://github.com/briandconnelly/airnow/workflows/R-CMD-check/badge.svg)](https://github.com/briandconnelly/airnow/actions)
 <!-- badges: end -->
 
 airnow is an [R](https://www.r-project.org/) package for querying and
@@ -43,21 +44,24 @@ set_airnow_token()
 
 The AirNow API allows you to query air conditions either by ZIP code or
 latitude/longitude. Here, we’ll get the current conditions in Seattle by
-ZIP code:
+ZIP code as a data frame:
 
 ``` r
 library(airnow)
 
 get_airnow_conditions(zip = 98101)
 #> # A tibble: 2 × 11
-#>   DateOb…¹ HourO…² Local…³ Repor…⁴ State…⁵ Latit…⁶ Longi…⁷ Param…⁸   AQI Categ…⁹
-#>   <chr>      <int> <chr>   <chr>   <chr>     <dbl>   <dbl> <chr>   <int>   <int>
-#> 1 "2022-0…       6 PST     Seattl… WA         47.6   -122. O3         10       1
-#> 2 "2022-0…       6 PST     Seattl… WA         47.6   -122. PM2.5      45       1
-#> # … with 1 more variable: Category.Name <chr>, and abbreviated variable names
-#> #   ¹​DateObserved, ²​HourObserved, ³​LocalTimeZone, ⁴​ReportingArea, ⁵​StateCode,
-#> #   ⁶​Latitude, ⁷​Longitude, ⁸​ParameterName, ⁹​Category.Number
+#>   date_observed hour_obs…¹ local…² repor…³ state…⁴ latit…⁵ longi…⁶ param…⁷   aqi
+#>   <date>             <int> <fct>   <fct>   <fct>     <dbl>   <dbl> <fct>   <int>
+#> 1 2022-10-19            15 PST     Seattl… WA         47.6   -122. O3         16
+#> 2 2022-10-19            15 PST     Seattl… WA         47.6   -122. PM2.5     231
+#> # … with 2 more variables: category_number <int>, category_name <fct>, and
+#> #   abbreviated variable names ¹​hour_observed, ²​local_time_zone,
+#> #   ³​reporting_area, ⁴​state_code, ⁵​latitude, ⁶​longitude, ⁷​parameter
 ```
+
+If [tibble](https://CRAN.R-project.org/package=tibble) is installed,
+airnow’s `get_airnow_` functions will return `tbl_df`s.
 
 ## Disclaimer
 

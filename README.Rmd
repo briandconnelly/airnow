@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN status](https://www.r-pkg.org/badges/version/airnow)](https://CRAN.R-project.org/package=airnow)
+[![R-CMD-check](https://github.com/briandconnelly/airnow/workflows/R-CMD-check/badge.svg)](https://github.com/briandconnelly/airnow/actions)
 <!-- badges: end -->
 
 airnow is an [R](https://www.r-project.org/) package for querying and retrieving air quality information from [AirNow](https://www.airnow.gov/) via the [AirNow API](https://docs.airnowapi.org/).
