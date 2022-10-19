@@ -1,0 +1,10 @@
+.Rproj.user
+.Rhistory
+.RData
+docs
+inst/doc
+.DS_Store
+testing.R
+NOTES.md
+.Rdata
+.httr-oauth
