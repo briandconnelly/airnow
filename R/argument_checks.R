@@ -22,10 +22,9 @@ check_longitude <- function(x, arg_name = "longitude") {
 check_location <- function(zip = NULL,
                            latitude = NULL,
                            longitude = NULL) {
-  zip <- as.character(zip)
-
   if (!is.null(zip)) {
     location_type <- "zipCode"
+    zip <- as.character(zip)
     zip <- check_zip(zip)
 
     if (!is.null(latitude)) {
@@ -64,12 +63,11 @@ check_distance <- function(distance) {
   distance
 }
 
-check_date <- function(date) {
-  if (!is.null(date)) {
-    cli::cli_alert_warning("I don't validate dates yet")
-    # TODO
+check_date <- function(x, arg_name = "date") {
+  if (!is.null(x) && !grepl("^\\d{4}-\\d{2}-\\d{2}$", x)) {
+    cli::cli_abort("{.arg {arg_name}} must be a string with format YYYY-MM-DD")
   }
-  date
+  x
 }
 
 check_bounding_box <- function(box) {

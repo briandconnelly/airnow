@@ -107,11 +107,17 @@ test_that("check_distance() returns expected values", {
 
 
 test_that("check_date() catches invalid input", {
-  # TODO
+  expect_error(check_date("20220101"))
+  expect_error(check_date("2022-1-1"))
+  expect_error(check_date("Aug 28, 2010"))
 })
 
 test_that("check_date() returns expected values", {
-  # TODO: check with valid dates
+  valid_dates <- c("2022-01-01", "1980-01-02", "2022-11-12")
+
+  for (i in valid_dates) {
+    expect_equal(check_date(i), i)
+  }
 
   # NULL is ok, returning NULL
   expect_true(is.null(check_date(NULL)))
