@@ -12,7 +12,6 @@ status](https://www.r-pkg.org/badges/version/airnow)](https://CRAN.R-project.org
 [![R-CMD-check](https://github.com/briandconnelly/airnow/workflows/R-CMD-check/badge.svg)](https://github.com/briandconnelly/airnow/actions)
 [![Codecov test
 coverage](https://codecov.io/gh/briandconnelly/airnow/branch/main/graph/badge.svg)](https://app.codecov.io/gh/briandconnelly/airnow?branch=main)
-[![R-CMD-check](https://github.com/briandconnelly/airnow/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/briandconnelly/airnow/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 airnow is an [R](https://www.r-project.org/) package for querying and
@@ -56,8 +55,8 @@ get_airnow_conditions(zip = "98101")
 #> # A tibble: 2 × 11
 #>   date_observed hour_obs…¹ local…² repor…³ state…⁴ latit…⁵ longi…⁶ param…⁷   aqi
 #>   <date>             <int> <fct>   <fct>   <fct>     <dbl>   <dbl> <fct>   <int>
-#> 1 2022-10-20            16 PST     Seattl… WA         47.6   -122. O3         13
-#> 2 2022-10-20            16 PST     Seattl… WA         47.6   -122. PM2.5     199
+#> 1 2022-10-20            17 PST     Seattl… WA         47.6   -122. O3         13
+#> 2 2022-10-20            17 PST     Seattl… WA         47.6   -122. PM2.5     199
 #> # … with 2 more variables: category_number <int>, category_name <fct>, and
 #> #   abbreviated variable names ¹​hour_observed, ²​local_time_zone,
 #> #   ³​reporting_area, ⁴​state_code, ⁵​latitude, ⁶​longitude, ⁷​parameter
