@@ -20,6 +20,7 @@ Imports:
     rlang (>= 1.0.0),
     tibble
 Suggests: 
+    covr,
     lintr,
     testthat (>= 3.0.0),
     withr
