@@ -1,4 +1,15 @@
 url: https://briandconnelly.github.io/airnow/
 template:
   bootstrap: 5
-
+reference:
+- title: Managing AirNow API tokens
+  desc: An API token allows you to interact with the AirNow API
+- contents:
+  - set_airnow_token
+  - get_airnow_token
+- title: Retrieving air quality data
+  desc: Retrieve forecasts and current/historical air quality data
+- contents:
+  - get_airnow_conditions
+  - get_airnow_area
+  - get_airnow_forecast
