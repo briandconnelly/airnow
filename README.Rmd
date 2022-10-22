@@ -52,7 +52,7 @@ set_airnow_token()
 ## Current Air Quality in Seattle
 
 The AirNow API allows you to query air conditions either by ZIP code or latitude/longitude.
-Here, we’ll get the current conditions in Seattle by ZIP code as a data frame:
+Here, we’ll get the current conditions in Seattle by ZIP code as a data frame (tibble):
 
 ```{r}
 library(airnow)
@@ -60,12 +60,10 @@ library(airnow)
 get_airnow_conditions(zip = "98101")
 ```
 
-If [tibble](https://CRAN.R-project.org/package=tibble) is installed, airnow's `get_airnow_` functions will return `tbl_df`s.
-
 
 ## Disclaimer
 
 This package and its author are not affiliated with [AirNow](https://www.airnow.gov/) or its [partners](https://www.airnow.gov/partners/).
 See the [Data Exchange Guidelines](https://docs.airnowapi.org/docs/DataUseGuidelines.pdf) for more details about this data set and how it should be used.
-Please be kind to this service and limit your request rate.
 Data are typically refreshed once per hour.
+Please be kind to this service and limit your request rate.

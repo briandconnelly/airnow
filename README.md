@@ -46,7 +46,7 @@ set_airnow_token()
 
 The AirNow API allows you to query air conditions either by ZIP code or
 latitude/longitude. Here, we’ll get the current conditions in Seattle by
-ZIP code as a data frame:
+ZIP code as a data frame (tibble):
 
 ``` r
 library(airnow)
@@ -55,15 +55,12 @@ get_airnow_conditions(zip = "98101")
 #> # A tibble: 2 × 11
 #>   date_observed hour_obs…¹ local…² repor…³ state…⁴ latit…⁵ longi…⁶ param…⁷   aqi
 #>   <date>             <int> <fct>   <fct>   <fct>     <dbl>   <dbl> <fct>   <int>
-#> 1 2022-10-20            17 PST     Seattl… WA         47.6   -122. O3         13
-#> 2 2022-10-20            17 PST     Seattl… WA         47.6   -122. PM2.5     199
+#> 1 2022-10-22            11 PST     Seattl… WA         47.6   -122. O3         18
+#> 2 2022-10-22            11 PST     Seattl… WA         47.6   -122. PM2.5      26
 #> # … with 2 more variables: category_number <int>, category_name <fct>, and
 #> #   abbreviated variable names ¹​hour_observed, ²​local_time_zone,
 #> #   ³​reporting_area, ⁴​state_code, ⁵​latitude, ⁶​longitude, ⁷​parameter
 ```
-
-If [tibble](https://CRAN.R-project.org/package=tibble) is installed,
-airnow’s `get_airnow_` functions will return `tbl_df`s.
 
 ## Disclaimer
 
@@ -71,6 +68,6 @@ This package and its author are not affiliated with
 [AirNow](https://www.airnow.gov/) or its
 [partners](https://www.airnow.gov/partners/). See the [Data Exchange
 Guidelines](https://docs.airnowapi.org/docs/DataUseGuidelines.pdf) for
-more details about this data set and how it should be used. Please be
-kind to this service and limit your request rate. Data are typically
-refreshed once per hour.
+more details about this data set and how it should be used. Data are
+typically refreshed once per hour. Please be kind to this service and
+limit your request rate.

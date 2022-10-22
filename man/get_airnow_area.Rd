@@ -58,3 +58,8 @@ A data frame
 \description{
 TODO
 }
+\examples{
+\dontrun{
+get_airnow_area(box = c(47.6, -122.4, 47.5, -122.2))
+}
+}

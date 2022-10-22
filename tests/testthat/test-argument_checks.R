@@ -128,6 +128,14 @@ test_that("check_bounding_box() catches invalid input", {
   expect_error(check_bounding_box(12))
   expect_error(check_bounding_box(1:3))
   expect_error(check_bounding_box(1:5))
+  expect_error(check_bounding_box(c(91, 0, 0, 0)))
+  expect_error(check_bounding_box(c(-91, 0, 0, 0)))
+  expect_error(check_bounding_box(c(0, 181, 0, 0)))
+  expect_error(check_bounding_box(c(0, -181, 0, 0)))
+  expect_error(check_bounding_box(c(0, 0, 91, 0)))
+  expect_error(check_bounding_box(c(0, 0, -91, 0)))
+  expect_error(check_bounding_box(c(0, 0, 0, 181)))
+  expect_error(check_bounding_box(c(0, 0, 0, -181)))
 })
 
 test_that("check_bounding_box() returns expected values", {

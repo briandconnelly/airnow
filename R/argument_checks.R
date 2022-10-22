@@ -72,8 +72,8 @@ check_date <- function(x, arg_name = "date") {
 
 check_bounding_box <- function(box) {
   if (!is_double(box, n = 4, finite = TRUE) ||
-    (!all(box <= 180)) ||
-    (!all(c(box[1], box[3]) <= 90))) {
+    (!all(abs(box) <= 180)) ||
+    (!all(abs(c(box[1], box[3])) <= 90))) {
     cli::cli_abort("{.arg box} must be a 4-element numeric vector with format {.emph (lat1, lon1, lat2, lon2)}, where {.emph lat1} and {.emph lat2} are between -90 and 90, inclusive, and {.emph lon1} and {.emph lon2} are between -180 and 180, inclusive.") # nolint
   }
   box

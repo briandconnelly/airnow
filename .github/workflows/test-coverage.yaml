@@ -11,6 +11,7 @@ name: test-coverage
 jobs:
   test-coverage:
     runs-on: ubuntu-latest
+    environment: testing
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 

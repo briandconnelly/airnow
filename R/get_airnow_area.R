@@ -29,6 +29,9 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' get_airnow_area(box = c(47.6, -122.4, 47.5, -122.2))
+#' }
 get_airnow_area <- function(box,
                             parameters = "pm25",
                             start_time = NULL,
@@ -77,6 +80,10 @@ get_airnow_area <- function(box,
 
   if (!is_logical(clean_names, n = 1)) {
     cli::cli_abort("{.arg clean_names} must be either `TRUE` or `FALSE`") # nolint
+  }
+
+  if (!is_string(api_key) || nchar(api_key) < 1) {
+    cli::cli_abort("{.arg api_key} must be a string")
   }
 
   result_raw <- req_airnow() |>
