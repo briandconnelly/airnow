@@ -84,7 +84,7 @@
 <div class="section level2">
 <h2 id="current-air-quality-in-seattle">Current Air Quality in Seattle<a class="anchor" aria-label="anchor" href="#current-air-quality-in-seattle"></a>
 </h2>
-<p>The AirNow API allows you to query air conditions either by ZIP code or latitude/longitude. Here, we’ll get the current conditions in Seattle by ZIP code as a data frame (tibble):</p>
+<p>The AirNow API allows you to query air conditions either by ZIP code or latitude/longitude. Here, we’ll get the current conditions in Seattle by ZIP code:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/briandconnelly/airnow" class="external-link">airnow</a></span><span class="op">)</span></span>
 <span></span>
@@ -92,8 +92,8 @@
 <span><span class="co">#&gt; # A tibble: 2 × 11</span></span>
 <span><span class="co">#&gt;   date_observed hour_obs…¹ local…² repor…³ state…⁴ latit…⁵ longi…⁶ param…⁷   aqi</span></span>
 <span><span class="co">#&gt;   &lt;date&gt;             &lt;int&gt; &lt;fct&gt;   &lt;fct&gt;   &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt;   &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1 2022-10-22            11 PST     Seattl… WA         47.6   -122. O3         18</span></span>
-<span><span class="co">#&gt; 2 2022-10-22            11 PST     Seattl… WA         47.6   -122. PM2.5      26</span></span>
+<span><span class="co">#&gt; 1 2022-10-22            15 PST     Seattl… WA         47.6   -122. O3         22</span></span>
+<span><span class="co">#&gt; 2 2022-10-22            15 PST     Seattl… WA         47.6   -122. PM2.5      28</span></span>
 <span><span class="co">#&gt; # … with 2 more variables: category_number &lt;int&gt;, category_name &lt;fct&gt;, and</span></span>
 <span><span class="co">#&gt; #   abbreviated variable names ¹​hour_observed, ²​local_time_zone,</span></span>
 <span><span class="co">#&gt; #   ³​reporting_area, ⁴​state_code, ⁵​latitude, ⁶​longitude, ⁷​parameter</span></span></code></pre></div>
