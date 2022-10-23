@@ -46,7 +46,7 @@ set_airnow_token()
 
 The AirNow API allows you to query air conditions either by ZIP code or
 latitude/longitude. Here, we’ll get the current conditions in Seattle by
-ZIP code as a data frame (tibble):
+ZIP code:
 
 ``` r
 library(airnow)
@@ -55,8 +55,8 @@ get_airnow_conditions(zip = "98101")
 #> # A tibble: 2 × 11
 #>   date_observed hour_obs…¹ local…² repor…³ state…⁴ latit…⁵ longi…⁶ param…⁷   aqi
 #>   <date>             <int> <fct>   <fct>   <fct>     <dbl>   <dbl> <fct>   <int>
-#> 1 2022-10-22            11 PST     Seattl… WA         47.6   -122. O3         18
-#> 2 2022-10-22            11 PST     Seattl… WA         47.6   -122. PM2.5      26
+#> 1 2022-10-22            15 PST     Seattl… WA         47.6   -122. O3         22
+#> 2 2022-10-22            15 PST     Seattl… WA         47.6   -122. PM2.5      28
 #> # … with 2 more variables: category_number <int>, category_name <fct>, and
 #> #   abbreviated variable names ¹​hour_observed, ²​local_time_zone,
 #> #   ³​reporting_area, ⁴​state_code, ⁵​latitude, ⁶​longitude, ⁷​parameter
