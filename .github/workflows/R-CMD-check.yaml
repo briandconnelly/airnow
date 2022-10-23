@@ -15,7 +15,6 @@ name: R-CMD-check
 jobs:
   R-CMD-check:
     runs-on: ${{ matrix.config.os }}
-    environment: testing
 
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
 
@@ -39,6 +38,7 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
+      AIRNOW_API_KEY: ${{ secrets.AIRNOW_API_KEY }}
 
     steps:
       - uses: actions/checkout@v2
