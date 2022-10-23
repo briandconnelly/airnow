@@ -28,10 +28,15 @@ test_that("get_airnow_conditions() catches invalid inputs", {
   expect_error(get_airnow_conditions(zip = "98101", clean_names = NULL))
   expect_error(get_airnow_conditions(zip = "98101", clean_names = NA))
   expect_error(get_airnow_conditions(zip = "98101", clean_names = 1))
-  expect_error(get_airnow_conditions(zip = "98101", clean_names = c(TRUE, FALSE)))
+  expect_error(get_airnow_conditions(zip = "98101", clean_names = c(TRUE, FALSE))) # nolint
 })
 
 test_that("get_airnow_conditions() produces the expected outputs", {
+  skip_if(
+    condition = identical(Sys.getenv("AIRNOW_API_KEY"), ""),
+    message = "AirNow API token is not set"
+  )
+
   result <- get_airnow_conditions(zip = "98101")
 
   expect_true(is.data.frame(result))
