@@ -33,9 +33,6 @@ clean_names <- function(x) {
     "IntlAQSCode" = "intl_aqs_code"
   )
 
-  # area$Parameter appears to be the name (e.g., OZONE),
-  # while observation/forecast$ParameterName is the abbreviation (e.g., O3)
-
   names(x)[names(x) %in% names(name_mapping)] <- name_mapping[names(x)]
   x
 }
