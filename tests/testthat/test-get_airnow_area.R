@@ -91,3 +91,98 @@ test_that("get_airnow_area() validates inputs properly", {
 })
 
 rm(valid_call)
+
+
+test_that("get_airnow_area() produces the expected outputs", {
+  skip_if(
+    condition = identical(Sys.getenv("AIRNOW_API_KEY"), ""),
+    message = "AirNow API token is not set"
+  )
+
+  colnames_raw <- c(
+    "Latitude",
+    "Longitude",
+    "UTC",
+    "Parameter",
+    "Unit",
+    "AQI",
+    "Category"
+  )
+
+  colnames_clean <- c(
+    "latitude",
+    "longitude",
+    "datetime_observed",
+    "parameter",
+    "unit",
+    "aqi",
+    "category_number"
+  )
+
+  result <- get_airnow_area(
+    box = c(-125.394211, 45.295897, -116.736984, 49.172497)
+  )
+
+  expect_true(is.data.frame(result))
+  expect_true(tibble::is_tibble(result))
+
+  expect_setequal(colnames(result), colnames_clean)
+
+  result_allargs_clean <- get_airnow_area(
+    box = c(-125.394211, 45.295897, -116.736984, 49.172497),
+    data_type = "both",
+    verbose = TRUE,
+    raw_concentrations = TRUE
+  )
+
+  expect_true(is.data.frame(result_allargs_clean))
+  expect_true(tibble::is_tibble(result_allargs_clean))
+
+  expect_setequal(
+    colnames(result_allargs_clean),
+    c(
+      colnames_clean,
+      "value",
+      "raw_concentration",
+      "site_name",
+      "site_agency",
+      "aqs_code",
+      "intl_aqs_code"
+    )
+  )
+
+  result_noclean <- get_airnow_area(
+    box = c(-125.394211, 45.295897, -116.736984, 49.172497),
+    clean_names = FALSE
+  )
+
+  expect_true(is.data.frame(result_noclean))
+  expect_true(tibble::is_tibble(result_noclean))
+
+  expect_setequal(colnames(result_noclean), colnames_raw)
+
+
+  result_allargs_noclean <- get_airnow_area(
+    box = c(-125.394211, 45.295897, -116.736984, 49.172497),
+    data_type = "both",
+    verbose = TRUE,
+    raw_concentrations = TRUE,
+    clean_names = FALSE
+  )
+
+  expect_true(is.data.frame(result_allargs_noclean))
+  expect_true(tibble::is_tibble(result_allargs_noclean))
+
+  expect_setequal(
+    colnames(result_allargs_noclean),
+    c(
+      colnames_raw,
+      "Value",
+      "RawConcentration",
+      "SiteName",
+      "AgencyName",
+      "FullAQSCode",
+      "IntlAQSCode"
+    )
+  )
+})
