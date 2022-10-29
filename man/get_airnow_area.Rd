@@ -18,9 +18,9 @@ get_airnow_area(
 )
 }
 \arguments{
-\item{box}{Four-element numeric vector specifying a bounding box. Format is
-(minX, minY, maxX, maxY), where X and Y are latitude and longitude,
-respectively.}
+\item{box}{Four-element numeric vector specifying a bounding box for the
+region of interest. Format is (minX, minY, maxX, maxY), where X and Y are
+longitude and latitude, respectively.}
 
 \item{parameters}{Parameter(s) to return data for. Choices are PM_{2.5}
 (\code{pm25}: default), \code{ozone}, PM_10 (\code{pm10}), CO (\code{co}), NO2 (\code{no2}), and
@@ -53,13 +53,15 @@ hourly concentration data should be included (default: \code{FALSE})}
 \item{api_key}{AirNow API key}
 }
 \value{
-A data frame
+A data frame with current air quality conditions
 }
 \description{
-TODO
+\code{get_airnow_area()} retrieves the most recent air quality readings from sites
+in a specified region.
 }
 \examples{
 \dontrun{
-get_airnow_area(box = c(47.6, -122.4, 47.5, -122.2))
+# Get air quality data around Washington state
+get_airnow_area(box = c(-125.394211, 45.295897, -116.736984, 49.172497))
 }
 }

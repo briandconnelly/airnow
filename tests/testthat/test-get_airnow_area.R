@@ -1,4 +1,4 @@
-valid_call <- function(box = c(47.6, -122.4, 47.5, -122.2),
+valid_call <- function(box = c(-125.394211, 45.295897, -116.736984, 49.172497),
                        parameters = "pm25",
                        start_time = NULL,
                        end_time = NULL,
@@ -23,16 +23,17 @@ valid_call <- function(box = c(47.6, -122.4, 47.5, -122.2),
 }
 
 test_that("get_airnow_area() validates inputs properly", {
-
-  # Box is a 4-element numeric vector of lat/lon pairs
+  # Box is a 4-element numeric vector of lon/lat pairs
   expect_error(valid_call(box = TRUE))
   expect_error(valid_call(box = 1))
   expect_error(valid_call(box = 1:3))
   expect_error(valid_call(box = 1:5))
-  expect_error(valid_call(box = c(91, 0, 0, 0)))
-  expect_error(valid_call(box = c(-91, 0, 0, 0)))
-  expect_error(valid_call(box = c(45, -181, 0, 0)))
-  expect_error(valid_call(box = c(45, 181, 0, 0)))
+  expect_error(valid_call(box = c(-181, 0, 0, 0)))
+  expect_error(valid_call(box = c(0, -91, 0, 0)))
+  expect_error(valid_call(box = c(0, 0, 181, 0)))
+  expect_error(valid_call(box = c(0, 0, 0, 91)))
+  expect_error(valid_call(box = c(0, 0, -1, 0)))
+  expect_error(valid_call(box = c(0, 0, 0, -1)))
 
   # parameters is a list of 1+ "pm25", "ozone", "pm10", "co", "no2", "so2"
   expect_error(valid_call(parameters = NULL))
