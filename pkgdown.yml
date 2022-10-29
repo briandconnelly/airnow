@@ -1,8 +1,8 @@
-pandoc: 2.14.2
+pandoc: 2.19.2
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles: {}
-last_built: 2022-10-23T01:00Z
+last_built: 2022-10-29T20:04Z
 urls:
   reference: https://briandconnelly.github.io/airnow/reference
   article: https://briandconnelly.github.io/airnow/articles
