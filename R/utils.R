@@ -24,6 +24,7 @@ clean_names <- function(x) {
     "ParameterName" = "parameter",
     "Parameter" = "parameter",
     "Unit" = "unit",
+    "Value" = "value",
     "RawConcentration" = "raw_concentration",
     "Category" = "category_number",
     "SiteName" = "site_name",

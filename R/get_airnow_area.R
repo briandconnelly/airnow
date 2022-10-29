@@ -1,11 +1,12 @@
 #' Get Air Quality Data for a Given Region
 #'
-#' TODO
+#' `get_airnow_area()` retrieves the most recent air quality readings from sites
+#' in a specified region.
 #'
 #' @inheritParams get_airnow_conditions
-#' @param box Four-element numeric vector specifying a bounding box. Format is
-#'   (minX, minY, maxX, maxY), where X and Y are latitude and longitude,
-#'   respectively.
+#' @param box Four-element numeric vector specifying a bounding box for the
+#'   region of interest. Format is (minX, minY, maxX, maxY), where X and Y are
+#'   longitude and latitude, respectively.
 #' @param parameters Parameter(s) to return data for. Choices are PM_{2.5}
 #'   (`pm25`: default), `ozone`, PM_10 (`pm10`), CO (`co`), NO2 (`no2`), and
 #'   SO2 (`so2`).
@@ -25,12 +26,13 @@
 #' @param raw_concentrations Logical value indicating whether or not raw
 #'   hourly concentration data should be included (default: `FALSE`)
 #'
-#' @return A data frame
+#' @return A data frame with current air quality conditions
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' get_airnow_area(box = c(47.6, -122.4, 47.5, -122.2))
+#' # Get air quality data around Washington state
+#' get_airnow_area(box = c(-125.394211, 45.295897, -116.736984, 49.172497))
 #' }
 get_airnow_area <- function(box,
                             parameters = "pm25",
@@ -87,7 +89,7 @@ get_airnow_area <- function(box,
   }
 
   result_raw <- req_airnow() |>
-    httr2::req_url_path_append("data") |>
+    httr2::req_url_path_append("data/") |>
     httr2::req_url_query(
       bbox = paste0(box, collapse = ","),
       startdate = start_time,

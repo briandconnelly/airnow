@@ -1,5 +1,4 @@
 test_that("get_airnow_conditions() catches invalid inputs", {
-
   # zip is a 5-digit numeric string (or integer)
   expect_error(get_airnow_conditions(zip = NULL))
   expect_error(get_airnow_conditions(zip = NA_character_))

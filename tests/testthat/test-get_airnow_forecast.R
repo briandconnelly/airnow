@@ -1,5 +1,4 @@
 test_that("get_airnow_forecast() catches invalid inputs", {
-
   # zip is a 5-digit numeric string (or integer)
   expect_error(get_airnow_forecast(zip = NULL))
   expect_error(get_airnow_forecast(zip = NA_character_))
