@@ -1,4 +1,4 @@
-#' Get Current Air Quality Conditions
+#' Get current air quality conditions
 #'
 #' `get_airnow_conditions()` retrieves the most recent air quality readings
 #' for the given location. Locations can be specified either by ZIP code
@@ -6,7 +6,7 @@
 #' location, an optional search radius for other sites can be specified using
 #' `distance`.
 #'
-#' @param zip ZIP code
+#' @param zip ZIP code, a 5-digit numeric string (e.g., `"90210"`)
 #' @param latitude Latitude in decimal degrees
 #' @param longitude Longitude in decimal degrees
 #' @param distance Optional. If no reporting area is associated with the given

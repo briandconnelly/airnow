@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_airnow_conditions.R
 \name{get_airnow_conditions}
 \alias{get_airnow_conditions}
-\title{Get Current Air Quality Conditions}
+\title{Get current air quality conditions}
 \usage{
 get_airnow_conditions(
   zip = NULL,
@@ -14,7 +14,7 @@ get_airnow_conditions(
 )
 }
 \arguments{
-\item{zip}{ZIP code}
+\item{zip}{ZIP code, a 5-digit numeric string (e.g., \code{"90210"})}
 
 \item{latitude}{Latitude in decimal degrees}
 

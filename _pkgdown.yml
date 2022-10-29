@@ -3,7 +3,9 @@ template:
   bootstrap: 5
 reference:
 - title: Managing AirNow API tokens
-  desc: An API token allows you to interact with the AirNow API
+  desc: |
+    An API token allows you to interact with the AirNow API.
+    Tokens can be created at [airnowapi.org](https://docs.airnowapi.org).
 - contents:
   - set_airnow_token
   - get_airnow_token

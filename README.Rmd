@@ -49,7 +49,9 @@ set_airnow_token()
 ```
 
 
-## Current Air Quality in Seattle
+## Examples
+
+### Current air quality in Seattle
 
 The AirNow API allows you to query air conditions either by ZIP code or latitude/longitude.
 Here, we’ll get the current conditions in Seattle by ZIP code:
@@ -58,6 +60,21 @@ Here, we’ll get the current conditions in Seattle by ZIP code:
 library(airnow)
 
 get_airnow_conditions(zip = "98101")
+```
+
+
+### Find the site with the lowest air quality near Washington state
+
+```{r}
+library(airnow)
+library(dplyr)
+
+get_airnow_area(
+  box = c(-125.394211, 45.295897, -116.736984, 49.172497),
+  verbose = TRUE
+) |>
+  slice_max(order_by = aqi, n = 1) |>
+  select(site_name, site_agency, latitude, longitude, aqi, datetime_observed)
 ```
 
 

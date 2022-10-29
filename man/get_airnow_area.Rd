@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_airnow_area.R
 \name{get_airnow_area}
 \alias{get_airnow_area}
-\title{Get Air Quality Data for a Given Region}
+\title{Get air quality data for a given region}
 \usage{
 get_airnow_area(
   box,

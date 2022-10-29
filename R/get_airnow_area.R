@@ -1,4 +1,4 @@
-#' Get Air Quality Data for a Given Region
+#' Get air quality data for a given region
 #'
 #' `get_airnow_area()` retrieves the most recent air quality readings from sites
 #' in a specified region.

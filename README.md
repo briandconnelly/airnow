@@ -42,7 +42,9 @@ library(airnow)
 set_airnow_token()
 ```
 
-## Current Air Quality in Seattle
+## Examples
+
+### Current air quality in Seattle
 
 The AirNow API allows you to query air conditions either by ZIP code or
 latitude/longitude. Here, we’ll get the current conditions in Seattle by
@@ -55,11 +57,38 @@ get_airnow_conditions(zip = "98101")
 #> # A tibble: 2 × 11
 #>   date_observed hour_obs…¹ local…² repor…³ state…⁴ latit…⁵ longi…⁶ param…⁷   aqi
 #>   <date>             <int> <fct>   <fct>   <fct>     <dbl>   <dbl> <fct>   <int>
-#> 1 2022-10-22            15 PST     Seattl… WA         47.6   -122. O3         22
-#> 2 2022-10-22            15 PST     Seattl… WA         47.6   -122. PM2.5      28
+#> 1 2022-10-29            15 PST     Seattl… WA         47.6   -122. O3         26
+#> 2 2022-10-29            15 PST     Seattl… WA         47.6   -122. PM2.5      34
 #> # … with 2 more variables: category_number <int>, category_name <fct>, and
 #> #   abbreviated variable names ¹​hour_observed, ²​local_time_zone,
 #> #   ³​reporting_area, ⁴​state_code, ⁵​latitude, ⁶​longitude, ⁷​parameter
+```
+
+### Find the site with the lowest air quality near Washington state
+
+``` r
+library(airnow)
+library(dplyr)
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
+
+get_airnow_area(
+  box = c(-125.394211, 45.295897, -116.736984, 49.172497),
+  verbose = TRUE
+) |>
+  slice_max(order_by = aqi, n = 1) |>
+  select(site_name, site_agency, latitude, longitude, aqi, datetime_observed)
+#> # A tibble: 1 × 6
+#>   site_name                    site_…¹ latit…² longi…³   aqi datetime_observed  
+#>   <fct>                        <fct>     <dbl>   <dbl> <int> <dttm>             
+#> 1 Forest Grove Pacific Univer… Oregon…    45.5   -123.    72 2022-10-29 22:00:00
+#> # … with abbreviated variable names ¹​site_agency, ²​latitude, ³​longitude
 ```
 
 ## Disclaimer

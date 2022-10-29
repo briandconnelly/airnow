@@ -1,4 +1,4 @@
-#' Get Air Quality Forecast
+#' Get air quality forecast
 #'
 #' `get_airnow_forecast()` retrieves forecasted air quality conditions
 #' for the given location. Locations can be specified either by ZIP code
