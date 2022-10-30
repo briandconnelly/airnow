@@ -28,8 +28,13 @@ Current and historical readings as well as forecasts can be retrieved as tidy da
 
 ## Installation
 
-airnow is still changing quite a bit, so it isn't quite ready for CRAN.
-You can install the development version of airnow with:
+You can install the stable version of airnow from CRAN:
+
+```{r, eval=FALSE}
+install.packages("airnow")
+```
+
+If you'd like to try out the development version of airnow, you can install directly from GitHub:
 
 ```{r, eval=FALSE}
 # install.packages("remotes")

@@ -22,8 +22,14 @@ well as forecasts can be retrieved as tidy data frames.
 
 ## Installation
 
-airnow is still changing quite a bit, so it isn’t quite ready for CRAN.
-You can install the development version of airnow with:
+You can install the stable version of airnow from CRAN:
+
+``` r
+install.packages("airnow")
+```
+
+If you’d like to try out the development version of airnow, you can
+install directly from GitHub:
 
 ``` r
 # install.packages("remotes")
@@ -57,8 +63,8 @@ get_airnow_conditions(zip = "98101")
 #> # A tibble: 2 × 11
 #>   date_observed hour_obs…¹ local…² repor…³ state…⁴ latit…⁵ longi…⁶ param…⁷   aqi
 #>   <date>             <int> <fct>   <fct>   <fct>     <dbl>   <dbl> <fct>   <int>
-#> 1 2022-10-29            15 PST     Seattl… WA         47.6   -122. O3         26
-#> 2 2022-10-29            15 PST     Seattl… WA         47.6   -122. PM2.5      34
+#> 1 2022-10-29            17 PST     Seattl… WA         47.6   -122. O3         25
+#> 2 2022-10-29            17 PST     Seattl… WA         47.6   -122. PM2.5      38
 #> # … with 2 more variables: category_number <int>, category_name <fct>, and
 #> #   abbreviated variable names ¹​hour_observed, ²​local_time_zone,
 #> #   ³​reporting_area, ⁴​state_code, ⁵​latitude, ⁶​longitude, ⁷​parameter
@@ -85,10 +91,10 @@ get_airnow_area(
   slice_max(order_by = aqi, n = 1) |>
   select(site_name, site_agency, latitude, longitude, aqi, datetime_observed)
 #> # A tibble: 1 × 6
-#>   site_name                    site_…¹ latit…² longi…³   aqi datetime_observed  
-#>   <fct>                        <fct>     <dbl>   <dbl> <int> <dttm>             
-#> 1 Forest Grove Pacific Univer… Oregon…    45.5   -123.    72 2022-10-29 22:00:00
-#> # … with abbreviated variable names ¹​site_agency, ²​latitude, ³​longitude
+#>   site_name            site_agency     latit…¹ longi…²   aqi datetime_observed  
+#>   <fct>                <fct>             <dbl>   <dbl> <int> <dttm>             
+#> 1 Chehalis-Market Blvd Washington Dep…    46.7   -123.   129 2022-10-30 00:00:00
+#> # … with abbreviated variable names ¹​latitude, ²​longitude
 ```
 
 ## Disclaimer
