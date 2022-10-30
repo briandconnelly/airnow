@@ -81,3 +81,10 @@ check_bounding_box <- function(box) {
   }
   box
 }
+
+check_aqi <- function(x, arg_name = "aqi") {
+  if (!is_integerish(x) || any(x < 0) || any(x > 500)) {
+    cli::cli_abort("{.arg {arg_name}} must be an integer between 0 and 500, inclusive") # nolint
+  }
+  x
+}

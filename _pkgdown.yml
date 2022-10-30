@@ -15,3 +15,8 @@ reference:
   - get_airnow_conditions
   - get_airnow_area
   - get_airnow_forecast
+- title: AQI values
+  desc: Convert AQI values to color or text representations
+- contents:
+  - aqi_color
+  - aqi_descriptor
