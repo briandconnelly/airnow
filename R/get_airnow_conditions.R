@@ -58,18 +58,21 @@ get_airnow_conditions <- function(zip = NULL,
     jsonlite::fromJSON(flatten = TRUE) |>
     tibble::as_tibble()
 
-  result$DateObserved <- as.Date(trimws(result$DateObserved))
-  result$LocalTimeZone <- as.factor(result$LocalTimeZone)
-  result$ReportingArea <- as.factor(result$ReportingArea)
-  result$StateCode <- as.factor(result$StateCode)
-  result$ParameterName <- as.factor(result$ParameterName)
-  result$Category.Name <- factor(
-    result$Category.Name,
-    levels = category_levels
-  )
+  if (nrow(result) > 0) {
+    result$DateObserved <- as.Date(trimws(result$DateObserved))
+    result$LocalTimeZone <- as.factor(result$LocalTimeZone)
+    result$ReportingArea <- as.factor(result$ReportingArea)
+    result$StateCode <- as.factor(result$StateCode)
+    result$ParameterName <- as.factor(result$ParameterName)
+    result$Category.Name <- factor(
+      result$Category.Name,
+      levels = category_levels
+    )
 
-  if (clean_names) {
-    result <- clean_names(result)
+    if (clean_names) {
+      result <- clean_names(result)
+    }
   }
+
   result
 }

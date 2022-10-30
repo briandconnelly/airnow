@@ -109,16 +109,19 @@ get_airnow_area <- function(box,
     jsonlite::fromJSON(flatten = TRUE) |>
     tibble::as_tibble()
 
-  result$UTC <- strptime(result$UTC, format = "%Y-%m-%dT%H:%M", tz = "UTC")
-  result$Parameter <- as.factor(result$Parameter)
-  result$Unit <- as.factor(result$Unit)
-  if (verbose) {
-    result$SiteName <- as.factor(result$SiteName)
-    result$AgencyName <- as.factor(result$AgencyName)
+  if (nrow(result) > 0) {
+    result$UTC <- strptime(result$UTC, format = "%Y-%m-%dT%H:%M", tz = "UTC")
+    result$Parameter <- as.factor(result$Parameter)
+    result$Unit <- as.factor(result$Unit)
+    if (verbose) {
+      result$SiteName <- as.factor(result$SiteName)
+      result$AgencyName <- as.factor(result$AgencyName)
+    }
+
+    if (clean_names) {
+      result <- clean_names(result)
+    }
   }
 
-  if (clean_names) {
-    result <- clean_names(result)
-  }
   result
 }

@@ -13,15 +13,15 @@ aqi_descriptor(aqi)
 \item{aqi}{An AQI value. AQI is an integer between 0 and 500, inclusive.}
 }
 \value{
-An RGB hex string
+\code{aqi_color()} returns an RGB hex string
 
-A string
+\code{aqi_descriptor()} returns a string
 }
 \description{
 \code{aqi_color()} returns the color that corresponds with the given
 AQI value.
 
-\code{aqi_descriptor} converts the given AQI value(s) into a
+\code{aqi_descriptor()} converts the given AQI value(s) into a
 descriptive string.
 }
 \examples{

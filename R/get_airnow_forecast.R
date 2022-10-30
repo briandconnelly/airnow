@@ -51,18 +51,21 @@ get_airnow_forecast <- function(zip = NULL,
     jsonlite::fromJSON(flatten = TRUE) |>
     tibble::as_tibble()
 
-  result$DateIssue <- as.Date(trimws(result$DateIssue))
-  result$DateForecast <- as.Date(trimws(result$DateForecast))
-  result$ReportingArea <- as.factor(result$ReportingArea)
-  result$StateCode <- as.factor(result$StateCode)
-  result$ParameterName <- as.factor(result$ParameterName)
-  result$Category.Name <- factor(
-    result$Category.Name,
-    levels = category_levels
-  )
+  if (nrow(result) > 0) {
+    result$DateIssue <- as.Date(trimws(result$DateIssue))
+    result$DateForecast <- as.Date(trimws(result$DateForecast))
+    result$ReportingArea <- as.factor(result$ReportingArea)
+    result$StateCode <- as.factor(result$StateCode)
+    result$ParameterName <- as.factor(result$ParameterName)
+    result$Category.Name <- factor(
+      result$Category.Name,
+      levels = category_levels
+    )
 
-  if (clean_names) {
-    result <- clean_names(result)
+    if (clean_names) {
+      result <- clean_names(result)
+    }
   }
+
   result
 }

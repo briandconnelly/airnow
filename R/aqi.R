@@ -6,7 +6,7 @@
 #'
 #' @param aqi An AQI value. AQI is an integer between 0 and 500, inclusive.
 #'
-#' @return An RGB hex string
+#' @return `aqi_color()` returns an RGB hex string
 #' @export
 #'
 #' @examples
@@ -24,9 +24,9 @@ aqi_color <- function(aqi) {
 
 
 #' @rdname aqi
-#' @description `aqi_descriptor` converts the given AQI value(s) into a
+#' @description `aqi_descriptor()` converts the given AQI value(s) into a
 #'   descriptive string.
-#' @return A string
+#' @return `aqi_descriptor()` returns a string
 #' @export
 #' @examples
 #' aqi_descriptor(35)
