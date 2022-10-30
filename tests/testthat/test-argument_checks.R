@@ -146,7 +146,26 @@ test_that("check_bounding_box() returns expected values", {
   )
 
   for (i in valid_bounding_boxes) {
-    result <- airnow:::check_bounding_box(i)
+    result <- check_bounding_box(i)
+    expect_equal(result, i)
+  }
+})
+
+test_that("check_aqi() catches invalid input", {
+  expect_error(check_aqi(-1))
+  expect_error(check_aqi(501))
+  expect_error(check_aqi(NULL))
+  expect_error(check_aqi(NA_integer_))
+  expect_error(check_aqi(c()))
+  expect_error(check_aqi(20, 30, -1))
+  expect_error(check_aqi(20, 30, NULL))
+})
+
+test_that("check_aqi() returns expected values", {
+  valid_aqi <- as.integer(runif(100, min = 0, max = 500))
+
+  for (i in valid_aqi) {
+    result <- check_aqi(i)
     expect_equal(result, i)
   }
 })
