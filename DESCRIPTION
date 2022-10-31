@@ -8,7 +8,7 @@ Authors@R:
 Description: Retrieve air quality data via the 'AirNow'
     <https://www.airnow.gov/> API.
 License: MIT + file LICENSE
-URL: https://github.com/briandconnelly/airnow
+URL: https://briandconnelly.github.io/airnow/, https://github.com/briandconnelly/airnow
 BugReports: https://github.com/briandconnelly/airnow/issues
 Depends:
     R (>= 4.1.0)

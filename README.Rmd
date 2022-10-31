@@ -70,7 +70,7 @@ get_airnow_conditions(zip = "98101")
 
 ### Find the site with the lowest air quality near Washington state
 
-```{r}
+```{r message=FALSE}
 library(airnow)
 library(dplyr)
 

@@ -11,6 +11,7 @@ Retrieve air quality data via the 'AirNow' \url{https://www.airnow.gov/} API.
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://briandconnelly.github.io/airnow/}
   \item \url{https://github.com/briandconnelly/airnow}
   \item Report bugs at \url{https://github.com/briandconnelly/airnow/issues}
 }
