@@ -28,7 +28,7 @@
     
     <a class="navbar-brand me-2" href="index.html">airnow</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,7 +84,7 @@
 </h2>
 <p>The <a href="https://docs.airnowapi.org/" class="external-link">AirNow API</a> is generally free to use. The <code><a href="reference/get_airnow_token.html">set_airnow_token()</a></code> function can be used to help you create and configure your API token.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/briandconnelly/airnow" class="external-link">airnow</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://briandconnelly.github.io/airnow/">airnow</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/get_airnow_token.html">set_airnow_token</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -96,14 +96,14 @@
 </h3>
 <p>The AirNow API allows you to query air conditions either by ZIP code or latitude/longitude. Here, we’ll get the current conditions in Seattle by ZIP code:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/briandconnelly/airnow" class="external-link">airnow</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://briandconnelly.github.io/airnow/">airnow</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/get_airnow_conditions.html">get_airnow_conditions</a></span><span class="op">(</span>zip <span class="op">=</span> <span class="st">"98101"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 2 × 11</span></span>
 <span><span class="co">#&gt;   date_observed hour_obs…¹ local…² repor…³ state…⁴ latit…⁵ longi…⁶ param…⁷   aqi</span></span>
 <span><span class="co">#&gt;   &lt;date&gt;             &lt;int&gt; &lt;fct&gt;   &lt;fct&gt;   &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt;   &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1 2022-10-29            17 PST     Seattl… WA         47.6   -122. O3         25</span></span>
-<span><span class="co">#&gt; 2 2022-10-29            17 PST     Seattl… WA         47.6   -122. PM2.5      38</span></span>
+<span><span class="co">#&gt; 1 2022-10-31             6 PST     Seattl… WA         47.6   -122. O3         27</span></span>
+<span><span class="co">#&gt; 2 2022-10-31             6 PST     Seattl… WA         47.6   -122. PM2.5      30</span></span>
 <span><span class="co">#&gt; # … with 2 more variables: category_number &lt;int&gt;, category_name &lt;fct&gt;, and</span></span>
 <span><span class="co">#&gt; #   abbreviated variable names ¹​hour_observed, ²​local_time_zone,</span></span>
 <span><span class="co">#&gt; #   ³​reporting_area, ⁴​state_code, ⁵​latitude, ⁶​longitude, ⁷​parameter</span></span></code></pre></div>
@@ -112,16 +112,8 @@
 <h3 id="find-the-site-with-the-lowest-air-quality-near-washington-state">Find the site with the lowest air quality near Washington state<a class="anchor" aria-label="anchor" href="#find-the-site-with-the-lowest-air-quality-near-washington-state"></a>
 </h3>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/briandconnelly/airnow" class="external-link">airnow</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://briandconnelly.github.io/airnow/">airnow</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     filter, lag</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/get_airnow_area.html">get_airnow_area</a></span><span class="op">(</span></span>
 <span>  box <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">125.394211</span>, <span class="fl">45.295897</span>, <span class="op">-</span><span class="fl">116.736984</span>, <span class="fl">49.172497</span><span class="op">)</span>,</span>
@@ -130,9 +122,9 @@
 <span>  <span class="fu">slice_max</span><span class="op">(</span>order_by <span class="op">=</span> <span class="va">aqi</span>, n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="va">site_name</span>, <span class="va">site_agency</span>, <span class="va">latitude</span>, <span class="va">longitude</span>, <span class="va">aqi</span>, <span class="va">datetime_observed</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1 × 6</span></span>
-<span><span class="co">#&gt;   site_name            site_agency     latit…¹ longi…²   aqi datetime_observed  </span></span>
-<span><span class="co">#&gt;   &lt;fct&gt;                &lt;fct&gt;             &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt; &lt;dttm&gt;             </span></span>
-<span><span class="co">#&gt; 1 Chehalis-Market Blvd Washington Dep…    46.7   -123.   129 2022-10-30 00:00:00</span></span>
+<span><span class="co">#&gt;   site_name         site_agency        latit…¹ longi…²   aqi datetime_observed  </span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;             &lt;fct&gt;                &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt; &lt;dttm&gt;             </span></span>
+<span><span class="co">#&gt; 1 Clarkston-13th St Washington Depart…    46.4   -117.    56 2022-10-31 13:00:00</span></span>
 <span><span class="co">#&gt; # … with abbreviated variable names ¹​latitude, ²​longitude</span></span></code></pre></div>
 </div>
 </div>
