@@ -7,7 +7,7 @@
 #' @param box Four-element numeric vector specifying a bounding box for the
 #'   region of interest. Format is (minX, minY, maxX, maxY), where X and Y are
 #'   longitude and latitude, respectively.
-#' @param parameters Parameter(s) to return data for. Choices are PM_{2.5}
+#' @param parameters Parameter(s) to return data for. Choices are PM_\{2.5\}
 #'   (`pm25`: default), `ozone`, PM_10 (`pm10`), CO (`co`), NO2 (`no2`), and
 #'   SO2 (`so2`).
 #' @param start_time Optional. The date and time (UTC) at the start of the time
