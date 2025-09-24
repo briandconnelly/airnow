@@ -22,7 +22,7 @@ get_airnow_area(
 region of interest. Format is (minX, minY, maxX, maxY), where X and Y are
 longitude and latitude, respectively.}
 
-\item{parameters}{Parameter(s) to return data for. Choices are PM_{2.5}
+\item{parameters}{Parameter(s) to return data for. Choices are PM_\{2.5\}
 (\code{pm25}: default), \code{ozone}, PM_10 (\code{pm10}), CO (\code{co}), NO2 (\code{no2}), and
 SO2 (\code{so2}).}
 
