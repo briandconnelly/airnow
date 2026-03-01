@@ -11,13 +11,13 @@ Source:
 [`DESCRIPTION`](https://github.com/briandconnelly/airnow/blob/main/DESCRIPTION)
 
 Connelly B (2026). *airnow: Retrieve 'AirNow' Air Quality Observations
-and Forecasts*. R package version 0.1.0.9000,
+and Forecasts*. R package version 0.1.1,
 <https://briandconnelly.github.io/airnow/>.
 
     @Manual{,
       title = {airnow: Retrieve 'AirNow' Air Quality Observations and Forecasts},
       author = {Brian Connelly},
       year = {2026},
-      note = {R package version 0.1.0.9000},
+      note = {R package version 0.1.1},
       url = {https://briandconnelly.github.io/airnow/},
     }
