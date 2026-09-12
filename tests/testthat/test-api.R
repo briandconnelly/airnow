@@ -65,3 +65,13 @@ test_that("resp_airnow_tibble() aborts with the API message for other errors", {
   )
   expect_error(resp_airnow_tibble(resp), "Invalid date format")
 })
+
+test_that("resp_airnow_tibble() handles malformed JSON with a friendly error", {
+  resp <- httr2::response(status_code = 200, body = charToRaw("not json"))
+  expect_error(resp_airnow_tibble(resp), "could not be parsed")
+})
+
+test_that("resp_airnow_tibble() handles empty body with a friendly error", {
+  resp <- httr2::response(status_code = 200)
+  expect_error(resp_airnow_tibble(resp), "could not be parsed")
+})

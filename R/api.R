@@ -61,9 +61,20 @@ resp_airnow_tibble <- function(resp) {
     ))
   }
 
-  parsed <- resp |>
-    httr2::resp_body_string() |>
-    jsonlite::fromJSON(flatten = TRUE)
+  parsed <- tryCatch(
+    resp |>
+      httr2::resp_body_string() |>
+      jsonlite::fromJSON(flatten = TRUE),
+    error = function(e) {
+      cli::cli_abort(
+        c(
+          "The AirNow API returned a response that could not be parsed as JSON", # nolint
+          "i" = "HTTP status {httr2::resp_status(resp)}"
+        ),
+        parent = e
+      )
+    }
+  )
 
   tibble::as_tibble(parsed)
 }
