@@ -39,8 +39,8 @@ airnow_areas
 \description{
 Metadata for every AirNow reporting area: its location, time zone, agency,
 and the rules AirNow uses to pick monitors for it. Reporting-area codes
-are the \code{area} argument to \code{\link[=get_airnow_observations]{get_airnow_observations()}},
-\code{\link[=get_airnow_forecasts]{get_airnow_forecasts()}}, and \code{\link[=get_airnow_forecast_history]{get_airnow_forecast_history()}}.
+are the \code{area} argument to \code{get_airnow_observations()},
+\code{get_airnow_forecasts()}, and \code{get_airnow_forecast_history()}.
 }
 \details{
 Reporting areas are occasionally added, renamed, or retired between

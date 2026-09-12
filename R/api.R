@@ -33,7 +33,7 @@ airnow_error_messages <- function(resp) {
   text <- tryCatch(httr2::resp_body_string(resp), error = function(e) "")
   parsed <- tryCatch(jsonlite::fromJSON(text), error = function(e) NULL)
   if (is.list(parsed) && !is.data.frame(parsed) &&
-    !is.null(parsed$WebServiceError)) {
+        !is.null(parsed$WebServiceError)) {
     as.character(parsed$WebServiceError$Message)
   } else {
     NULL

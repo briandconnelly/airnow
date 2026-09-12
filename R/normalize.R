@@ -36,6 +36,7 @@ to_parameter_factor <- function(x) {
   unmatched <- unique(x[!is.na(x) & !(x %in% parameter_levels)])
   if (length(unmatched) > 0) {
     is_unmatched <- !is.na(x) & !(x %in% parameter_levels)
+    # nolint next: object_usage_linter. used below via glue interpolation
     unmatched_orig <- unique(orig_x[is_unmatched])
     cli::cli_warn(c(
       "Unrecognised parameter value{?s}: {.val {unmatched_orig}}",

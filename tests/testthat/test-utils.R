@@ -42,7 +42,10 @@ test_that("clean_names() maps the 2026 API's special names", {
 
 test_that("camel_to_snake() handles acronyms", {
   expect_equal(camel_to_snake("nowcastAQI"), "nowcast_aqi")
-  expect_equal(camel_to_snake("dailyAQICategoryName"), "daily_aqi_category_name")
+  expect_equal(
+    camel_to_snake("dailyAQICategoryName"),
+    "daily_aqi_category_name"
+  )
   expect_equal(camel_to_snake("siteID"), "site_id")
   expect_equal(camel_to_snake("already_snake"), "already_snake")
 })

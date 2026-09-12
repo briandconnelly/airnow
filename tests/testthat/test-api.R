@@ -13,7 +13,9 @@ test_that("req_airnow() uses HTTPS", {
 test_that("airnow_error_messages() extracts messages from the error envelope", {
   resp <- httr2::response_json(
     status_code = 401,
-    body = list(WebServiceError = list(list(Message = "Request not authenticated.")))
+    body = list(WebServiceError = list(list(
+      Message = "Request not authenticated."
+    )))
   )
   expect_equal(airnow_error_messages(resp), "Request not authenticated.")
 
