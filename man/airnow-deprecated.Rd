@@ -4,17 +4,65 @@
 \alias{airnow-deprecated}
 \alias{get_airnow_token}
 \alias{set_airnow_token}
+\alias{get_airnow_area}
 \title{Deprecated functions}
 \usage{
 get_airnow_token(ask = is_interactive())
 
 set_airnow_token(token = NULL, ask = is_interactive())
+
+get_airnow_area(
+  box,
+  parameters = "pm25",
+  start_time = NULL,
+  end_time = NULL,
+  monitor_type = "both",
+  data_type = c("aqi", "concentrations", "both"),
+  verbose = FALSE,
+  raw_concentrations = FALSE,
+  clean_names = TRUE,
+  api_key = get_airnow_key()
+)
 }
 \arguments{
 \item{ask}{Whether to prompt for the key if none is set. Prompting only
 works in interactive sessions.}
 
 \item{token}{The API key to use (deprecated spelling of \code{key})}
+
+\item{box}{Four-element numeric vector specifying a bounding box for the
+region of interest. Format is (minX, minY, maxX, maxY), where X and Y are
+longitude and latitude, respectively.}
+
+\item{parameters}{Parameter(s) to return data for. Choices are PM_\{2.5\}
+(\code{pm25}: default), \code{ozone}, PM_10 (\code{pm10}), CO (\code{co}), NO2 (\code{no2}), and
+SO2 (\code{so2}).}
+
+\item{start_time}{Optional. The date and time (UTC) at the start of the time
+period requested. If specified, \code{end_time} must also be given. If not
+specified, the most recent past hour is used.}
+
+\item{end_time}{Optional. The date and time (UTC) at the end of the time
+period requested. If specified, \code{start_time} must also be given. If not
+specified, the following hour is used.}
+
+\item{monitor_type}{Type of monitor to be returned, either \code{"permanent"},
+\code{"mobile"}, or \code{"both"} (default).}
+
+\item{data_type}{Type of data to be returned, either \code{"aqi"} (default),
+\code{"concentrations"}, or \code{"both"}.}
+
+\item{verbose}{Logical value indicating whether or not to include additional
+site information including Site Name, Agency Name, AQS ID, and Full AQS ID
+(default: \code{FALSE})}
+
+\item{raw_concentrations}{Logical value indicating whether or not raw
+hourly concentration data should be included (default: \code{FALSE})}
+
+\item{clean_names}{Whether or not column names should be cleaned (default:
+\code{TRUE})}
+
+\item{api_key}{AirNow API key}
 }
 \value{
 Each deprecated function returns whatever its replacement returns.
@@ -26,6 +74,7 @@ replacement.\tabular{ll}{
    Deprecated \tab Replacement \cr
    \code{get_airnow_token()} \tab \code{\link[=get_airnow_key]{get_airnow_key()}} \cr
    \code{set_airnow_token()} \tab \code{\link[=set_airnow_key]{set_airnow_key()}} \cr
+   \code{get_airnow_area()} \tab \code{\link[=get_airnow_monitors]{get_airnow_monitors()}} \cr
 }
 }
 \keyword{internal}

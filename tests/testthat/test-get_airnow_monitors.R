@@ -8,7 +8,7 @@ valid_call <- function(box = c(-125.394211, 45.295897, -116.736984, 49.172497),
                        raw_concentrations = FALSE,
                        clean_names = TRUE,
                        api_key = get_airnow_key()) {
-  get_airnow_area(
+  get_airnow_monitors(
     box = box,
     parameters = parameters,
     start_time = start_time,
@@ -22,7 +22,7 @@ valid_call <- function(box = c(-125.394211, 45.295897, -116.736984, 49.172497),
   )
 }
 
-test_that("get_airnow_area() validates inputs properly", {
+test_that("get_airnow_monitors() validates inputs properly", {
   # Box is a 4-element numeric vector of lon/lat pairs
   expect_error(valid_call(box = TRUE))
   expect_error(valid_call(box = 1))
@@ -93,12 +93,7 @@ test_that("get_airnow_area() validates inputs properly", {
 rm(valid_call)
 
 
-test_that("get_airnow_area() produces the expected outputs", {
-  skip_if(
-    condition = Sys.getenv("AIRNOW_API_KEY") %in% c("", "test-key"),
-    message = "AirNow API token is not set"
-  )
-
+test_that("get_airnow_monitors() produces the expected outputs", {
   colnames_raw <- c(
     "Latitude",
     "Longitude",
@@ -119,21 +114,33 @@ test_that("get_airnow_area() produces the expected outputs", {
     "category_number"
   )
 
-  result <- get_airnow_area(
-    box = c(-125.394211, 45.295897, -116.736984, 49.172497)
-  )
+  httptest2::with_mock_dir("monitors", {
+    result <- get_airnow_monitors(
+      box = c(-125.394211, 45.295897, -116.736984, 49.172497)
+    )
+    result_allargs_clean <- get_airnow_monitors(
+      box = c(-125.394211, 45.295897, -116.736984, 49.172497),
+      data_type = "both",
+      verbose = TRUE,
+      raw_concentrations = TRUE
+    )
+    result_noclean <- get_airnow_monitors(
+      box = c(-125.394211, 45.295897, -116.736984, 49.172497),
+      clean_names = FALSE
+    )
+    result_allargs_noclean <- get_airnow_monitors(
+      box = c(-125.394211, 45.295897, -116.736984, 49.172497),
+      data_type = "both",
+      verbose = TRUE,
+      raw_concentrations = TRUE,
+      clean_names = FALSE
+    )
+  })
 
   expect_true(is.data.frame(result))
   expect_true(tibble::is_tibble(result))
 
   expect_setequal(colnames(result), colnames_clean)
-
-  result_allargs_clean <- get_airnow_area(
-    box = c(-125.394211, 45.295897, -116.736984, 49.172497),
-    data_type = "both",
-    verbose = TRUE,
-    raw_concentrations = TRUE
-  )
 
   expect_true(is.data.frame(result_allargs_clean))
   expect_true(tibble::is_tibble(result_allargs_clean))
@@ -151,24 +158,10 @@ test_that("get_airnow_area() produces the expected outputs", {
     )
   )
 
-  result_noclean <- get_airnow_area(
-    box = c(-125.394211, 45.295897, -116.736984, 49.172497),
-    clean_names = FALSE
-  )
-
   expect_true(is.data.frame(result_noclean))
   expect_true(tibble::is_tibble(result_noclean))
 
   expect_setequal(colnames(result_noclean), colnames_raw)
-
-
-  result_allargs_noclean <- get_airnow_area(
-    box = c(-125.394211, 45.295897, -116.736984, 49.172497),
-    data_type = "both",
-    verbose = TRUE,
-    raw_concentrations = TRUE,
-    clean_names = FALSE
-  )
 
   expect_true(is.data.frame(result_allargs_noclean))
   expect_true(tibble::is_tibble(result_allargs_noclean))

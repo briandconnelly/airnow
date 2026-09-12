@@ -1,7 +1,8 @@
-#' Get air quality data for a given region
+#' Get air quality data from monitoring sites in a region
 #'
-#' `get_airnow_area()` retrieves the most recent air quality readings from sites
-#' in a specified region.
+#' `get_airnow_monitors()` retrieves readings from every monitoring site
+#' inside a bounding box. Before airnow 0.2.0 this function was called
+#' `get_airnow_area()`.
 #'
 #' @inheritParams get_airnow_conditions
 #' @param box Four-element numeric vector specifying a bounding box for the
@@ -32,9 +33,9 @@
 #' @examples
 #' \dontrun{
 #' # Get air quality data around Washington state
-#' get_airnow_area(box = c(-125.394211, 45.295897, -116.736984, 49.172497))
+#' get_airnow_monitors(box = c(-125.394211, 45.295897, -116.736984, 49.172497))
 #' }
-get_airnow_area <- function(box,
+get_airnow_monitors <- function(box,
                             parameters = "pm25",
                             start_time = NULL,
                             end_time = NULL,
@@ -102,12 +103,9 @@ get_airnow_area <- function(box,
       verbose = as.integer(verbose),
       includerawconcentrations = as.integer(raw_concentrations)
     ) |>
-    httr2::req_perform()
+    perform_airnow()
 
-  result <- result_raw |>
-    httr2::resp_body_string() |>
-    jsonlite::fromJSON(flatten = TRUE) |>
-    tibble::as_tibble()
+  result <- result_raw
 
   if (nrow(result) > 0) {
     result$UTC <- strptime(result$UTC, format = "%Y-%m-%dT%H:%M", tz = "UTC")
