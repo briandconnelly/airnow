@@ -23,71 +23,73 @@ valid_call <- function(box = c(-125.394211, 45.295897, -116.736984, 49.172497),
 }
 
 test_that("get_airnow_monitors() validates inputs properly", {
-  # Box is a 4-element numeric vector of lon/lat pairs
-  expect_error(valid_call(box = TRUE))
-  expect_error(valid_call(box = 1))
-  expect_error(valid_call(box = 1:3))
-  expect_error(valid_call(box = 1:5))
-  expect_error(valid_call(box = c(-181, 0, 0, 0)))
-  expect_error(valid_call(box = c(0, -91, 0, 0)))
-  expect_error(valid_call(box = c(0, 0, 181, 0)))
-  expect_error(valid_call(box = c(0, 0, 0, 91)))
-  expect_error(valid_call(box = c(0, 0, -1, 0)))
-  expect_error(valid_call(box = c(0, 0, 0, -1)))
+  httptest2::without_internet({
+    # Box is a 4-element numeric vector of lon/lat pairs
+    expect_error(valid_call(box = TRUE))
+    expect_error(valid_call(box = 1))
+    expect_error(valid_call(box = 1:3))
+    expect_error(valid_call(box = 1:5))
+    expect_error(valid_call(box = c(-181, 0, 0, 0)))
+    expect_error(valid_call(box = c(0, -91, 0, 0)))
+    expect_error(valid_call(box = c(0, 0, 181, 0)))
+    expect_error(valid_call(box = c(0, 0, 0, 91)))
+    expect_error(valid_call(box = c(0, 0, -1, 0)))
+    expect_error(valid_call(box = c(0, 0, 0, -1)))
 
-  # parameters is a list of 1+ "pm25", "ozone", "pm10", "co", "no2", "so2"
-  expect_error(valid_call(parameters = NULL))
-  expect_error(valid_call(parameters = NA_character_))
-  expect_error(valid_call(parameters = NA_character_))
-  expect_error(valid_call(parameters = ""))
-  expect_error(valid_call(parameters = "aqi"))
+    # parameters is a list of 1+ "pm25", "ozone", "pm10", "co", "no2", "so2"
+    expect_error(valid_call(parameters = NULL))
+    expect_error(valid_call(parameters = NA_character_))
+    expect_error(valid_call(parameters = NA_character_))
+    expect_error(valid_call(parameters = ""))
+    expect_error(valid_call(parameters = "aqi"))
 
-  # start_time is NULL or a UTC date(time)
-  # TODO
+    # start_time is NULL or a UTC date(time)
+    # TODO
 
-  # end_time is NULL or a UTC date(time)
-  # TODO
+    # end_time is NULL or a UTC date(time)
+    # TODO
 
-  # both or neither of start_time and end_time must be set
-  expect_error(valid_call(start_time = "2022-01-01", end_time = NULL))
-  expect_error(valid_call(start_time = NULL, end_time = "2022-01-01"))
+    # both or neither of start_time and end_time must be set
+    expect_error(valid_call(start_time = "2022-01-01", end_time = NULL))
+    expect_error(valid_call(start_time = NULL, end_time = "2022-01-01"))
 
-  # monitor_type is "permanent", "mobile", or "both"
-  expect_error(valid_call(monitor_type = NULL))
-  expect_error(valid_call(monitor_type = NA_character_))
-  expect_error(valid_call(monitor_type = c("permanent", "mobile")))
-  expect_error(valid_call(monitor_type = "invalid"))
-  expect_error(valid_call(monitor_type = 1))
+    # monitor_type is "permanent", "mobile", or "both"
+    expect_error(valid_call(monitor_type = NULL))
+    expect_error(valid_call(monitor_type = NA_character_))
+    expect_error(valid_call(monitor_type = c("permanent", "mobile")))
+    expect_error(valid_call(monitor_type = "invalid"))
+    expect_error(valid_call(monitor_type = 1))
 
-  # data_type is "aqi", "concentrations", or "both"
-  expect_error(valid_call(data_type = NULL))
-  expect_error(valid_call(data_type = NA_character_))
-  expect_error(valid_call(data_type = c("aqi", "concentrations")))
-  expect_error(valid_call(data_type = "invalid"))
-  expect_error(valid_call(data_type = 1))
+    # data_type is "aqi", "concentrations", or "both"
+    expect_error(valid_call(data_type = NULL))
+    expect_error(valid_call(data_type = NA_character_))
+    expect_error(valid_call(data_type = c("aqi", "concentrations")))
+    expect_error(valid_call(data_type = "invalid"))
+    expect_error(valid_call(data_type = 1))
 
-  # verbose is a scalar logical
-  expect_error(valid_call(verbose = NULL))
-  expect_error(valid_call(verbose = NA))
-  expect_error(valid_call(verbose = 1))
-  expect_error(valid_call(verbose = c(TRUE, FALSE)))
+    # verbose is a scalar logical
+    expect_error(valid_call(verbose = NULL))
+    expect_error(valid_call(verbose = NA))
+    expect_error(valid_call(verbose = 1))
+    expect_error(valid_call(verbose = c(TRUE, FALSE)))
 
-  # raw_concentrations is a scalar logical
-  expect_error(valid_call(raw_concentrations = NULL))
-  expect_error(valid_call(raw_concentrations = NA))
-  expect_error(valid_call(raw_concentrations = 1))
-  expect_error(valid_call(raw_concentrations = c(TRUE, FALSE)))
+    # raw_concentrations is a scalar logical
+    expect_error(valid_call(raw_concentrations = NULL))
+    expect_error(valid_call(raw_concentrations = NA))
+    expect_error(valid_call(raw_concentrations = 1))
+    expect_error(valid_call(raw_concentrations = c(TRUE, FALSE)))
 
-  # clean_names is a scalar logical
-  expect_error(valid_call(clean_names = NULL))
-  expect_error(valid_call(clean_names = NA))
-  expect_error(valid_call(clean_names = 1))
-  expect_error(valid_call(clean_names = c(TRUE, FALSE)))
+    # clean_names is a scalar logical
+    expect_error(valid_call(clean_names = NULL))
+    expect_error(valid_call(clean_names = NA))
+    expect_error(valid_call(clean_names = 1))
+    expect_error(valid_call(clean_names = c(TRUE, FALSE)))
 
-  # api_key must be a scalar string
-  expect_error(valid_call(api_key = NULL))
-  expect_error(valid_call(api_key = NA_character_))
-  expect_error(valid_call(api_key = ""))
+    # api_key must be a scalar string
+    expect_error(valid_call(api_key = NULL))
+    expect_error(valid_call(api_key = NA_character_))
+    expect_error(valid_call(api_key = ""))
+  })
 })
 
 rm(valid_call)

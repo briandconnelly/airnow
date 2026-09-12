@@ -50,6 +50,7 @@ airnow_no_data_pattern <- "^(Error - )?There (are|is) no "
 #'   data matched the request.
 #' @noRd
 resp_airnow_tibble <- function(resp) {
+  force(resp)
   msgs <- airnow_error_messages(resp)
   if (!is.null(msgs)) {
     if (all(grepl(airnow_no_data_pattern, msgs))) {
@@ -85,7 +86,6 @@ resp_airnow_tibble <- function(resp) {
 #' @return A tibble; see [resp_airnow_tibble()]
 #' @noRd
 perform_airnow <- function(req) {
-  req |>
-    httr2::req_perform() |>
-    resp_airnow_tibble()
+  resp <- httr2::req_perform(req)
+  resp_airnow_tibble(resp)
 }

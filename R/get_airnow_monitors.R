@@ -73,11 +73,11 @@ get_airnow_monitors <- function(box,
     "both" = "B"
   )
 
-  if (!is_logical(verbose, n = 1)) {
+  if (!is_logical(verbose, n = 1) || is.na(verbose)) {
     cli::cli_abort("{.arg verbose} must be either `TRUE` or `FALSE`")
   }
 
-  if (!is_logical(raw_concentrations, n = 1)) {
+  if (!is_logical(raw_concentrations, n = 1) || is.na(raw_concentrations)) {
     cli::cli_abort("{.arg raw_concentrations} must be either `TRUE` or `FALSE`") # nolint
   }
 

@@ -77,3 +77,12 @@ test_that("resp_airnow_tibble() handles empty body with a friendly error", {
   resp <- httr2::response(status_code = 200)
   expect_error(resp_airnow_tibble(resp), "could not be parsed")
 })
+
+test_that("perform_airnow() lets transport errors through untouched", {
+  req <- req_airnow() |>
+    httr2::req_url_path_append("forecast", "current") |>
+    httr2::req_url_query(zipCode = "90210", api_key = "x")
+  httptest2::without_internet({
+    expect_no_warning(expect_error(perform_airnow(req), "airnowapi"))
+  })
+})
