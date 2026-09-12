@@ -43,7 +43,7 @@ get_airnow_forecast_history <- function(area,
     cli::cli_abort("{.arg start_date} must not be after {.arg end_date}")
   }
   if (!is.null(range) &&
-    (!is_integerish(range, n = 1) || is.na(range) || range < 1)) {
+        (!is_integerish(range, n = 1) || is.na(range) || range < 1)) {
     cli::cli_abort("{.arg range} must be a single positive whole number")
   }
   if (!is.null(parameter)) {

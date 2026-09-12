@@ -147,7 +147,7 @@ check_date_arg <- function(x, arg_name) {
     return(format(x, "%Y-%m-%d"))
   }
   if (is_string(x) && grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2}$", x) &&
-    !is.na(as.Date(x, format = "%Y-%m-%d", optional = TRUE))) {
+        !is.na(as.Date(x, format = "%Y-%m-%d", optional = TRUE))) {
     return(x)
   }
   cli::cli_abort("{.arg {arg_name}} must be a single Date or a string in YYYY-MM-DD format") # nolint

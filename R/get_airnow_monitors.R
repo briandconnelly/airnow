@@ -36,15 +36,15 @@
 #' get_airnow_monitors(box = c(-125.394211, 45.295897, -116.736984, 49.172497))
 #' }
 get_airnow_monitors <- function(box,
-                            parameters = "pm25",
-                            start_time = NULL,
-                            end_time = NULL,
-                            monitor_type = "both",
-                            data_type = c("aqi", "concentrations", "both"),
-                            verbose = FALSE,
-                            raw_concentrations = FALSE,
-                            clean_names = TRUE,
-                            api_key = get_airnow_key()) {
+                                parameters = "pm25",
+                                start_time = NULL,
+                                end_time = NULL,
+                                monitor_type = "both",
+                                data_type = c("aqi", "concentrations", "both"),
+                                verbose = FALSE,
+                                raw_concentrations = FALSE,
+                                clean_names = TRUE,
+                                api_key = get_airnow_key()) {
   box <- check_bounding_box(box)
 
   parameters <- arg_match(

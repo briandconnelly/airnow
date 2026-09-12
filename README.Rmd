@@ -42,15 +42,15 @@ remotes::install_github("briandconnelly/airnow")
 ```
 
 
-## Creating an API Token
+## Creating an API Key
 
 The [AirNow API](https://docs.airnowapi.org/) is generally free to use.
-The `set_airnow_token()` function can be used to help you create and configure your API token.
+The `set_airnow_key()` function can be used to help you create and configure your API key.
 
 ```{r, eval=FALSE}
 library(airnow)
 
-set_airnow_token()
+set_airnow_key()
 ```
 
 
@@ -64,7 +64,18 @@ Here, we’ll get the current conditions in Seattle by ZIP code:
 ```{r}
 library(airnow)
 
-get_airnow_conditions(zip = "98101")
+get_airnow_observations(zip = "98101")
+```
+
+
+### Tomorrow's forecast for Napa, by reporting area
+
+Every location belongs to an AirNow *reporting area*. The bundled `airnow_areas` table lists them, and `get_airnow_reporting_area()` finds the one for a ZIP code or coordinate pair.
+
+```{r}
+get_airnow_reporting_area(zip = "94558")
+
+get_airnow_forecasts(area = "ca064")
 ```
 
 
@@ -74,7 +85,7 @@ get_airnow_conditions(zip = "98101")
 library(airnow)
 library(dplyr)
 
-get_airnow_area(
+get_airnow_monitors(
   box = c(-125.394211, 45.295897, -116.736984, 49.172497),
   verbose = TRUE
 ) |>

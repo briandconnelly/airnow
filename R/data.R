@@ -2,8 +2,8 @@
 #'
 #' Metadata for every AirNow reporting area: its location, time zone, agency,
 #' and the rules AirNow uses to pick monitors for it. Reporting-area codes
-#' are the `area` argument to `get_airnow_observations()`,
-#' `get_airnow_forecasts()`, and `get_airnow_forecast_history()`.
+#' are the `area` argument to [get_airnow_observations()],
+#' [get_airnow_forecasts()], and [get_airnow_forecast_history()].
 #'
 #' Reporting areas are occasionally added, renamed, or retired between
 #' package releases, so a live response can name an area missing from this
