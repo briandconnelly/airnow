@@ -113,7 +113,8 @@ derive_utc_datetime <- function(date, hour, tz_abbr, reporting_area_code) {
   }
 
   offset <- offset + ifelse(is_daylight, 1L, 0L)
-  known <- !is.na(idx) & !is.na(date) & !is.na(hour) & (is_daylight | is_standard)
+  known <- !is.na(idx) & !is.na(date) & !is.na(hour) &
+    (is_daylight | is_standard)
 
   local_midnight <- as.POSIXct(date, tz = "UTC")
   out <- local_midnight + hour * 3600 - offset * 3600
