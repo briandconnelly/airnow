@@ -795,13 +795,24 @@ forecast_raw_names <- c(
   "forecastAgency"
 )
 
-test_that("get_airnow_forecasts() validates inputs", {
-  expect_error(get_airnow_forecasts())
-  expect_error(get_airnow_forecasts(zip = "1234"))
-  expect_error(get_airnow_forecasts(latitude = 91, longitude = 0))
-  expect_error(get_airnow_forecasts(area = "Napa"))
-  expect_error(get_airnow_forecasts(zip = "90210", clean_names = NA))
-  expect_error(get_airnow_forecasts(zip = "90210", clean_names = "yes"))
+test_that("get_airnow_forecasts() validates inputs before any request", {
+  httptest2::without_internet({
+    expect_error(get_airnow_forecasts(), "must be specified")
+    expect_error(get_airnow_forecasts(zip = "1234"), "5-digit")
+    expect_error(
+      get_airnow_forecasts(latitude = 91, longitude = 0),
+      "between -90 and 90"
+    )
+    expect_error(get_airnow_forecasts(area = "Napa"), "reporting area code")
+    expect_error(
+      get_airnow_forecasts(zip = "90210", clean_names = NA),
+      "clean_names"
+    )
+    expect_error(
+      get_airnow_forecasts(zip = "90210", clean_names = "yes"),
+      "clean_names"
+    )
+  })
 })
 
 test_that("finish_forecast() normalizes a raw payload", {
@@ -1009,6 +1020,10 @@ finish_forecast <- function(x, clean_names) {
 #'   (default: `TRUE`). With `FALSE`, the API's lowerCamelCase names are kept.
 #' @param api_key AirNow API key
 #'
+#' @section Requests made:
+#' One request per call. Every request counts against AirNow's limit of
+#' 500 requests per hour per key.
+#'
 #' @return A tibble with one row per pollutant per forecast day. `parameter`
 #'   is a factor with levels `ozone`, `pm2.5`, `pm10`, `co`, `no2`, `so2`;
 #'   `category_name` is an ordered factor from Good to Hazardous. `latitude`
@@ -1110,14 +1125,37 @@ test_that("check_date_arg() accepts Dates and ISO strings", {
 Create `tests/testthat/test-get_airnow_forecast_history.R`:
 
 ```r
-test_that("get_airnow_forecast_history() validates inputs", {
-  expect_error(get_airnow_forecast_history("Napa", "2026-01-13", "2026-01-14")) # nolint
-  expect_error(get_airnow_forecast_history("md008", "2026-01-14", "2026-01-13")) # nolint
-  expect_error(get_airnow_forecast_history("md008", "bad", "2026-01-14"))
-  expect_error(get_airnow_forecast_history("md008", "2026-01-13", "2026-01-14", range = 0)) # nolint
-  expect_error(get_airnow_forecast_history("md008", "2026-01-13", "2026-01-14", range = 1.5)) # nolint
-  expect_error(get_airnow_forecast_history("md008", "2026-01-13", "2026-01-14", parameter = "radon")) # nolint
-  expect_error(get_airnow_forecast_history("md008", "2026-01-13", "2026-01-14", clean_names = NA)) # nolint
+test_that("get_airnow_forecast_history() validates inputs before any request", { # nolint
+  httptest2::without_internet({
+    expect_error(
+      get_airnow_forecast_history("Napa", "2026-01-13", "2026-01-14"),
+      "reporting area code"
+    )
+    expect_error(
+      get_airnow_forecast_history("md008", "2026-01-14", "2026-01-13"),
+      "must not be after"
+    )
+    expect_error(
+      get_airnow_forecast_history("md008", "bad", "2026-01-14"),
+      "YYYY-MM-DD"
+    )
+    expect_error(
+      get_airnow_forecast_history("md008", "2026-01-13", "2026-01-14", range = 0), # nolint
+      "positive whole number"
+    )
+    expect_error(
+      get_airnow_forecast_history("md008", "2026-01-13", "2026-01-14", range = 1.5), # nolint
+      "positive whole number"
+    )
+    expect_error(
+      get_airnow_forecast_history("md008", "2026-01-13", "2026-01-14", parameter = "radon"), # nolint
+      "must be one of"
+    )
+    expect_error(
+      get_airnow_forecast_history("md008", "2026-01-13", "2026-01-14", clean_names = NA), # nolint
+      "clean_names"
+    )
+  })
 })
 
 test_that("get_airnow_forecast_history() returns the forecast contract", {
@@ -1185,6 +1223,10 @@ check_date_arg <- function(x, arg_name) {
 #'   whole number). `NULL` (default) keeps every lead time.
 #' @param parameter Optional pollutant to keep: one of `"ozone"`,
 #'   `"pm2.5"`, `"pm10"`, `"co"`, `"no2"`, `"so2"`.
+#'
+#' @section Requests made:
+#' One request per call. Every request counts against AirNow's limit of
+#' 500 requests per hour per key.
 #'
 #' @return A tibble with the same columns as [get_airnow_forecasts()].
 #' @export
@@ -1323,12 +1365,20 @@ racode_payload <- function() {
   )
 }
 
-test_that("get_airnow_observations() validates inputs", {
-  expect_error(get_airnow_observations())
-  expect_error(get_airnow_observations(zip = "1234"))
-  expect_error(get_airnow_observations(latitude = 91, longitude = 0))
-  expect_error(get_airnow_observations(area = "Napa"))
-  expect_error(get_airnow_observations(zip = "90210", clean_names = NA))
+test_that("get_airnow_observations() validates inputs before any request", { # nolint
+  httptest2::without_internet({
+    expect_error(get_airnow_observations(), "must be specified")
+    expect_error(get_airnow_observations(zip = "1234"), "5-digit")
+    expect_error(
+      get_airnow_observations(latitude = 91, longitude = 0),
+      "between -90 and 90"
+    )
+    expect_error(get_airnow_observations(area = "Napa"), "reporting area code")
+    expect_error(
+      get_airnow_observations(zip = "90210", clean_names = NA),
+      "clean_names"
+    )
+  })
 })
 
 test_that("finish_observations() normalizes a ziplatLong payload", {
