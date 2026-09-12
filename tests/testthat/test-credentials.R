@@ -1,5 +1,5 @@
 test_that("key functions work when the variable is set", {
-  test_key <- "329E30B6-1474-4644-B238-6F36E2BF1912"
+  test_key <- "00000000-0000-4000-8000-000000000000"
   withr::local_envvar(AIRNOW_API_KEY = test_key)
 
   expect_true(airnow_key_isset())
@@ -16,7 +16,7 @@ test_that("key functions work when the variable is not set", {
   expect_false(airnow_key_isset())
   expect_error(get_airnow_key(ask = FALSE))
 
-  test_key <- "329E30B6-1474-4644-B238-6F36E2BF1912"
+  test_key <- "00000000-0000-4000-8000-000000000000"
   expect_silent(set_airnow_key(key = test_key, ask = FALSE))
   expect_true(airnow_key_isset())
   expect_equal(get_airnow_key(ask = FALSE), test_key)
