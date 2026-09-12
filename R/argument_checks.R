@@ -141,3 +141,14 @@ check_area_or_location <- function(zip = NULL,
   location$area <- NULL
   location
 }
+
+check_date_arg <- function(x, arg_name) {
+  if (inherits(x, "Date") && length(x) == 1 && !is.na(x)) {
+    return(format(x, "%Y-%m-%d"))
+  }
+  if (is_string(x) && grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2}$", x) &&
+    !is.na(as.Date(x, format = "%Y-%m-%d", optional = TRUE))) {
+    return(x)
+  }
+  cli::cli_abort("{.arg {arg_name}} must be a single Date or a string in YYYY-MM-DD format") # nolint
+}

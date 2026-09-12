@@ -219,3 +219,13 @@ test_that("check_area_or_location() prefers area and warns about extras", {
 
   expect_error(check_area_or_location(NULL, NULL, NULL, NULL))
 })
+
+test_that("check_date_arg() accepts Dates and ISO strings", {
+  expect_equal(check_date_arg(as.Date("2026-01-13"), "d"), "2026-01-13")
+  expect_equal(check_date_arg("2026-01-13", "d"), "2026-01-13")
+  expect_error(check_date_arg("2026-13-45", "d"))
+  expect_error(check_date_arg("Jan 13 2026", "d"))
+  expect_error(check_date_arg(NULL, "d"))
+  expect_error(check_date_arg(as.Date(NA), "d"))
+  expect_error(check_date_arg(as.Date(c("2026-01-13", "2026-01-14")), "d"))
+})
