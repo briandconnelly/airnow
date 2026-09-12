@@ -43,7 +43,7 @@ get_airnow_area <- function(box,
                             verbose = FALSE,
                             raw_concentrations = FALSE,
                             clean_names = TRUE,
-                            api_key = get_airnow_token()) {
+                            api_key = get_airnow_key()) {
   box <- check_bounding_box(box)
 
   parameters <- arg_match(
@@ -98,7 +98,7 @@ get_airnow_area <- function(box,
       monitortype = monitor_type,
       datatype = data_type,
       format = "application/json",
-      api_key = get_airnow_token(),
+      api_key = api_key,
       verbose = as.integer(verbose),
       includerawconcentrations = as.integer(raw_concentrations)
     ) |>

@@ -29,7 +29,7 @@ get_airnow_conditions <- function(zip = NULL,
                                   longitude = NULL,
                                   distance = NULL,
                                   clean_names = TRUE,
-                                  api_key = get_airnow_token()) {
+                                  api_key = get_airnow_key()) {
   location_parsed <- check_location(zip, latitude, longitude)
   distance <- check_distance(distance)
 

@@ -11,7 +11,7 @@ get_airnow_forecast(
   distance = NULL,
   date = NULL,
   clean_names = TRUE,
-  api_key = get_airnow_token()
+  api_key = get_airnow_key()
 )
 }
 \arguments{

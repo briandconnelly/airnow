@@ -14,7 +14,7 @@ get_airnow_area(
   verbose = FALSE,
   raw_concentrations = FALSE,
   clean_names = TRUE,
-  api_key = get_airnow_token()
+  api_key = get_airnow_key()
 )
 }
 \arguments{

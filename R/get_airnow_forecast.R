@@ -24,7 +24,7 @@ get_airnow_forecast <- function(zip = NULL,
                                 distance = NULL,
                                 date = NULL,
                                 clean_names = TRUE,
-                                api_key = get_airnow_token()) {
+                                api_key = get_airnow_key()) {
   location_parsed <- check_location(zip, latitude, longitude)
   distance <- check_distance(distance)
   date <- check_date(date)
