@@ -1,11 +1,15 @@
 test_that("to_parameter_factor() absorbs the API's spelling variants", {
-  result <- to_parameter_factor(c("OZONE", "Ozone", "O3", "PM2.5", "PM10", "CO", "NO2", "SO2")) # nolint
+  result <- to_parameter_factor( # nolint
+    c("OZONE", "Ozone", "O3", "PM2.5", "PM10", "CO", "NO2", "SO2", "PM25")
+  )
   expect_s3_class(result, "factor")
   expect_false(is.ordered(result))
   expect_equal(levels(result), c("ozone", "pm2.5", "pm10", "co", "no2", "so2"))
   expect_equal(
     as.character(result),
-    c("ozone", "ozone", "ozone", "pm2.5", "pm10", "co", "no2", "so2")
+    c(
+      "ozone", "ozone", "ozone", "pm2.5", "pm10", "co", "no2", "so2", "pm2.5"
+    )
   )
 })
 

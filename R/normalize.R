@@ -32,6 +32,7 @@ to_parameter_factor <- function(x) {
   orig_x <- as.character(x)
   x <- tolower(as.character(x))
   x[!is.na(x) & x == "o3"] <- "ozone"
+  x[!is.na(x) & x == "pm25"] <- "pm2.5"
   # Warn about unmatched, preserving original case
   unmatched <- unique(x[!is.na(x) & !(x %in% parameter_levels)])
   if (length(unmatched) > 0) {

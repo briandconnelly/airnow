@@ -107,9 +107,9 @@ would each have produced a shipped bug.**
 |---|---|
 | Old (both) | `O3`, `PM2.5`, `PM10`, `CO`, `NO2` |
 | `/forecast/current/`, `/forecast/historical/`, `/ziplatLong`, `/racode`, `/observation/historical/state/` | `OZONE`, `PM2.5`, `PM10`, `CO`, `NO2` |
-| `/aq/dailydata/` | `Ozone` |
+| `/aq/dailydata/` | `Ozone`, `PM25` |
 
-Only ozone varies. Everything else is stable across services.
+Only ozone and PM2.5 vary. Everything else is stable across services.
 
 `so2` was **not observed** in any probe response. It is documented as a valid value for
 the `parameter` input of `/aq/forecast/historical/`, which is the basis for including it
