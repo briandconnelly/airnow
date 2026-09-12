@@ -64,6 +64,17 @@ test_that("derive_utc_datetime() applies the area's offset and DST rule", {
   result <- derive_utc_datetime(as.Date("2026-07-01"), 12L, "MST", "az001")
   expect_equal(result, as.POSIXct("2026-07-01 19:00:00", tz = "UTC"))
 
+  # New Delhi and Kathmandu use fractional offsets that AirNow's source rounds
+  # down to whole hours.
+  result <- derive_utc_datetime(
+    as.Date(c("2026-07-01", "2026-07-01")), c(12L, 12L),
+    c("IST", "NPT"), c("ds001", "ds016")
+  )
+  expect_equal(
+    result,
+    as.POSIXct(c("2026-07-01 06:30:00", "2026-07-01 06:15:00"), tz = "UTC")
+  )
+
   # Midnight label stays on the API's date
   result <- derive_utc_datetime(as.Date("2026-09-10"), 0L, "PDT", "ca064")
   expect_equal(result, as.POSIXct("2026-09-10 07:00:00", tz = "UTC"))

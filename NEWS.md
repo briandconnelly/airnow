@@ -44,6 +44,7 @@ replacement services released in June 2026.
   Real AirNow data exceeds 500 during smoke events.
 * Unrecognised pollutant or category names now warn instead of silently
   becoming `NA`.
+* Derived UTC observation times account for half- and quarter-hour time zones.
 
 # airnow 0.1.1
 

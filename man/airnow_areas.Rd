@@ -12,7 +12,9 @@ than one state (e.g. Aberdeen, SD and Aberdeen, WA).}
 \item{state_code}{Two-letter state or province code}
 \item{country_code}{Two-letter country code (US, CA, MX)}
 \item{latitude, longitude}{Representative point, decimal degrees}
-\item{gmt_offset}{Standard-time offset from UTC, in hours}
+\item{gmt_offset}{Standard-time offset from UTC, in hours. AirNow's source
+rounds fractional offsets to whole hours; known half- and quarter-hour
+zones are corrected in this dataset.}
 \item{observes_dst}{Whether the area observes daylight saving time}
 \item{tz_standard, tz_daylight}{Time zone abbreviations as AirNow
 records them. Some are non-standard (Anchorage: \code{AKT}/\code{ADT}).}

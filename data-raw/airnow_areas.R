@@ -43,13 +43,27 @@ stopifnot(anyDuplicated(raw$reporting_area_code) == 0)
 stopifnot(all(grepl("^[a-z]{2}[0-9]{3}$", raw$reporting_area_code)))
 stopifnot(all(raw$observes_dst %in% c("Yes", "No")))
 
+# The source rounds several fractional UTC offsets down to whole hours. Restore
+# the precise standard offsets for zones whose standard and daylight labels are
+# identical and which do not observe DST. Without this, derived UTC timestamps
+# are 30 or 45 minutes late for India, Sri Lanka, Nepal, Afghanistan, and
+# Myanmar.
+gmt_offset <- as.numeric(raw$gmt_offset)
+fractional_offsets <- c(AFT = 4.5, IST = 5.5, MMT = 6.5, NPT = 5.75)
+uses_fractional_offset <- raw$observes_dst == "No" &
+  raw$tz_standard == raw$tz_daylight &
+  raw$tz_standard %in% names(fractional_offsets)
+gmt_offset[uses_fractional_offset] <- unname(
+  fractional_offsets[raw$tz_standard[uses_fractional_offset]]
+)
+
 airnow_areas <- tibble::tibble(
   reporting_area = raw$reporting_area,
   state_code = raw$state_code,
   country_code = raw$country_code,
   latitude = as.numeric(raw$latitude),
   longitude = as.numeric(raw$longitude),
-  gmt_offset = as.integer(raw$gmt_offset),
+  gmt_offset = gmt_offset,
   observes_dst = raw$observes_dst == "Yes",
   tz_standard = raw$tz_standard,
   tz_daylight = raw$tz_daylight,

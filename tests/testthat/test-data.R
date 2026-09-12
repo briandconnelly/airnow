@@ -10,7 +10,7 @@ test_that("airnow_areas has the documented shape", {
   ))
   expect_type(areas$latitude, "double")
   expect_type(areas$longitude, "double")
-  expect_type(areas$gmt_offset, "integer")
+  expect_type(areas$gmt_offset, "double")
   expect_type(areas$observes_dst, "logical")
   expect_false(any(is.na(areas$reporting_area_code)))
   expect_equal(anyDuplicated(areas$reporting_area_code), 0)
@@ -45,7 +45,13 @@ test_that("airnow_areas contains known rows", {
   expect_equal(phoenix$reporting_area, "Phoenix")
   expect_false(phoenix$observes_dst)
   expect_equal(phoenix$tz_standard, "MST")
-  expect_equal(phoenix$gmt_offset, -7L)
+  expect_equal(phoenix$gmt_offset, -7)
+
+  new_delhi <- areas[areas$reporting_area_code == "ds001", ]
+  expect_equal(new_delhi$gmt_offset, 5.5)
+
+  kathmandu <- areas[areas$reporting_area_code == "ds016", ]
+  expect_equal(kathmandu$gmt_offset, 5.75)
 
   aberdeen <- areas[areas$reporting_area == "Aberdeen", ]
   expect_equal(nrow(aberdeen), 2)

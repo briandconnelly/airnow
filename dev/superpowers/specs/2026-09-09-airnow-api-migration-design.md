@@ -274,10 +274,12 @@ Normalizations applied on top of the API response:
   incomparable clocks, and joining against `get_airnow_monitors()` — whose `UTC` column is
   parsed with `tz = "UTC"` at `R/get_airnow_area.R:113` — will silently misalign by each
   area's offset. `airnow_areas` carries GMT offset, a DST flag, and both timezone
-  abbreviations, which is enough to derive a `utc_datetime` (POSIXct) — but the
-  derivation is not as clean as it sounds. The metadata's abbreviations are not
-  standard: Anchorage carries `AKT|ADT` rather than `AKST|AKDT`, so an abbreviation
-  that the API returns is not guaranteed to match either metadata column. Rule:
+  abbreviations, which is enough to derive a `utc_datetime` (POSIXct) after correcting
+  one source limitation: the metadata rounds fractional offsets to whole hours. The
+  build script restores the known `AFT`, `IST`, `MMT`, and `NPT` half- and quarter-hour
+  offsets. The metadata's abbreviations are not standard: Anchorage carries `AKT|ADT`
+  rather than `AKST|AKDT`, so an abbreviation that the API returns is not guaranteed to
+  match either metadata column. Rule:
 
   1. `offset <- gmt_offset`.
   2. If `observes_dst == "Yes"` and `local_time_zone` equals the area's daylight
@@ -478,14 +480,12 @@ The deprecation notice must state these, because they cannot be papered over:
 Current network tests skip when `AIRNOW_API_KEY` is unset
 (`tests/testthat/test-get_airnow_conditions.R:38`).
 
-**Scope of the skip, corrected.** CI *does* supply the key —
-`.github/workflows/R-CMD-check.yaml:41` sets `AIRNOW_API_KEY` from repository secrets, as
-do the coverage and pkgdown workflows. So the column contracts are being checked on CI.
-What is *not* checked is local runs: the maintainer's shell sets `AIRNOW_API_TOKEN`, there
-is no `~/.Renviron`, and `R/credentials.R:19` reads `AIRNOW_API_KEY` — so these tests skip
-silently on the development machine. Renaming the local variable (section 6) fixes that.
-Make the skip emit a visible message either way, so "skipped" is never mistaken for
-"passed".
+**Scope of the skip, corrected.** Pull-request workflows deliberately do not receive
+`AIRNOW_API_KEY`: they execute code from the proposed change, so exposing a live key there
+would let that code read or transmit it. `.github/workflows/live-smoke.yaml` supplies the
+key only after a push to the protected default branch (or a manual dispatch). Local runs
+also skip unless `AIRNOW_API_KEY` is set. Make the skip emit a visible message either way,
+so "skipped" is never mistaken for "passed".
 
 Three layers:
 
