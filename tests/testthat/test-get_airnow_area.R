@@ -7,7 +7,7 @@ valid_call <- function(box = c(-125.394211, 45.295897, -116.736984, 49.172497),
                        verbose = FALSE,
                        raw_concentrations = FALSE,
                        clean_names = TRUE,
-                       api_key = get_airnow_token()) {
+                       api_key = get_airnow_key()) {
   get_airnow_area(
     box = box,
     parameters = parameters,
