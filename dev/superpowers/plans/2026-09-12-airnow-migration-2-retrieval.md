@@ -2458,6 +2458,10 @@ grep -c "$AIRNOW_API_TOKEN" README.md
 ```
 Expected: `README clean` and `0`.
 
+- [ ] **Step 4b: Restore the cross-reference links in the dataset help page**
+
+Plan 1's gate de-linked three function references in `R/data.R` because the functions did not exist yet. Now they do. In `R/data.R`, in the first paragraph of the `airnow_areas` roxygen block, change the plain-code mentions `` `get_airnow_observations()` ``, `` `get_airnow_forecasts()` ``, and `` `get_airnow_forecast_history()` `` back to roxygen links `[get_airnow_observations()]`, `[get_airnow_forecasts()]`, and `[get_airnow_forecast_history()]`. Run `Rscript -e 'devtools::document()'`; `man/airnow_areas.Rd` must gain `\link` entries and `R CMD check` (Step 6) must not report "missing link".
+
 - [ ] **Step 5: Update cran-comments.md**
 
 Replace its contents with:
