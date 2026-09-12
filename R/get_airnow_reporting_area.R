@@ -4,7 +4,9 @@
 #' a ZIP code or a latitude/longitude pair. The returned
 #' `reporting_area_code` is the `area` argument for
 #' [get_airnow_observations()], [get_airnow_forecasts()], and
-#' [get_airnow_forecast_history()].
+#' [get_airnow_forecast_history()]. Resolution uses AirNow's
+#' current-forecast service, so it requires the area to have a forecast
+#' issued for today; areas without one cannot be resolved this way.
 #'
 #' @section Requests made:
 #' One request per distinct location per session; the result is cached in

@@ -83,6 +83,18 @@ test_that("join_areas_by_name() resolves colliding names via the API for zips", 
   expect_equal(calls, 1)
 })
 
+test_that("join_areas_by_name() treats a resolver failure as a join miss", {
+  local_area_code_cache()
+  testthat::local_mocked_bindings(
+    resolve_area_code = function(...) cli::cli_abort("No AirNow reporting area") # nolint
+  )
+  x <- tibble::tibble(reportingAreaName = "Aberdeen", parameterName = "OZONE")
+  expect_warning(result <- join_areas_by_name(x, zip = "57401"), "Aberdeen")
+  expect_equal(nrow(result), 1)
+  expect_true(is.na(result$reportingAreaCode))
+  expect_equal(result$parameterName, "OZONE")
+})
+
 test_that("join_areas_by_name() warns and leaves NA on a miss", {
   x <- tibble::tibble(reportingAreaName = c("Atlantis", "Napa"))
   expect_warning(

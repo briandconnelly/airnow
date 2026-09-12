@@ -129,8 +129,11 @@ join_areas_by_name <- function(x,
       row <- candidates
     } else if (nrow(candidates) > 1) {
       if (!is.null(zip)) {
-        code <- resolve_area_code(zip = zip, api_key = api_key)
-        row <- candidates[candidates$reporting_area_code == code, , drop = FALSE] # nolint
+        code <- tryCatch(
+          resolve_area_code(zip = zip, api_key = api_key),
+          error = function(e) NA_character_
+        )
+        row <- candidates[!is.na(code) & candidates$reporting_area_code == code, , drop = FALSE] # nolint
       } else {
         row <- nearest_area(latitude, longitude, candidates)
       }
