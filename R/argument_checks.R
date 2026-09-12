@@ -105,3 +105,39 @@ check_aqi <- function(x, arg_name = "aqi") {
 
   x
 }
+
+check_clean_names <- function(x) {
+  if (!is_logical(x, n = 1) || is.na(x)) {
+    cli::cli_abort("{.arg clean_names} must be either `TRUE` or `FALSE`")
+  }
+  x
+}
+
+check_area_code <- function(x, arg_name = "area") {
+  if (!is_string(x) || is.na(x)) {
+    cli::cli_abort("{.arg {arg_name}} must be a single reporting area code such as {.val ca064}") # nolint
+  }
+  x <- tolower(x)
+  if (!grepl("^[a-z]{2}[0-9]{3}$", x)) {
+    cli::cli_abort("{.arg {arg_name}} must be a reporting area code such as {.val ca064}; see {.code airnow_areas} or {.fn get_airnow_reporting_area}") # nolint
+  }
+  x
+}
+
+check_area_or_location <- function(zip = NULL,
+                                   latitude = NULL,
+                                   longitude = NULL,
+                                   area = NULL) {
+  if (!is.null(area)) {
+    if (!is.null(zip) || !is.null(latitude) || !is.null(longitude)) {
+      cli::cli_warn("Ignoring {.arg zip}, {.arg latitude}, and {.arg longitude} because {.arg area} was provided") # nolint
+    }
+    return(list(
+      type = "area", zip = NULL, latitude = NULL, longitude = NULL,
+      area = check_area_code(area)
+    ))
+  }
+  location <- check_location(zip, latitude, longitude)
+  location$area <- NULL
+  location
+}

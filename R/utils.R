@@ -62,3 +62,20 @@ clean_names <- function(x) {
   names(x) <- nms
   x
 }
+
+#' Add absent columns as typed NA and put the contracted columns first
+#'
+#' @param x A tibble (possibly 0x0)
+#' @param defaults Named list; each value is a length-1 NA of the right type
+#' @return A tibble with every name in `defaults`, in that order, followed by
+#'   any extra columns `x` already had
+#' @noRd
+add_missing_columns <- function(x, defaults) {
+  n <- nrow(x)
+  for (col in names(defaults)) {
+    if (!(col %in% names(x))) {
+      x[[col]] <- rep(defaults[[col]], n)
+    }
+  }
+  x[c(names(defaults), setdiff(names(x), names(defaults)))]
+}

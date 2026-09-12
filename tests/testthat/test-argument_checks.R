@@ -177,3 +177,45 @@ test_that("check_aqi() warns on negatives and replaces them with NA", {
   expect_warning(result <- check_aqi(c(10, -7)), "negative")
   expect_equal(result, c(10L, NA))
 })
+
+test_that("check_clean_names() accepts only a single TRUE/FALSE", {
+  expect_equal(check_clean_names(TRUE), TRUE)
+  expect_equal(check_clean_names(FALSE), FALSE)
+  expect_error(check_clean_names(NULL))
+  expect_error(check_clean_names(NA))
+  expect_error(check_clean_names(1))
+  expect_error(check_clean_names(c(TRUE, FALSE)))
+})
+
+test_that("check_area_code() validates and lowercases", {
+  expect_equal(check_area_code("ca064"), "ca064")
+  expect_equal(check_area_code("CA064"), "ca064")
+  expect_error(check_area_code("ca64"))
+  expect_error(check_area_code("Napa"))
+  expect_error(check_area_code(NULL))
+  expect_error(check_area_code(NA_character_))
+  expect_error(check_area_code(c("ca064", "ca132")))
+})
+
+test_that("check_area_or_location() prefers area and warns about extras", {
+  result <- check_area_or_location(NULL, NULL, NULL, "ca064")
+  expect_equal(result$type, "area")
+  expect_equal(result$area, "ca064")
+  expect_null(result$zip)
+
+  expect_warning(
+    result <- check_area_or_location("90210", NULL, NULL, "ca064"),
+    "Ignoring"
+  )
+  expect_equal(result$type, "area")
+  expect_null(result$zip)
+
+  result <- check_area_or_location("90210", NULL, NULL, NULL)
+  expect_equal(result$type, "zipCode")
+  expect_null(result$area)
+
+  result <- check_area_or_location(NULL, 38.3, -122.3, NULL)
+  expect_equal(result$type, "latLong")
+
+  expect_error(check_area_or_location(NULL, NULL, NULL, NULL))
+})

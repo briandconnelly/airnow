@@ -49,3 +49,18 @@ test_that("camel_to_snake() handles acronyms", {
   expect_equal(camel_to_snake("siteID"), "site_id")
   expect_equal(camel_to_snake("already_snake"), "already_snake")
 })
+
+test_that("add_missing_columns() adds typed NA columns and orders them", {
+  defaults <- list(a = NA_integer_, b = NA_character_, c = as.Date(NA))
+  x <- tibble::tibble(b = c("x", "y"), extra = 1:2)
+  result <- add_missing_columns(x, defaults)
+  expect_named(result, c("a", "b", "c", "extra"))
+  expect_type(result$a, "integer")
+  expect_s3_class(result$c, "Date")
+  expect_equal(nrow(result), 2)
+
+  empty <- add_missing_columns(tibble::tibble(), defaults)
+  expect_named(empty, c("a", "b", "c"))
+  expect_equal(nrow(empty), 0)
+  expect_type(empty$b, "character")
+})
