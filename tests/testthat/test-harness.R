@@ -27,3 +27,15 @@ test_that("fixtures record with the key redacted and replay without it", {
     expect_false(any(grepl("api_key=", text, fixed = TRUE)), info = f)
   }
 })
+
+test_that("every recorded fixture path fits the 100-byte tarball limit", {
+  files <- list.files(
+    testthat::test_path(),
+    pattern = "\\.json$", recursive = TRUE, full.names = FALSE
+  )
+  files <- files[grepl("/an/", files, fixed = TRUE)]
+  expect_true(length(files) > 0)
+  tarball_paths <- file.path("airnow", "tests", "testthat", files)
+  too_long <- tarball_paths[nchar(tarball_paths, type = "bytes") > 100]
+  expect_length(too_long, 0)
+})

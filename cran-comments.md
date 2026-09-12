@@ -1,12 +1,6 @@
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
-
-* checking for portable file names ... NOTE: two recorded HTTP fixture
-  files under `tests/testthat/` (httptest2 mocks) have paths that exceed
-  the 100-byte tarball component limit. These are generated mock
-  directory names from the httptest2 recording convention and do not
-  affect package functionality.
+0 errors | 0 warnings | 0 notes
 
 ## Notes for CRAN
 
