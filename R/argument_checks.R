@@ -83,8 +83,25 @@ check_bounding_box <- function(box) {
 }
 
 check_aqi <- function(x, arg_name = "aqi") {
-  if (!is_integerish(x) || any(x < 0) || any(x > 500)) {
-    cli::cli_abort("{.arg {arg_name}} must be an integer between 0 and 500, inclusive") # nolint
+  # A bare logical NA (e.g. `NA`) is a legitimate missing value
+  if (is.logical(x) && length(x) > 0 && all(is.na(x))) {
+    x <- as.integer(x)
   }
+
+  if (length(x) == 0 || !is_integerish(x)) {
+    cli::cli_abort("{.arg {arg_name}} must be a vector of whole numbers")
+  }
+
+  x <- as.integer(x)
+  negative <- !is.na(x) & x < 0
+
+  if (any(negative & x == -1)) {
+    cli::cli_warn("{.arg {arg_name}} contains -1, the AirNow sentinel for a categorical forecast; returning {.val NA} for those values") # nolint
+  }
+  if (any(negative & x != -1)) {
+    cli::cli_warn("{.arg {arg_name}} contains negative values; returning {.val NA} for those values") # nolint
+  }
+  x[negative] <- NA_integer_
+
   x
 }

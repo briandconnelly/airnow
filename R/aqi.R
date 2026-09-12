@@ -4,13 +4,20 @@
 #' @description `aqi_color()` returns the color that corresponds with the given
 #' AQI value.
 #'
-#' @param aqi An AQI value. AQI is an integer between 0 and 500, inclusive.
+#' @details The AQI scale nominally tops out at 500, but AirNow reports
+#'   higher values during severe smoke events. Values above 500 are treated
+#'   as Hazardous. `NA` inputs give `NA` outputs. Negative values (including
+#'   AirNow's `-1` sentinel for a categorical forecast) give `NA` with a
+#'   warning.
 #'
-#' @return `aqi_color()` returns an RGB hex string
+#' @param aqi A vector of AQI values (whole numbers, `NA` allowed)
+#'
+#' @return `aqi_color()` returns a character vector of RGB hex strings
 #' @export
 #'
 #' @examples
 #' aqi_color(35)
+#' aqi_color(c(35, NA, 874))
 aqi_color <- function(aqi) {
   aqi <- check_aqi(aqi)
 
@@ -19,14 +26,14 @@ aqi_color <- function(aqi) {
     c(51, 50, 50, 50, 100, 200)
   )
 
-  colors[(aqi + 1)]
+  colors[pmin(aqi, 500L) + 1L]
 }
 
 
 #' @rdname aqi
 #' @description `aqi_descriptor()` converts the given AQI value(s) into a
 #'   descriptive string.
-#' @return `aqi_descriptor()` returns a string
+#' @return `aqi_descriptor()` returns a character vector
 #' @export
 #' @examples
 #' aqi_descriptor(35)
@@ -45,5 +52,5 @@ aqi_descriptor <- function(aqi) {
     c(51, 50, 50, 50, 100, 200)
   )
 
-  descriptors[(aqi + 1)]
+  descriptors[pmin(aqi, 500L) + 1L]
 }

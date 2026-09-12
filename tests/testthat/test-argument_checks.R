@@ -151,21 +151,29 @@ test_that("check_bounding_box() returns expected values", {
   }
 })
 
-test_that("check_aqi() catches invalid input", {
-  expect_error(check_aqi(-1))
-  expect_error(check_aqi(501))
+test_that("check_aqi() rejects non-numeric input", {
   expect_error(check_aqi(NULL))
-  expect_error(check_aqi(NA_integer_))
   expect_error(check_aqi(c()))
+  expect_error(check_aqi("35"))
+  expect_error(check_aqi(1.5))
   expect_error(check_aqi(20, 30, -1))
   expect_error(check_aqi(20, 30, NULL))
 })
 
-test_that("check_aqi() returns expected values", {
+test_that("check_aqi() returns integers, clamps nothing, and tolerates NA", {
   valid_aqi <- as.integer(runif(100, min = 0, max = 500))
-
   for (i in valid_aqi) {
-    result <- check_aqi(i)
-    expect_equal(result, i)
+    expect_equal(check_aqi(i), i)
   }
+  expect_equal(check_aqi(874), 874L)
+  expect_equal(check_aqi(NA_integer_), NA_integer_)
+  expect_equal(check_aqi(NA), NA_integer_)
+  expect_equal(check_aqi(c(1, NA, 3)), c(1L, NA, 3L))
+})
+
+test_that("check_aqi() warns on negatives and replaces them with NA", {
+  expect_warning(result <- check_aqi(-1), "-1")
+  expect_equal(result, NA_integer_)
+  expect_warning(result <- check_aqi(c(10, -7)), "negative")
+  expect_equal(result, c(10L, NA))
 })
