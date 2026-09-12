@@ -1,6 +1,6 @@
 # airnow 0.2.0
 
-AirNow retired the web services behind `get_airnow_conditions()` and
+AirNow retires the web services behind `get_airnow_conditions()` and
 `get_airnow_forecast()` on 2026-09-30. This release moves the package to the
 replacement services released in June 2026.
 

@@ -88,7 +88,7 @@ get_airnow_conditions <- function(zip = NULL,
   lifecycle::deprecate_warn(
     "0.2.0", "get_airnow_conditions()", "get_airnow_observations()",
     details = c(
-      "AirNow retired the service behind this function on 2026-09-30.",
+      "AirNow retires the service behind this function on 2026-09-30.",
       "This shim calls the replacement service and reshapes the result. Row counts and AQI values may differ from before; LocalTimeZone is now correct; HourObserved keeps the old start-of-hour convention." # nolint
     )
   )
@@ -128,12 +128,13 @@ get_airnow_forecast <- function(zip = NULL,
   location <- check_location(zip, latitude, longitude)
   distance <- check_distance(distance)
   date <- check_date(date)
+  if (!is.null(date)) date <- check_date_arg(date, "date")
   check_clean_names(clean_names)
 
   lifecycle::deprecate_warn(
     "0.2.0", "get_airnow_forecast()", "get_airnow_forecasts()",
     details = c(
-      "AirNow retired the service behind this function on 2026-09-30.",
+      "AirNow retires the service behind this function on 2026-09-30.",
       "This shim calls the replacement service and reshapes the result. Row counts may differ; `date` now selects forecasts valid on that date only." # nolint
     )
   )

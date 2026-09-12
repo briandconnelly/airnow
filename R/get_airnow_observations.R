@@ -94,9 +94,12 @@ finish_observations <- function(x,
 #' **end**: `18` means the period 17:00-17:59. `date_observed` and
 #' `hour_observed` are local to each reporting area, and `local_time_zone`
 #' is an abbreviation R cannot interpret. `utc_datetime` is derived from the
-#' reporting area's metadata in [airnow_areas] and is the column to use when
-#' comparing areas or joining with [get_airnow_monitors()]. It is `NA` when
-#' the area or its time zone cannot be matched.
+#' reporting area's metadata in [airnow_areas] and marks the **end** of the
+#' observation hour (the API's label). [get_airnow_monitors()] labels the
+#' same hour by its **start** in `datetime_observed`, so to join the two
+#' subtract one hour from `utc_datetime` (or add one hour to
+#' `datetime_observed`). `utc_datetime` is `NA` when the area or its time
+#' zone cannot be matched.
 #'
 #' @inheritParams get_airnow_forecasts
 #'

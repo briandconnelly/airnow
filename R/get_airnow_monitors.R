@@ -4,7 +4,7 @@
 #' inside a bounding box. Before airnow 0.2.0 this function was called
 #' `get_airnow_area()`.
 #'
-#' @inheritParams get_airnow_conditions
+#' @inheritParams get_airnow_forecasts
 #' @param box Four-element numeric vector specifying a bounding box for the
 #'   region of interest. Format is (minX, minY, maxX, maxY), where X and Y are
 #'   longitude and latitude, respectively.

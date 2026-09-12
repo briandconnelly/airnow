@@ -289,6 +289,10 @@ Normalizations applied on top of the API response:
   Required fixtures: a DST area in summer (`PDT`), a non-DST area (Phoenix; metadata
   `observes_dst == "No"`), and a mismatch row that must yield `NA` with a warning.
   Deriving `utc_datetime` is phase 1; the locality caveat is documented either way.
+  `utc_datetime` denotes the *end* of the observation hour, matching the API's
+  label; `get_airnow_monitors()$datetime_observed` denotes the *start*. Whether
+  0.2.1 should shift `utc_datetime` to period start for consistency is an open
+  decision; 0.2.0 documents the one-hour difference.
 - **`state_code`, `latitude`, `longitude`, `reporting_area_code`** — added by the
   `airnow_areas` join to services that no longer return them.
 

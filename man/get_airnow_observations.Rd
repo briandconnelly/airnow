@@ -65,9 +65,12 @@ against AirNow's 500-per-hour limit.
 \strong{end}: \code{18} means the period 17:00-17:59. \code{date_observed} and
 \code{hour_observed} are local to each reporting area, and \code{local_time_zone}
 is an abbreviation R cannot interpret. \code{utc_datetime} is derived from the
-reporting area's metadata in \link{airnow_areas} and is the column to use when
-comparing areas or joining with \code{\link[=get_airnow_monitors]{get_airnow_monitors()}}. It is \code{NA} when
-the area or its time zone cannot be matched.
+reporting area's metadata in \link{airnow_areas} and marks the \strong{end} of the
+observation hour (the API's label). \code{\link[=get_airnow_monitors]{get_airnow_monitors()}} labels the
+same hour by its \strong{start} in \code{datetime_observed}, so to join the two
+subtract one hour from \code{utc_datetime} (or add one hour to
+\code{datetime_observed}). \code{utc_datetime} is \code{NA} when the area or its time
+zone cannot be matched.
 }
 
 \examples{
