@@ -1,10 +1,12 @@
 .Rproj.user
 .Rhistory
 .RData
-docs
+docs/*
+!docs/superpowers/
 inst/doc
 .DS_Store
 testing.R
 NOTES.md
 .Rdata
 .httr-oauth
+.superpowers/
