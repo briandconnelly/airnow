@@ -32,12 +32,9 @@ test_that("get_airnow_conditions() catches invalid inputs", {
 
 
 test_that("get_airnow_conditions() produces the expected outputs", {
-  skip_if(
-    condition = Sys.getenv("AIRNOW_API_KEY") %in% c("", "test-key"),
-    message = "AirNow API token is not set"
-  )
-
-  result <- get_airnow_conditions(zip = "98101")
+  httptest2::with_mock_dir("legacy_conditions", {
+    lifecycle::expect_deprecated(result <- get_airnow_conditions(zip = "98101")) # nolint
+  })
 
   expect_true(is.data.frame(result))
   expect_true(tibble::is_tibble(result))
@@ -59,7 +56,11 @@ test_that("get_airnow_conditions() produces the expected outputs", {
     )
   )
 
-  result_noclean <- get_airnow_conditions(zip = "98101", clean_names = FALSE)
+  httptest2::with_mock_dir("legacy_conditions", {
+    lifecycle::expect_deprecated(
+      result_noclean <- get_airnow_conditions(zip = "98101", clean_names = FALSE) # nolint
+    )
+  })
 
   expect_true(is.data.frame(result_noclean))
   expect_true(tibble::is_tibble(result_noclean))

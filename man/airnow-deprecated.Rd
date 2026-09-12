@@ -5,6 +5,8 @@
 \alias{get_airnow_token}
 \alias{set_airnow_token}
 \alias{get_airnow_area}
+\alias{get_airnow_conditions}
+\alias{get_airnow_forecast}
 \title{Deprecated functions}
 \usage{
 get_airnow_token(ask = is_interactive())
@@ -20,6 +22,25 @@ get_airnow_area(
   data_type = c("aqi", "concentrations", "both"),
   verbose = FALSE,
   raw_concentrations = FALSE,
+  clean_names = TRUE,
+  api_key = get_airnow_key()
+)
+
+get_airnow_conditions(
+  zip = NULL,
+  latitude = NULL,
+  longitude = NULL,
+  distance = NULL,
+  clean_names = TRUE,
+  api_key = get_airnow_key()
+)
+
+get_airnow_forecast(
+  zip = NULL,
+  latitude = NULL,
+  longitude = NULL,
+  distance = NULL,
+  date = NULL,
   clean_names = TRUE,
   api_key = get_airnow_key()
 )
@@ -59,10 +80,24 @@ site information including Site Name, Agency Name, AQS ID, and Full AQS ID
 \item{raw_concentrations}{Logical value indicating whether or not raw
 hourly concentration data should be included (default: \code{FALSE})}
 
-\item{clean_names}{Whether or not column names should be cleaned (default:
-\code{TRUE})}
+\item{clean_names}{Whether or not column names should be cleaned
+(default: \code{TRUE})}
 
 \item{api_key}{AirNow API key}
+
+\item{zip}{ZIP code, a 5-digit numeric string (e.g., \code{"90210"})}
+
+\item{latitude}{Latitude in decimal degrees}
+
+\item{longitude}{Longitude in decimal degrees}
+
+\item{distance}{Ignored since airnow 0.2.0. The 2026 AirNow services
+search a fixed radius for each reporting area.}
+
+\item{date}{Optional date of forecast as a \code{"YYYY-MM-DD"} string. Since
+airnow 0.2.0 this returns forecasts \emph{valid} on that date with a
+one-day lead time; the old service also returned forecasts \emph{issued} on
+that date.}
 }
 \value{
 Each deprecated function returns whatever its replacement returns.
@@ -75,6 +110,8 @@ replacement.\tabular{ll}{
    \code{get_airnow_token()} \tab \code{\link[=get_airnow_key]{get_airnow_key()}} \cr
    \code{set_airnow_token()} \tab \code{\link[=set_airnow_key]{set_airnow_key()}} \cr
    \code{get_airnow_area()} \tab \code{\link[=get_airnow_monitors]{get_airnow_monitors()}} \cr
+   \code{get_airnow_conditions()} \tab \code{\link[=get_airnow_observations]{get_airnow_observations()}} \cr
+   \code{get_airnow_forecast()} \tab \code{\link[=get_airnow_forecasts]{get_airnow_forecasts()}} \cr
 }
 }
 \keyword{internal}

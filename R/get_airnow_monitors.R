@@ -81,9 +81,7 @@ get_airnow_monitors <- function(box,
     cli::cli_abort("{.arg raw_concentrations} must be either `TRUE` or `FALSE`") # nolint
   }
 
-  if (!is_logical(clean_names, n = 1)) {
-    cli::cli_abort("{.arg clean_names} must be either `TRUE` or `FALSE`") # nolint
-  }
+  check_clean_names(clean_names)
 
   if (!is_string(api_key) || nchar(api_key) < 1) {
     cli::cli_abort("{.arg api_key} must be a string")

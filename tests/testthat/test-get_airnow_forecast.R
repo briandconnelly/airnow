@@ -32,12 +32,9 @@ test_that("get_airnow_forecast() catches invalid inputs", {
 
 
 test_that("get_airnow_forecast() produces the expected outputs", {
-  skip_if(
-    condition = Sys.getenv("AIRNOW_API_KEY") %in% c("", "test-key"),
-    message = "AirNow API token is not set"
-  )
-
-  result <- get_airnow_forecast(zip = "98101")
+  httptest2::with_mock_dir("legacy_forecast", {
+    lifecycle::expect_deprecated(result <- get_airnow_forecast(zip = "98101")) # nolint
+  })
 
   expect_true(is.data.frame(result))
   expect_true(tibble::is_tibble(result))
@@ -60,7 +57,11 @@ test_that("get_airnow_forecast() produces the expected outputs", {
     )
   )
 
-  result_noclean <- get_airnow_forecast(zip = "98101", clean_names = FALSE)
+  httptest2::with_mock_dir("legacy_forecast", {
+    lifecycle::expect_deprecated(
+      result_noclean <- get_airnow_forecast(zip = "98101", clean_names = FALSE) # nolint
+    )
+  })
 
   expect_true(is.data.frame(result_noclean))
   expect_true(tibble::is_tibble(result_noclean))
@@ -82,4 +83,17 @@ test_that("get_airnow_forecast() produces the expected outputs", {
       "Category.Name"
     )
   )
+})
+
+
+test_that("get_airnow_forecast(date = ) narrows to forecasts valid that day", { # nolint
+  local_area_code_cache()
+  httptest2::with_mock_dir("legacy_forecast_date", {
+    lifecycle::expect_deprecated(
+      result <- get_airnow_forecast(zip = "90210", date = "2026-01-13")
+    )
+  })
+  expect_true(nrow(result) > 0)
+  expect_equal(unique(result$date_forecast), as.Date("2026-01-13"))
+  expect_equal(unique(result$date_issued), as.Date("2026-01-12"))
 })

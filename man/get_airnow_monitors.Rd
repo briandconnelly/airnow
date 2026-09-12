@@ -47,8 +47,8 @@ site information including Site Name, Agency Name, AQS ID, and Full AQS ID
 \item{raw_concentrations}{Logical value indicating whether or not raw
 hourly concentration data should be included (default: \code{FALSE})}
 
-\item{clean_names}{Whether or not column names should be cleaned (default:
-\code{TRUE})}
+\item{clean_names}{Whether or not column names should be cleaned
+(default: \code{TRUE})}
 
 \item{api_key}{AirNow API key}
 }

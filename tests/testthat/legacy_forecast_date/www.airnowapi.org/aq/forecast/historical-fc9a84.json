@@ -1,0 +1,67 @@
+[
+    {
+        "dateIssue": "2026-01-12",
+        "dateValid": "2026-01-13",
+        "reportingArea": "NW Coastal LA",
+        "reportingAreaCode": "ca132",
+        "stateCode": "CA",
+        "parameterName": "OZONE",
+        "aqi": 31,
+        "categoryNumber": 1,
+        "categoryName": "Good",
+        "actionDay": false,
+        "discussion": ""
+    },
+    {
+        "dateIssue": "2026-01-12",
+        "dateValid": "2026-01-13",
+        "reportingArea": "NW Coastal LA",
+        "reportingAreaCode": "ca132",
+        "stateCode": "CA",
+        "parameterName": "PM2.5",
+        "aqi": 50,
+        "categoryNumber": 1,
+        "categoryName": "Good",
+        "actionDay": false,
+        "discussion": ""
+    },
+    {
+        "dateIssue": "2026-01-12",
+        "dateValid": "2026-01-13",
+        "reportingArea": "NW Coastal LA",
+        "reportingAreaCode": "ca132",
+        "stateCode": "CA",
+        "parameterName": "PM10",
+        "aqi": 19,
+        "categoryNumber": 1,
+        "categoryName": "Good",
+        "actionDay": false,
+        "discussion": ""
+    },
+    {
+        "dateIssue": "2026-01-12",
+        "dateValid": "2026-01-13",
+        "reportingArea": "NW Coastal LA",
+        "reportingAreaCode": "ca132",
+        "stateCode": "CA",
+        "parameterName": "NO2",
+        "aqi": 30,
+        "categoryNumber": 1,
+        "categoryName": "Good",
+        "actionDay": false,
+        "discussion": ""
+    },
+    {
+        "dateIssue": "2026-01-12",
+        "dateValid": "2026-01-13",
+        "reportingArea": "NW Coastal LA",
+        "reportingAreaCode": "ca132",
+        "stateCode": "CA",
+        "parameterName": "CO",
+        "aqi": 4,
+        "categoryNumber": 1,
+        "categoryName": "Good",
+        "actionDay": false,
+        "discussion": ""
+    }
+]
