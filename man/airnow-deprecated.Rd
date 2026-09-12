@@ -16,6 +16,9 @@ works in interactive sessions.}
 
 \item{token}{The API key to use (deprecated spelling of \code{key})}
 }
+\value{
+Each deprecated function returns whatever its replacement returns.
+}
 \description{
 These functions were deprecated in airnow 0.2.0 and will be
 removed in a future release. Each one warns and then calls its

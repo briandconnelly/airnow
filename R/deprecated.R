@@ -9,6 +9,7 @@
 #' | `get_airnow_token()` | [get_airnow_key()] |
 #' | `set_airnow_token()` | [set_airnow_key()] |
 #'
+#' @return Each deprecated function returns whatever its replacement returns.
 #' @name airnow-deprecated
 #' @keywords internal
 NULL
