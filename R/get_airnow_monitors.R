@@ -4,7 +4,6 @@
 #' inside a bounding box. Before airnow 0.2.0 this function was called
 #' `get_airnow_area()`.
 #'
-#' @inheritParams get_airnow_forecasts
 #' @param box Four-element numeric vector specifying a bounding box for the
 #'   region of interest. Format is (minX, minY, maxX, maxY), where X and Y are
 #'   longitude and latitude, respectively.
@@ -26,6 +25,9 @@
 #'   (default: `FALSE`)
 #' @param raw_concentrations Logical value indicating whether or not raw
 #'   hourly concentration data should be included (default: `FALSE`)
+#' @param clean_names Whether column names should be converted to snake_case
+#'   (default: `TRUE`). With `FALSE`, the API's PascalCase names are kept.
+#' @param api_key AirNow API key
 #'
 #' @return A data frame with current air quality conditions
 #' @export

@@ -100,7 +100,9 @@ one-day lead time; the old service also returned forecasts \emph{issued} on
 that date.}
 }
 \value{
-Each deprecated function returns whatever its replacement returns.
+The token/key and area/monitor aliases return the value from their
+replacement. \code{get_airnow_conditions()} and \code{get_airnow_forecast()} return
+tibbles reshaped to their legacy 11- and 12-column contracts.
 }
 \description{
 These functions were deprecated in airnow 0.2.0 and will be

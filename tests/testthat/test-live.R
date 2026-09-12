@@ -30,9 +30,15 @@ test_that("live: api_key is accepted and the response is served over HTTPS", { #
 
 test_that("live: distance is still ignored by the new observation service", {
   skip_if_no_live_key()
-  a <- live_request("observation/current/ziplatLong", zipCode = "90210")
-  b <- live_request("observation/current/ziplatLong", zipCode = "90210", distance = 25) # nolint
-  expect_equal(httr2::resp_body_string(a), httr2::resp_body_string(b))
+  a <- live_request(
+    "observation/current/ziplatLong", latitude = 39.5, longitude = -116.9
+  )
+  b <- live_request(
+    "observation/current/ziplatLong",
+    latitude = 39.5, longitude = -116.9, distance = 300
+  )
+  expect_equal(nrow(resp_airnow_tibble(a)), 0)
+  expect_equal(nrow(resp_airnow_tibble(b)), 0)
 })
 
 test_that("live: forecast/current accepts a reporting area code", {

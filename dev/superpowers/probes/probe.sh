@@ -1,6 +1,9 @@
 #!/bin/bash
+set -euo pipefail
+
 KEY="${AIRNOW_API_TOKEN:?not set}"
-OUT=/private/tmp/claude-501/-Users-bdc-projects-airnow/24c6177a-62da-4067-9bb7-aa9755ca34b3/scratchpad/probes
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+OUT="${AIRNOW_PROBE_OUT:-$HERE/new}"
 mkdir -p "$OUT"
 
 hit () {  # name  url  keyparam  extra-args...

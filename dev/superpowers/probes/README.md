@@ -3,6 +3,7 @@
 Evidence behind section 2 of the migration design spec. **`old/` cannot be
 re-captured after 2026-09-30** — those endpoints are retired that day. `probe.sh`
 reads the key from `$AIRNOW_API_TOKEN`; no payload here contains a credential.
+It writes to `new/` by default; set `$AIRNOW_PROBE_OUT` to capture elsewhere.
 
 ## Paired old/new — same zip (90210), same instant
 Captured with parallel requests, which is how the one-hour label offset was found.

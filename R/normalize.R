@@ -59,7 +59,7 @@ to_category_factor <- function(x, ordered = TRUE) {
 }
 
 
-#' Convert the API's "HH:MM" hour label to an integer hour
+#' Convert the API's "HH:00" hour label to an integer hour
 #'
 #' The 2026 services label an hour by its end: `"18:00"` is the period
 #' 17:00-17:59. This function keeps that label (returns 18); it does not
@@ -70,7 +70,7 @@ to_category_factor <- function(x, ordered = TRUE) {
 #' @noRd
 hour_label_to_integer <- function(x) {
   x <- as.character(x)
-  well_formed <- !is.na(x) & grepl("^[0-9]{2}:[0-9]{2}$", x)
+  well_formed <- !is.na(x) & grepl("^([01][0-9]|2[0-3]):00$", x)
   malformed <- !is.na(x) & !well_formed
   if (any(malformed)) {
     cli::cli_warn("Unexpected {.field hourObserved} value{?s}: {.val {unique(x[malformed])}}; returning {.val NA}") # nolint

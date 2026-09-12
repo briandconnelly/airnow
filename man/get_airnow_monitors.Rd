@@ -48,7 +48,7 @@ site information including Site Name, Agency Name, AQS ID, and Full AQS ID
 hourly concentration data should be included (default: \code{FALSE})}
 
 \item{clean_names}{Whether column names should be converted to snake_case
-(default: \code{TRUE}). With \code{FALSE}, the API's lowerCamelCase names are kept.}
+(default: \code{TRUE}). With \code{FALSE}, the API's PascalCase names are kept.}
 
 \item{api_key}{AirNow API key}
 }

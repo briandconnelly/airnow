@@ -36,12 +36,15 @@ test_that("to_category_factor() is ordered by default and warns on unknowns", {
   expect_equal(as.character(result), c("Good", NA))
 })
 
-test_that("hour_label_to_integer() parses HH:MM labels", {
+test_that("hour_label_to_integer() parses hourly labels", {
   expect_equal(hour_label_to_integer(c("18:00", "00:00", "07:00")), c(18L, 0L, 7L)) # nolint
   expect_equal(hour_label_to_integer(NA_character_), NA_integer_)
   expect_silent(hour_label_to_integer(c("18:00", NA)))
-  expect_warning(result <- hour_label_to_integer(c("18:00", "6pm")), "6pm")
-  expect_equal(result, c(18L, NA))
+  expect_warning(
+    result <- hour_label_to_integer(c("18:00", "6pm", "24:00", "23:15")),
+    "6pm.*24:00.*23:15"
+  )
+  expect_equal(result, c(18L, NA, NA, NA))
   expect_equal(hour_label_to_integer(character(0)), integer(0))
 })
 

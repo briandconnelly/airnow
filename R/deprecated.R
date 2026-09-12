@@ -12,7 +12,9 @@
 #' | `get_airnow_conditions()` | [get_airnow_observations()] |
 #' | `get_airnow_forecast()` | [get_airnow_forecasts()] |
 #'
-#' @return Each deprecated function returns whatever its replacement returns.
+#' @return The token/key and area/monitor aliases return the value from their
+#'   replacement. `get_airnow_conditions()` and `get_airnow_forecast()` return
+#'   tibbles reshaped to their legacy 11- and 12-column contracts.
 #' @name airnow-deprecated
 #' @keywords internal
 NULL
