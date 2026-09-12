@@ -95,7 +95,7 @@ rm(valid_call)
 
 test_that("get_airnow_area() produces the expected outputs", {
   skip_if(
-    condition = identical(Sys.getenv("AIRNOW_API_KEY"), ""),
+    condition = Sys.getenv("AIRNOW_API_KEY") %in% c("", "test-key"),
     message = "AirNow API token is not set"
   )
 

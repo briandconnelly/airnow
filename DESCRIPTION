@@ -22,6 +22,7 @@ Imports:
     tibble
 Suggests: 
     covr,
+    httptest2,
     lintr,
     testthat (>= 3.0.0),
     withr

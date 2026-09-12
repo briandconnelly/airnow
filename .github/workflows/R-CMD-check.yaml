@@ -43,6 +43,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Fail if an API key is present in recorded fixtures
+        shell: bash
+        run: |
+          pattern='[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+          if grep -rliE "$pattern" tests/testthat --include='*.json' --include='*.R' --exclude='test-*.R' --exclude='helper-*.R' --exclude='setup.R'; then
+            echo "::error::Key-shaped string found in test fixtures"; exit 1
+          fi
+          if [ -n "$AIRNOW_API_KEY" ] && grep -rlF "$AIRNOW_API_KEY" tests/testthat; then
+            echo "::error::The AIRNOW_API_KEY secret is present in tests/"; exit 1
+          fi
+
       - uses: r-lib/actions/setup-pandoc@v2
 
       - uses: r-lib/actions/setup-r@v2
