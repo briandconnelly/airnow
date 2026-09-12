@@ -1,8 +1,13 @@
-test_that("get_airnow_reporting_area() validates its location", {
-  expect_error(get_airnow_reporting_area())
-  expect_error(get_airnow_reporting_area(zip = "1234"))
-  expect_error(get_airnow_reporting_area(latitude = 91, longitude = 0))
-  expect_error(get_airnow_reporting_area(latitude = 0))
+test_that("get_airnow_reporting_area() validates its location before any request", { # nolint
+  httptest2::without_internet({
+    expect_error(get_airnow_reporting_area(), "must be specified")
+    expect_error(get_airnow_reporting_area(zip = "1234"), "5-digit")
+    expect_error(
+      get_airnow_reporting_area(latitude = 91, longitude = 0),
+      "between -90 and 90"
+    )
+    expect_error(get_airnow_reporting_area(latitude = 0), "must be specified")
+  })
 })
 
 test_that("get_airnow_reporting_area() returns one row for a zip", {

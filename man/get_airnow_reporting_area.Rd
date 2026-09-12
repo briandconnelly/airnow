@@ -31,10 +31,13 @@ a ZIP code or a latitude/longitude pair. The returned
 \code{\link[=get_airnow_observations]{get_airnow_observations()}}, \code{\link[=get_airnow_forecasts]{get_airnow_forecasts()}}, and
 \code{\link[=get_airnow_forecast_history]{get_airnow_forecast_history()}}.
 }
-\details{
-This makes one API request per distinct location per session; results
-are cached in memory.
+\section{Requests made}{
+
+One request per distinct location per session; the result is cached in
+memory, so repeated calls for the same location are free. Every request
+counts against AirNow's limit of 500 requests per hour per key.
 }
+
 \examples{
 \dontrun{
 get_airnow_reporting_area(zip = "90210")

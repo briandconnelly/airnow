@@ -6,8 +6,10 @@
 #' [get_airnow_observations()], [get_airnow_forecasts()], and
 #' [get_airnow_forecast_history()].
 #'
-#' This makes one API request per distinct location per session; results
-#' are cached in memory.
+#' @section Requests made:
+#' One request per distinct location per session; the result is cached in
+#' memory, so repeated calls for the same location are free. Every request
+#' counts against AirNow's limit of 500 requests per hour per key.
 #'
 #' @param zip ZIP code, a 5-digit numeric string (e.g., `"90210"`)
 #' @param latitude Latitude in decimal degrees
