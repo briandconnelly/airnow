@@ -2216,7 +2216,7 @@ test_that("get_airnow_forecast(date = ) narrows to forecasts valid that day", {
   local_area_code_cache()
   httptest2::with_mock_dir("legacy_forecast_date", {
     lifecycle::expect_deprecated(
-      result <- get_airnow_forecast(zip = "98101", date = "2026-01-13")
+      result <- get_airnow_forecast(zip = "90210", date = "2026-01-13")
     )
   })
   expect_true(nrow(result) > 0)
@@ -2237,7 +2237,7 @@ ls R/
 ```
 Expected: `FAIL 0` on the filtered run and on the full suite, `no key in tests/`, and `R/` no longer contains `get_airnow_conditions.R` or `get_airnow_forecast.R`. The `testthat` filter `get_airnow_forecast$` matches only the legacy file, not `get_airnow_forecasts`.
 
-Fixture note: the zip 98101 requests made through the shims hit `observation/current/ziplatLong` and `forecast/current`, and the `date` path hits `forecast/current` (area resolution) and `forecast/historical`. Expect one JSON file per distinct request under each mock directory.
+Fixture note: the zip 98101 requests made through the shims hit `observation/current/ziplatLong` and `forecast/current`, and the `date` path (zip 90210, whose area ca132 has year-round daily forecasts; Seattle issues none in winter, verified 2026-09-12) hits `forecast/current` (area resolution) and `forecast/historical`. Expect one JSON file per distinct request under each mock directory.
 
 - [ ] **Step 8: Commit**
 
