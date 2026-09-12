@@ -1,8 +1,7 @@
 .Rproj.user
 .Rhistory
 .RData
-docs/*
-!docs/superpowers/
+docs
 inst/doc
 .DS_Store
 testing.R

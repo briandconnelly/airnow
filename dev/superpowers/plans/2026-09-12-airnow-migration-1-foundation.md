@@ -8,7 +8,7 @@
 
 **Tech Stack:** R (>= 4.1), httr2, jsonlite, tibble, cli, rlang, lifecycle, testthat 3e, devtools/roxygen2, usethis.
 
-**Spec:** `docs/superpowers/specs/2026-09-09-airnow-api-migration-design.md` (sections 2, 4.3, 5, 6, 9, 10, 11). Read it before starting; every task below cites the section it implements.
+**Spec:** `dev/superpowers/specs/2026-09-09-airnow-api-migration-design.md` (sections 2, 4.3, 5, 6, 9, 10, 11). Read it before starting; every task below cites the section it implements.
 
 ## Global Constraints
 
@@ -38,24 +38,24 @@ Implements spec sections 10 ("One CRAN submission") and 11 ("must stop being mac
 - Modify: `.gitignore`
 - Modify: `.Rbuildignore` (already has an uncommitted line)
 - Delete: `CRAN-SUBMISSION`
-- Create: `docs/superpowers/probes/probe_midnight.sh`
+- Create: `dev/superpowers/probes/probe_midnight.sh`
 
 - [ ] **Step 1: Confirm the current state**
 
 Run:
 ```bash
 git status --short
-git check-ignore -v docs/superpowers/specs/2026-09-09-airnow-api-migration-design.md
+git check-ignore -v dev/superpowers/specs/2026-09-09-airnow-api-migration-design.md
 ```
-Expected: `git status` shows ` M .Rbuildignore` and `?? CRAN-SUBMISSION`. `check-ignore` prints `.gitignore:4:docs	docs/superpowers/specs/...` (the spec is ignored).
+Expected: `git status` shows ` M .Rbuildignore` and `?? CRAN-SUBMISSION`. `check-ignore` prints `.gitignore:4:docs	dev/superpowers/specs/...` (the spec is ignored).
 
 - [ ] **Step 2: Confirm no credential is in the directory you are about to commit**
 
 Run:
 ```bash
-grep -rliE '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}' docs/superpowers/ || echo "no key-shaped strings"
+grep -rliE '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}' dev/superpowers/ || echo "no key-shaped strings"
 ```
-Expected: the only line printed is `docs/superpowers/probes/probe.sh`. That match is a session UUID inside a scratchpad path on line 3, not a key (verified 2026-09-12). If any other file is listed, stop and report it.
+Expected: the only line printed is `dev/superpowers/probes/probe.sh`. That match is a session UUID inside a scratchpad path on line 3, not a key (verified 2026-09-12). If any other file is listed, stop and report it.
 
 - [ ] **Step 3: Change the ignore rule so the subdirectory can be tracked**
 
@@ -63,7 +63,7 @@ Git cannot re-include a subdirectory of an ignored directory, so `docs` must bec
 
 ```
 docs/*
-!docs/superpowers/
+!dev/superpowers/
 ```
 
 Run:
@@ -72,17 +72,17 @@ python3 - <<'EOF'
 p = ".gitignore"
 s = open(p).read()
 assert "\ndocs\n" in s
-s = s.replace("\ndocs\n", "\ndocs/*\n!docs/superpowers/\n")
+s = s.replace("\ndocs\n", "\ndocs/*\n!dev/superpowers/\n")
 open(p, "w").write(s)
 EOF
-git check-ignore -v docs/superpowers/specs/2026-09-09-airnow-api-migration-design.md || echo "spec is now tracked-able"
+git check-ignore -v dev/superpowers/specs/2026-09-09-airnow-api-migration-design.md || echo "spec is now tracked-able"
 git check-ignore -v docs/index.html || echo "WARNING: docs/index.html would be tracked"
 ```
 Expected: first command prints `spec is now tracked-able`. Second prints `.gitignore:...:docs/*	docs/index.html` (pkgdown output stays ignored).
 
 - [ ] **Step 4: Write the midnight probe script**
 
-The spec (section 5.1) needs a real response captured between 00:00 and 00:59 local time in some reporting area, from both the old and new services. Create `docs/superpowers/probes/probe_midnight.sh`:
+The spec (section 5.1) needs a real response captured between 00:00 and 00:59 local time in some reporting area, from both the old and new services. Create `dev/superpowers/probes/probe_midnight.sh`:
 
 ```bash
 #!/bin/bash
@@ -118,8 +118,8 @@ echo "Look for HourObserved (old) vs hourObserved (new) and the two dates."
 
 Run:
 ```bash
-chmod +x docs/superpowers/probes/probe_midnight.sh
-bash -n docs/superpowers/probes/probe_midnight.sh && echo "syntax ok"
+chmod +x dev/superpowers/probes/probe_midnight.sh
+bash -n dev/superpowers/probes/probe_midnight.sh && echo "syntax ok"
 ```
 Expected: `syntax ok`.
 
@@ -130,17 +130,17 @@ Expected: `syntax ok`.
 Run:
 ```bash
 rm CRAN-SUBMISSION
-git add .gitignore .Rbuildignore docs/superpowers/
+git add .gitignore .Rbuildignore dev/superpowers/
 git status --short | head -40
 ```
-Expected: `.gitignore`, `.Rbuildignore`, the spec, the two plan files, `docs/superpowers/probes/README.md`, `probe.sh`, `probe_midnight.sh`, `reportingarea_metadata.dat`, and every file under `probes/new/` and `probes/old/` are staged as `A`. `CRAN-SUBMISSION` is untracked so it simply disappears.
+Expected: `.gitignore`, `.Rbuildignore`, the spec, the two plan files, `dev/superpowers/probes/README.md`, `probe.sh`, `probe_midnight.sh`, `reportingarea_metadata.dat`, and every file under `probes/new/` and `probes/old/` are staged as `A`. `CRAN-SUBMISSION` is untracked so it simply disappears.
 
 ```bash
 git commit -m "$(cat <<'EOF'
 chore: track migration spec and probe evidence; drop stale CRAN-SUBMISSION
 
 The old-service probe payloads cannot be re-captured after 2026-09-30.
-docs/ stays ignored except docs/superpowers/.
+docs/ stays ignored except dev/superpowers/.
 
 🤖 Generated with Claude Code
 Claude-Session: https://claude.ai/code/session_0183jP8PzrHQjr51b8AWuRLk
@@ -150,7 +150,7 @@ EOF
 
 - [ ] **Step 6: Tell the maintainer about the probe**
 
-In your task report, state that `docs/superpowers/probes/probe_midnight.sh` exists and must be run by a person between 00:00 and 00:59 Pacific time before 2026-09-30. It cannot be automated from this plan.
+In your task report, state that `dev/superpowers/probes/probe_midnight.sh` exists and must be run by a person between 00:00 and 00:59 Pacific time before 2026-09-30. It cannot be automated from this plan.
 
 ---
 
@@ -1549,4 +1549,4 @@ Expected: `lint count: 0`. If lints appear only in files this plan did not touch
 Run: `git status --short && git log --oneline -8`
 Expected: no uncommitted changes; the log shows the six commits from Tasks 1-6 on top of `c5ea778 Update NEWS`.
 
-Report the check summary line and the lint count verbatim. Then hand off to `docs/superpowers/plans/2026-09-12-airnow-migration-2-retrieval.md`.
+Report the check summary line and the lint count verbatim. Then hand off to `dev/superpowers/plans/2026-09-12-airnow-migration-2-retrieval.md`.

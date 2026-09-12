@@ -8,7 +8,7 @@
 
 **Tech Stack:** R (>= 4.1), httr2, jsonlite, tibble, cli, rlang, lifecycle, testthat 3e (with `local_mocked_bindings()`), httptest2 1.2.x, devtools/roxygen2.
 
-**Spec:** `docs/superpowers/specs/2026-09-09-airnow-api-migration-design.md`. This plan implements sections 4, 5, 6 ("`resolve_area_code()`", "Rate-limit budget"), 7, and the phase 1 list in section 10. Plan 1 (`2026-09-12-airnow-migration-1-foundation.md`) must be complete first; this plan uses its interfaces without redefining them.
+**Spec:** `dev/superpowers/specs/2026-09-09-airnow-api-migration-design.md`. This plan implements sections 4, 5, 6 ("`resolve_area_code()`", "Rate-limit budget"), 7, and the phase 1 list in section 10. Plan 1 (`2026-09-12-airnow-migration-1-foundation.md`) must be complete first; this plan uses its interfaces without redefining them.
 
 ## Global Constraints
 
@@ -2512,4 +2512,4 @@ Expected: `scan clean`, `no key anywhere in the tree`, and a clean `git status` 
 
 - [ ] **Step 8: Report**
 
-State verbatim: the `devtools::check()` summary line, the lint count, the total test count from the full `devtools::test()` run, and the list of mock directories under `tests/testthat/`. Remind the maintainer of the two manual actions the spec still needs before submission: run `docs/superpowers/probes/probe_midnight.sh` between 00:00 and 00:59 Pacific and, if the captured date behaviour contradicts the assumption in `observations_to_legacy()`, change the `date[wrap] <- date[wrap] - 1L` line and its test; and re-probe `/aq/forecast/historical/` for a future validity date after an afternoon issuance (spec section 2.3). Submission to CRAN is the maintainer's call: `devtools::release()` or `devtools::submit_cran()`.
+State verbatim: the `devtools::check()` summary line, the lint count, the total test count from the full `devtools::test()` run, and the list of mock directories under `tests/testthat/`. Remind the maintainer of the two manual actions the spec still needs before submission: run `dev/superpowers/probes/probe_midnight.sh` between 00:00 and 00:59 Pacific and, if the captured date behaviour contradicts the assumption in `observations_to_legacy()`, change the `date[wrap] <- date[wrap] - 1L` line and its test; and re-probe `/aq/forecast/historical/` for a future validity date after an afternoon issuance (spec section 2.3). Submission to CRAN is the maintainer's call: `devtools::release()` or `devtools::submit_cran()`.

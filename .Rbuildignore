@@ -13,3 +13,4 @@
 ^codecov\.yml$
 ^CRAN-SUBMISSION$
 ^data-raw$
+^dev$

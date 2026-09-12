@@ -2,8 +2,8 @@
 
 **Date:** 2026-09-09, revised 2026-09-12 after review
 **Status:** Design approved. Phase 1 implementation plans written 2026-09-12:
-`docs/superpowers/plans/2026-09-12-airnow-migration-1-foundation.md` and
-`docs/superpowers/plans/2026-09-12-airnow-migration-2-retrieval.md`. Work is phased in
+`dev/superpowers/plans/2026-09-12-airnow-migration-1-foundation.md` and
+`dev/superpowers/plans/2026-09-12-airnow-migration-2-retrieval.md`. Work is phased in
 section 10; only phase 1 is on the deadline.
 **Target release:** 0.2.0 (phase 1), 0.2.1 (phase 2)
 **Hard deadline:** 2026-09-30 (retirement of six AirNow web services)
@@ -159,15 +159,15 @@ name, state, country, latitude, longitude, GMT offset, observes DST, standard tz
 daylight tz, **area code**, agency, lookup behavior, considered monitors, lookup boundary.
 
 - 1,037 rows; 1,036 distinct (Monterrey, MX / `mx002` appears twice, verbatim).
-- **27 area names collide across states** (Aberdeen, Albany, Ashland, Charleston,
-  Columbia, Columbus, ...).
+- **26 area names collide across states (after removing the duplicate Monterrey
+  row)** (Aberdeen, Albany, Ashland, Charleston, Columbia, Columbus, ...).
 - Area codes are unique apart from the duplicated row.
 - Name-based joins were spot-checked against live responses and matched
   (`NW Coastal LA` -> `ca132`, `Napa` -> `ca064`, `Northeast Maryland` -> `md008`,
   `Metro Baltimore` -> `md001`).
 
 `/ziplatLong` returns neither `reportingAreaCode` nor `stateCode`, so a name-only join
-cannot disambiguate the 27 collisions.
+cannot disambiguate the 26 collisions.
 
 ---
 
@@ -447,7 +447,7 @@ The deprecation notice must state these, because they cannot be papered over:
 - **`resolve_area_code()`** — one internal entry point, accepting either a zip or a
   coordinate pair. Offline via `airnow_areas` when the reporting area name is unambiguous.
   For a colliding name with **coordinate** input, resolve offline too: pick the same-named
-  row nearest to the query point. The 27 collisions are all in different states, hundreds
+  row nearest to the query point. The 26 collisions are all in different states, hundreds
   of miles apart, so nearest-neighbour among two or three candidates is unambiguous and
   costs no request. Only a colliding name with **zip** input needs the API: one call to
   `/aq/forecast/current/`, which returns `reportingAreaCode` for both input types
@@ -648,7 +648,7 @@ has shipped.
 Facts about this machine and toolchain that cost time to discover and are not
 recoverable from the code:
 
-- **Probe payloads are preserved at `docs/superpowers/probes/`** (gitignored, same as this
+- **Probe payloads are preserved at `dev/superpowers/probes/`** (gitignored, same as this
   spec). Includes paired old/new captures taken at the same instant — the evidence for the
   one-hour offset — plus the `401` proving `apiKey` is wrong. The `old/` half **cannot be
   re-captured after 2026-09-30**.
@@ -664,14 +664,14 @@ recoverable from the code:
   key in every page and should be scrubbed.
 - **This spec and the probes are machine-local, and must stop being so.** `docs` is in
   `.gitignore`, so nothing here is backed up, and the `old/` probes are irreplaceable after
-  2026-09-30. Checked 2026-09-12: no file under `docs/superpowers/` contains a credential
+  2026-09-30. Checked 2026-09-12: no file under `dev/superpowers/` contains a credential
   (the only key-shaped match is a session UUID inside a path in `probe.sh`). Commit the
   directory. Git cannot re-include a subdirectory of an ignored directory, so the rule has
   to change from `docs` to:
 
   ```
   docs/*
-  !docs/superpowers/
+  !dev/superpowers/
   ```
 
   `^docs$` in `.Rbuildignore` already keeps it out of the tarball. Do this before any
