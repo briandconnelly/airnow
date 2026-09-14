@@ -43,6 +43,59 @@ test_that("resolve_area_code() validates its location like check_location()", {
   expect_error(resolve_area_code(latitude = 91, longitude = 0))
 })
 
+test_that("historical ZIP resolution uses the bundled crosswalk offline", {
+  httptest2::without_internet({
+    expect_equal(resolve_historical_area_code(zip = "98101"), "wa004")
+    expect_equal(resolve_historical_area_code(zip = "00601"), "pr003")
+  })
+})
+
+test_that("historical resolution falls back live for a crosswalk miss", {
+  calls <- 0L
+  testthat::local_mocked_bindings(
+    resolve_area_code = function(...) {
+      calls <<- calls + 1L
+      "ca132"
+    }
+  )
+
+  expect_equal(resolve_historical_area_code(zip = "99999"), "ca132")
+  expect_equal(calls, 1L)
+})
+
+test_that("historical resolution explains successful no-data lookups", {
+  testthat::local_mocked_bindings(
+    resolve_area_code = function(...) {
+      cli::cli_abort(
+        "No AirNow reporting area was found for the given location",
+        class = "airnow_no_reporting_area"
+      )
+    }
+  )
+
+  expect_error(
+    resolve_historical_area_code(zip = "99999"),
+    "explicit.*area"
+  )
+  expect_error(
+    resolve_historical_area_code(latitude = 39.5, longitude = -116.9),
+    "explicit.*area"
+  )
+})
+
+test_that("historical resolution preserves unrelated API failures", {
+  testthat::local_mocked_bindings(
+    resolve_area_code = function(...) {
+      cli::cli_abort("Request not authenticated", class = "airnow_auth_error")
+    }
+  )
+
+  expect_error(
+    resolve_historical_area_code(zip = "99999"),
+    class = "airnow_auth_error"
+  )
+})
+
 test_that("join_areas_by_name() fills geography for an unambiguous name", {
   x <- tibble::tibble(
     reportingAreaName = c("Napa", "Napa"),

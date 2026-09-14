@@ -29,6 +29,11 @@ test_that("get_airnow_forecast() catches invalid inputs", {
     expect_error(get_airnow_forecast(zip = "98101", clean_names = NA), "clean_names") # nolint
     expect_error(get_airnow_forecast(zip = "98101", clean_names = 1), "clean_names") # nolint
     expect_error(get_airnow_forecast(zip = "98101", clean_names = c(TRUE, FALSE)), "clean_names") # nolint
+
+    # area is an additive, mutually exclusive compatibility argument
+    expect_error(get_airnow_forecast(area = "not-an-area"), "area")
+    expect_error(get_airnow_forecast(zip = "98101", area = "wa004"), "must not be combined") # nolint
+    expect_error(get_airnow_forecast(area = "wa004", distance = 25), "distance") # nolint
   })
 })
 
@@ -98,4 +103,52 @@ test_that("get_airnow_forecast(date = ) narrows to forecasts valid that day", { 
   expect_true(nrow(result) > 0)
   expect_equal(unique(result$date_forecast), as.Date("2026-01-13"))
   expect_equal(unique(result$date_issued), as.Date("2026-01-12"))
+})
+
+test_that("dated legacy forecast uses the offline ZIP crosswalk", {
+  testthat::local_mocked_bindings(
+    resolve_area_code = function(...) stop("live resolver must not be called")
+  )
+  httptest2::with_mock_dir("legacy_forecast_date", {
+    lifecycle::expect_deprecated(
+      result <- get_airnow_forecast(zip = "90210", date = "2026-01-13")
+    )
+  })
+  expect_true(nrow(result) > 0)
+})
+
+test_that("explicit area bypasses legacy location resolution", {
+  empty_forecast <- function(...) finish_forecast(tibble::tibble(), TRUE)
+  testthat::local_mocked_bindings(
+    resolve_historical_area_code = function(...) {
+      stop("automatic resolver must not be called")
+    },
+    get_airnow_forecast_history = empty_forecast,
+    get_airnow_forecasts = empty_forecast
+  )
+
+  lifecycle::expect_deprecated(
+    dated <- get_airnow_forecast(area = "wa004", date = "2026-01-13")
+  )
+  lifecycle::expect_deprecated(
+    current <- get_airnow_forecast(area = "wa004")
+  )
+  expect_equal(nrow(dated), 0)
+  expect_equal(nrow(current), 0)
+  expect_named(dated, c(
+    "date_issued", "date_forecast", "reporting_area", "state_code",
+    "latitude", "longitude", "parameter", "aqi", "action_day",
+    "discussion", "category_number", "category_name"
+  ))
+})
+
+test_that("adding area preserves the legacy positional arguments", {
+  expect_identical(
+    names(formals(get_airnow_forecast))[1:7],
+    c(
+      "zip", "latitude", "longitude", "distance", "date", "clean_names",
+      "api_key"
+    )
+  )
+  expect_identical(tail(names(formals(get_airnow_forecast)), 1), "area")
 })

@@ -119,6 +119,10 @@ get_airnow_conditions <- function(zip = NULL,
 #'   airnow 0.2.0 this returns forecasts *valid* on that date with a
 #'   one-day lead time; the old service also returned forecasts *issued* on
 #'   that date.
+#' @param area Optional reporting area code such as `"ca064"`. This is an
+#'   additive compatibility argument and must not be combined with `zip`,
+#'   `latitude`, `longitude`, or `distance`. Prefer
+#'   [get_airnow_forecast_history()] for new code.
 #' @export
 get_airnow_forecast <- function(zip = NULL,
                                 latitude = NULL,
@@ -126,9 +130,21 @@ get_airnow_forecast <- function(zip = NULL,
                                 distance = NULL,
                                 date = NULL,
                                 clean_names = TRUE,
-                                api_key = get_airnow_key()) {
-  location <- check_location(zip, latitude, longitude)
-  distance <- check_distance(distance)
+                                api_key = get_airnow_key(),
+                                area = NULL) {
+  if (!is.null(area)) {
+    area <- check_area_code(area)
+    if (!is.null(zip) || !is.null(latitude) || !is.null(longitude)) {
+      cli::cli_abort("{.arg area} must not be combined with {.arg zip}, {.arg latitude}, or {.arg longitude}") # nolint
+    }
+    if (!is.null(distance)) {
+      cli::cli_abort("{.arg distance} must be {.code NULL} when {.arg area} is provided") # nolint
+    }
+    location <- NULL
+  } else {
+    location <- check_location(zip, latitude, longitude)
+    distance <- check_distance(distance)
+  }
   date <- check_date(date)
   if (!is.null(date)) date <- check_date_arg(date, "date")
   check_clean_names(clean_names)
@@ -137,7 +153,7 @@ get_airnow_forecast <- function(zip = NULL,
     "0.2.0", "get_airnow_forecast()", "get_airnow_forecasts()",
     details = c(
       "AirNow retires the service behind this function on 2026-09-30.",
-      "This shim calls the replacement service and reshapes the result. Row counts may differ; `date` now selects forecasts valid on that date only." # nolint
+      "This shim calls the replacement service and reshapes the result. Row counts may differ; `date` now selects forecasts valid on that date only. Dated calls use the bundled AirNow ZIP crosswalk when possible; otherwise provide `area` if the location has no current forecast." # nolint
     )
   )
   if (!is.null(distance)) {
@@ -145,20 +161,28 @@ get_airnow_forecast <- function(zip = NULL,
   }
 
   if (is.null(date)) {
-    result <- get_airnow_forecasts(
-      zip = location$zip,
-      latitude = location$latitude,
-      longitude = location$longitude,
-      clean_names = TRUE,
-      api_key = api_key
-    )
+    if (is.null(area)) {
+      result <- get_airnow_forecasts(
+        zip = location$zip,
+        latitude = location$latitude,
+        longitude = location$longitude,
+        clean_names = TRUE,
+        api_key = api_key
+      )
+    } else {
+      result <- get_airnow_forecasts(
+        area = area, clean_names = TRUE, api_key = api_key
+      )
+    }
   } else {
-    area <- resolve_area_code(
-      zip = location$zip,
-      latitude = location$latitude,
-      longitude = location$longitude,
-      api_key = api_key
-    )
+    if (is.null(area)) {
+      area <- resolve_historical_area_code(
+        zip = location$zip,
+        latitude = location$latitude,
+        longitude = location$longitude,
+        api_key = api_key
+      )
+    }
     result <- get_airnow_forecast_history(
       area = area,
       start_date = date,

@@ -1,4 +1,5 @@
-# Build the `airnow_areas` dataset from AirNow's reporting-area metadata file.
+# Build the `airnow_areas` dataset and internal ZIP-to-area crosswalk from
+# AirNow's reporting-area metadata files.
 #
 # Run from the package root with:
 #   Rscript data-raw/airnow_areas.R
@@ -10,6 +11,8 @@
 # fields (68 rows have an empty last field).
 
 url <- "https://files.airnowtech.org/airnow/today/reportingarea_metadata.dat"
+zip_url <- "https://files.airnowtech.org/airnow/today/cityzipcodes.csv"
+retrieved <- Sys.Date()
 
 raw <- utils::read.delim(
   url,
@@ -80,3 +83,51 @@ stopifnot(!anyNA(airnow_areas$gmt_offset))
 message("Rows: ", nrow(airnow_areas), " (expected 1036 as of 2026-09-12)")
 
 usethis::use_data(airnow_areas, overwrite = TRUE)
+
+# AirNow documents cityzipcodes.csv as its ZIP-to-reporting-area crosswalk.
+# The City column contains the reporting-area name, not an arbitrary USPS
+# place name. Pair it with State because 26 area names occur in multiple
+# states.
+zip_raw <- utils::read.delim(
+  zip_url,
+  sep = "|",
+  header = TRUE,
+  quote = "",
+  comment.char = "",
+  colClasses = "character",
+  encoding = "UTF-8",
+  stringsAsFactors = FALSE
+)
+
+stopifnot(identical(
+  names(zip_raw),
+  c("City", "State", "Zipcode", "Latitude", "Longitude")
+))
+stopifnot(all(grepl("^[0-9]{5}$", zip_raw$Zipcode)))
+stopifnot(anyDuplicated(zip_raw$Zipcode) == 0)
+
+area_key <- paste(
+  airnow_areas$reporting_area, airnow_areas$state_code, sep = "\r"
+)
+zip_key <- paste(zip_raw$City, zip_raw$State, sep = "\r")
+stopifnot(anyDuplicated(area_key) == 0)
+
+area_idx <- match(zip_key, area_key)
+stopifnot(!anyNA(area_idx))
+
+airnow_zip_areas <- data.frame(
+  zip = zip_raw$Zipcode,
+  latitude = as.numeric(zip_raw$Latitude),
+  longitude = as.numeric(zip_raw$Longitude),
+  reporting_area_code = airnow_areas$reporting_area_code[area_idx],
+  stringsAsFactors = FALSE
+)
+stopifnot(!anyNA(airnow_zip_areas))
+stopifnot(all(airnow_zip_areas$reporting_area_code %in%
+                airnow_areas$reporting_area_code))
+
+attr(airnow_zip_areas, "source") <- zip_url
+attr(airnow_zip_areas, "retrieved") <- retrieved
+
+message("ZIP rows: ", nrow(airnow_zip_areas))
+usethis::use_data(airnow_zip_areas, internal = TRUE, overwrite = TRUE)

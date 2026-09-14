@@ -47,3 +47,10 @@
 areas_table <- function() {
   airnow::airnow_areas
 }
+
+
+# Internal data use an explicit accessor so static checks do not mistake the
+# lazy-loaded object for an undefined global variable.
+zip_areas_table <- function() {
+  get("airnow_zip_areas", envir = asNamespace("airnow"))
+}

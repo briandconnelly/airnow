@@ -390,11 +390,14 @@ So the shims must keep calling `check_distance()` before emitting the deprecatio
 pass-unchanged goal. A non-`NULL` `distance` gets its own `cli_warn()` saying the new
 services use a fixed per-area radius.
 
-**The `date` path costs two requests and is verified only for today.**
-`/aq/forecast/historical/` accepts only a `reportingAreaCode` (section 4.1), so
-`get_airnow_forecast(zip = , date = X)` must first resolve the area code through
-`resolve_area_code()` (one request, memoised per location) and then call the historical
-service with `startDate = endDate = X` (a second request). The historical service returns
+**The `date` path resolves area codes independently of current forecast availability.**
+`/aq/forecast/historical/` accepts only a `reportingAreaCode` (section 4.1). For an exact
+zip-code match in the bundled AirNow zip crosswalk, or when the caller supplies the
+additive `area` argument, `get_airnow_forecast(..., date = X)` calls the historical
+service directly. Unlisted zip codes and coordinates use the live current-forecast
+resolver; if that request succeeds but has no current rows, the shim gives an actionable
+error asking for `area` instead of silently treating a seasonal area as invalid. Transport,
+authentication, and API errors pass through unchanged. The historical service returns
 today's forecasts (section 2.3), so `date = Sys.Date()` keeps working. Whether it returns
 forecasts valid *tomorrow* is unverified; the shim passes such dates through unchanged and
 returns whatever the service does, which may be zero rows. Do not add a special case for
@@ -450,6 +453,10 @@ The deprecation notice must state these, because they cannot be papered over:
   - **Documentation.** Exported data needs a roxygen `@source` block with the URL and
     retrieval date, plus a note on EPA/AirNow provenance for the redistribution story.
     Undocumented exported data is an `R CMD check` warning on submission.
+- **`airnow_zip_areas`** — internal package data built by the same script from AirNow's
+  `cityzipcodes.csv`. It maps each validated five-digit zip exactly to a
+  `reporting_area_code`; the build fails on duplicate zips, unmatched city/state keys, or
+  invalid area codes. It is used only by the deprecated dated-forecast compatibility path.
 - **`resolve_area_code()`** — one internal entry point, accepting either a zip or a
   coordinate pair. Offline via `airnow_areas` when the reporting area name is unambiguous.
   For a colliding name with **coordinate** input, resolve offline too: pick the same-named

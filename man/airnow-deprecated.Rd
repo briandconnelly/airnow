@@ -42,7 +42,8 @@ get_airnow_forecast(
   distance = NULL,
   date = NULL,
   clean_names = TRUE,
-  api_key = get_airnow_key()
+  api_key = get_airnow_key(),
+  area = NULL
 )
 }
 \arguments{
@@ -98,6 +99,11 @@ search a fixed radius for each reporting area.}
 airnow 0.2.0 this returns forecasts \emph{valid} on that date with a
 one-day lead time; the old service also returned forecasts \emph{issued} on
 that date.}
+
+\item{area}{Optional reporting area code such as \code{"ca064"}. This is an
+additive compatibility argument and must not be combined with \code{zip},
+\code{latitude}, \code{longitude}, or \code{distance}. Prefer
+\code{\link[=get_airnow_forecast_history]{get_airnow_forecast_history()}} for new code.}
 }
 \value{
 The token/key and area/monitor aliases return the value from their

@@ -1,13 +1,17 @@
-# Live checks against the real API. Skipped on CRAN and whenever the key is
-# absent or the placeholder from setup.R. Each check is a fact from the
-# spec's section 2 that a recorded fixture cannot see drifting.
+# Live checks against the real API. They run only when explicitly requested;
+# once requested, a missing or placeholder key is an error. Each check is a
+# fact from the spec's section 2 that a recorded fixture cannot see drifting.
 skip_if_no_live_key <- function() {
-  testthat::skip_on_cran()
+  live_requested <- identical(Sys.getenv("AIRNOW_LIVE_TESTS"), "true")
+  if (!live_requested) {
+    testthat::skip_on_cran()
+    testthat::skip("Live API tests were not requested")
+  }
+
   key <- Sys.getenv("AIRNOW_API_KEY")
-  testthat::skip_if(
-    !nzchar(key) || identical(key, "test-key"),
-    "No real AIRNOW_API_KEY set; live smoke test skipped"
-  )
+  if (!nzchar(key) || identical(key, "test-key")) {
+    cli::cli_abort("{.envvar AIRNOW_LIVE_TESTS} is true, but no live {.envvar AIRNOW_API_KEY} is configured") # nolint
+  }
 }
 
 live_request <- function(path, ...) {

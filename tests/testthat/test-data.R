@@ -69,3 +69,23 @@ test_that("airnow_areas has the expected number of colliding names", {
 test_that("airnow_areas is reachable with the package namespace prefix", {
   expect_equal(nrow(airnow::airnow_areas), 1036)
 })
+
+test_that("internal ZIP crosswalk has valid, unique mappings", {
+  zip_areas <- zip_areas_table()
+  expect_s3_class(zip_areas, "data.frame")
+  expect_named(zip_areas, c(
+    "zip", "latitude", "longitude", "reporting_area_code"
+  ))
+  expect_true(all(grepl("^[0-9]{5}$", zip_areas$zip)))
+  expect_equal(anyDuplicated(zip_areas$zip), 0)
+  expect_false(anyNA(zip_areas))
+  expect_true(all(
+    zip_areas$reporting_area_code %in% areas_table()$reporting_area_code
+  ))
+  expect_match(attr(zip_areas, "source"), "cityzipcodes\\.csv$")
+  expect_s3_class(attr(zip_areas, "retrieved"), "Date")
+
+  expect_equal(lookup_zip_area_code("98101"), "wa004")
+  expect_equal(lookup_zip_area_code("00601"), "pr003")
+  expect_null(lookup_zip_area_code("99999"))
+})

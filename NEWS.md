@@ -32,6 +32,10 @@ replacement services released in June 2026.
   because AirNow changed its lookup methodology; `LocalTimeZone` is now
   correct where it was wrong before; `distance` is ignored; and
   `get_airnow_forecast(date = )` returns forecasts valid on that date only.
+  Dated calls for ZIPs in AirNow's bundled crosswalk no longer depend on a
+  forecast being issued today. The additive `area` argument provides an exact
+  fallback for coordinates and ZIPs absent from the crosswalk while preserving
+  the legacy output columns.
 
 ## Fixes
 

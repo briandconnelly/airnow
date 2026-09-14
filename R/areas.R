@@ -75,12 +75,78 @@ resolve_area_code <- function(zip = NULL,
     perform_airnow()
 
   if (nrow(result) == 0 || !("reportingAreaCode" %in% names(result))) {
-    cli::cli_abort("No AirNow reporting area was found for the given location") # nolint
+    cli::cli_abort(
+      "No AirNow reporting area was found for the given location",
+      class = "airnow_no_reporting_area"
+    )
   }
 
   code <- as.character(result$reportingAreaCode[[1]])
   the$area_codes[[memo_key]] <- code
   code
+}
+
+
+#' Look up an exact ZIP in AirNow's bundled ZIP-to-area crosswalk
+#' @param zip A validated five-digit ZIP code
+#' @return A reporting-area code, or `NULL` when the ZIP is absent
+#' @noRd
+lookup_zip_area_code <- function(zip) {
+  zip_areas <- zip_areas_table()
+  idx <- match(zip, zip_areas$zip)
+  if (is.na(idx)) {
+    return(NULL)
+  }
+  zip_areas$reporting_area_code[[idx]]
+}
+
+
+#' Resolve an area for the legacy historical-forecast path
+#'
+#' Exact ZIPs use the bundled AirNow crosswalk and therefore do not depend on
+#' a forecast being issued today. Crosswalk misses and coordinates retain the
+#' live resolver; only its successful no-data result is translated into a more
+#' actionable compatibility error. Transport and API failures pass through.
+#'
+#' @inheritParams resolve_area_code
+#' @return A single reporting-area code
+#' @noRd
+resolve_historical_area_code <- function(zip = NULL,
+                                         latitude = NULL,
+                                         longitude = NULL,
+                                         api_key = get_airnow_key()) {
+  location <- check_location(zip, latitude, longitude)
+
+  if (location$type == "zipCode") {
+    code <- lookup_zip_area_code(location$zip)
+    if (!is.null(code)) {
+      return(code)
+    }
+  }
+
+  tryCatch(
+    resolve_area_code(
+      zip = location$zip,
+      latitude = location$latitude,
+      longitude = location$longitude,
+      api_key = api_key
+    ),
+    airnow_no_reporting_area = function(cnd) {
+      # nolint next: object_usage_linter. used by cli glue interpolation
+      location_description <- if (location$type == "zipCode") {
+        "ZIP code"
+      } else {
+        "coordinates"
+      }
+      cli::cli_abort(
+        c(
+          "The reporting area for these {location_description} could not be resolved without a current forecast.", # nolint
+          "i" = "Use {.fn get_airnow_forecast_history} with an explicit {.arg area} code from {.code airnow_areas}." # nolint
+        ),
+        parent = cnd
+      )
+    }
+  )
 }
 
 

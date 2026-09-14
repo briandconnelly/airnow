@@ -14,3 +14,4 @@
 ^CRAN-SUBMISSION$
 ^data-raw$
 ^dev$
+^ci$
