@@ -98,7 +98,7 @@ search a fixed radius for each reporting area.}
 \item{date}{Optional date of forecast as a \code{"YYYY-MM-DD"} string. Since
 airnow 0.2.0 this returns forecasts \emph{valid} on that date with a
 one-day lead time; the old service also returned forecasts \emph{issued} on
-that date.}
+that date. Use \code{\link[=get_airnow_forecast_history]{get_airnow_forecast_history()}} in new code.}
 
 \item{area}{Optional reporting area code such as \code{"ca064"}. This is an
 additive compatibility argument and must not be combined with \code{zip},
@@ -120,6 +120,7 @@ replacement.\tabular{ll}{
    \code{get_airnow_area()} \tab \code{\link[=get_airnow_monitors]{get_airnow_monitors()}} \cr
    \code{get_airnow_conditions()} \tab \code{\link[=get_airnow_observations]{get_airnow_observations()}} \cr
    \code{get_airnow_forecast()} \tab \code{\link[=get_airnow_forecasts]{get_airnow_forecasts()}} \cr
+   \code{get_airnow_forecast(date = )} \tab \code{\link[=get_airnow_forecast_history]{get_airnow_forecast_history()}} \cr
 }
 }
 \keyword{internal}

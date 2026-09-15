@@ -26,6 +26,57 @@ test_that("get_airnow_reporting_area() returns one row for a zip", {
   expect_equal(result$state_code, "CA")
 })
 
+test_that("get_airnow_reporting_area() falls back to the ZIP crosswalk without a current forecast", { # nolint
+  local_area_code_cache()
+  testthat::local_mocked_bindings(
+    resolve_area_code = function(...) {
+      cli::cli_abort(
+        "No AirNow reporting area was found for the given location",
+        class = "airnow_no_reporting_area"
+      )
+    }
+  )
+
+  result <- get_airnow_reporting_area(zip = "98101")
+  expect_equal(result$reporting_area_code, "wa004")
+  expect_equal(result$state_code, "WA")
+})
+
+test_that("get_airnow_reporting_area() errors when neither lookup finds an area", { # nolint
+  local_area_code_cache()
+  testthat::local_mocked_bindings(
+    resolve_area_code = function(...) {
+      cli::cli_abort(
+        "No AirNow reporting area was found for the given location",
+        class = "airnow_no_reporting_area"
+      )
+    }
+  )
+
+  expect_error(
+    get_airnow_reporting_area(zip = "99999"),
+    class = "airnow_no_reporting_area"
+  )
+  expect_error(
+    get_airnow_reporting_area(latitude = 39.5, longitude = -116.9),
+    class = "airnow_no_reporting_area"
+  )
+})
+
+test_that("get_airnow_reporting_area() passes unrelated API failures through", { # nolint
+  local_area_code_cache()
+  testthat::local_mocked_bindings(
+    resolve_area_code = function(...) {
+      cli::cli_abort("Request not authenticated", class = "airnow_auth_error")
+    }
+  )
+
+  expect_error(
+    get_airnow_reporting_area(zip = "98101"),
+    class = "airnow_auth_error"
+  )
+})
+
 test_that("get_airnow_reporting_area() warns when the code is not in the table", { # nolint
   local_area_code_cache()
   testthat::local_mocked_bindings(resolve_area_code = function(...) "zz999")

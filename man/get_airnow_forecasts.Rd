@@ -39,7 +39,8 @@ An \code{aqi} of \code{-1} means the agency issued a categorical forecast only.
 \description{
 \code{get_airnow_forecasts()} retrieves the forecasts currently issued for a
 reporting area, located by ZIP code, latitude/longitude, or reporting
-area code. One row is returned per pollutant per forecast day.
+area code. One row is returned per pollutant per forecast day. For
+forecasts valid on past dates, use \code{\link[=get_airnow_forecast_history]{get_airnow_forecast_history()}}.
 }
 \section{Requests made}{
 
@@ -52,4 +53,7 @@ One request per call. Every request counts against AirNow's limit of
 get_airnow_forecasts(zip = "90210")
 get_airnow_forecasts(area = "ca064")
 }
+}
+\seealso{
+\code{\link[=get_airnow_forecast_history]{get_airnow_forecast_history()}} for past forecasts.
 }

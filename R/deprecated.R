@@ -11,6 +11,7 @@
 #' | `get_airnow_area()` | [get_airnow_monitors()] |
 #' | `get_airnow_conditions()` | [get_airnow_observations()] |
 #' | `get_airnow_forecast()` | [get_airnow_forecasts()] |
+#' | `get_airnow_forecast(date = )` | [get_airnow_forecast_history()] |
 #'
 #' @return The token/key and area/monitor aliases return the value from their
 #'   replacement. `get_airnow_conditions()` and `get_airnow_forecast()` return
@@ -118,7 +119,7 @@ get_airnow_conditions <- function(zip = NULL,
 #' @param date Optional date of forecast as a `"YYYY-MM-DD"` string. Since
 #'   airnow 0.2.0 this returns forecasts *valid* on that date with a
 #'   one-day lead time; the old service also returned forecasts *issued* on
-#'   that date.
+#'   that date. Use [get_airnow_forecast_history()] in new code.
 #' @param area Optional reporting area code such as `"ca064"`. This is an
 #'   additive compatibility argument and must not be combined with `zip`,
 #'   `latitude`, `longitude`, or `distance`. Prefer
@@ -149,8 +150,13 @@ get_airnow_forecast <- function(zip = NULL,
   if (!is.null(date)) date <- check_date_arg(date, "date")
   check_clean_names(clean_names)
 
+  replacement <- if (is.null(date)) {
+    "get_airnow_forecasts()"
+  } else {
+    "get_airnow_forecast_history()"
+  }
   lifecycle::deprecate_warn(
-    "0.2.0", "get_airnow_forecast()", "get_airnow_forecasts()",
+    "0.2.0", "get_airnow_forecast()", replacement,
     details = c(
       "AirNow retires the service behind this function on 2026-09-30.",
       "This shim calls the replacement service and reshapes the result. Row counts may differ; `date` now selects forecasts valid on that date only. Dated calls use the bundled AirNow ZIP crosswalk when possible; otherwise provide `area` if the location has no current forecast." # nolint

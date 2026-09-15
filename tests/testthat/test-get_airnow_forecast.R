@@ -142,6 +142,24 @@ test_that("explicit area bypasses legacy location resolution", {
   ))
 })
 
+test_that("the deprecation warning names the replacement for the call made", { # nolint
+  empty_forecast <- function(...) finish_forecast(tibble::tibble(), TRUE)
+  testthat::local_mocked_bindings(
+    get_airnow_forecast_history = empty_forecast,
+    get_airnow_forecasts = empty_forecast
+  )
+  withr::local_options(lifecycle_verbosity = "warning")
+
+  expect_warning(
+    get_airnow_forecast(area = "wa004", date = "2026-01-13"),
+    "Please use `get_airnow_forecast_history\\(\\)` instead"
+  )
+  expect_warning(
+    get_airnow_forecast(area = "wa004"),
+    "Please use `get_airnow_forecasts\\(\\)` instead"
+  )
+})
+
 test_that("adding area preserves the legacy positional arguments", {
   expect_identical(
     names(formals(get_airnow_forecast))[1:7],

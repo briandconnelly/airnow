@@ -49,7 +49,8 @@ finish_forecast <- function(x, clean_names) {
 #'
 #' `get_airnow_forecasts()` retrieves the forecasts currently issued for a
 #' reporting area, located by ZIP code, latitude/longitude, or reporting
-#' area code. One row is returned per pollutant per forecast day.
+#' area code. One row is returned per pollutant per forecast day. For
+#' forecasts valid on past dates, use [get_airnow_forecast_history()].
 #'
 #' @param zip ZIP code, a 5-digit numeric string (e.g., `"90210"`)
 #' @param latitude Latitude in decimal degrees
@@ -70,6 +71,7 @@ finish_forecast <- function(x, clean_names) {
 #'   `category_name` is an ordered factor from Good to Hazardous. `latitude`
 #'   and `longitude` describe the reporting area and come from [airnow_areas].
 #'   An `aqi` of `-1` means the agency issued a categorical forecast only.
+#' @seealso [get_airnow_forecast_history()] for past forecasts.
 #' @export
 #'
 #' @examples

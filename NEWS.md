@@ -11,9 +11,10 @@ replacement services released in June 2026.
 * `get_airnow_forecasts()` returns the forecasts currently issued for a
   location.
 * `get_airnow_forecast_history()` returns past forecasts for a reporting
-  area and date range.
+  area and date range. It replaces `get_airnow_forecast(date = )`.
 * `get_airnow_reporting_area()` finds the reporting area that serves a
-  location.
+  location. ZIP codes whose area has no forecast issued today fall back to
+  AirNow's bundled ZIP crosswalk.
 * `get_airnow_monitors()` is the new name for `get_airnow_area()`.
 * `get_airnow_key()` and `set_airnow_key()` replace the token-named
   credential helpers.

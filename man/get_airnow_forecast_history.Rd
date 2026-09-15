@@ -53,5 +53,13 @@ get_airnow_forecast_history("md008", "2026-01-13", "2026-01-14")
 get_airnow_forecast_history("md008", "2026-01-13", "2026-01-13",
   range = 1, parameter = "pm2.5"
 )
+
+# Starting from a ZIP code
+area <- get_airnow_reporting_area(zip = "90210")$reporting_area_code
+get_airnow_forecast_history(area, "2026-09-01", "2026-09-03", range = 1)
 }
+}
+\seealso{
+\code{\link[=get_airnow_reporting_area]{get_airnow_reporting_area()}} to find the area code for a ZIP
+code or coordinates; \code{\link[=get_airnow_forecasts]{get_airnow_forecasts()}} for current forecasts.
 }

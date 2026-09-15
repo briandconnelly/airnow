@@ -30,8 +30,10 @@ a ZIP code or a latitude/longitude pair. The returned
 \code{reporting_area_code} is the \code{area} argument for
 \code{\link[=get_airnow_observations]{get_airnow_observations()}}, \code{\link[=get_airnow_forecasts]{get_airnow_forecasts()}}, and
 \code{\link[=get_airnow_forecast_history]{get_airnow_forecast_history()}}. Resolution uses AirNow's
-current-forecast service, so it requires the area to have a forecast
-issued for today; areas without one cannot be resolved this way.
+current-forecast service. When the area has no forecast issued today, a
+ZIP code is looked up in AirNow's bundled ZIP-to-area crosswalk instead;
+coordinates cannot be resolved that way, so choose a code from
+\link{airnow_areas}.
 }
 \section{Requests made}{
 

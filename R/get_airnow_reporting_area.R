@@ -5,8 +5,10 @@
 #' `reporting_area_code` is the `area` argument for
 #' [get_airnow_observations()], [get_airnow_forecasts()], and
 #' [get_airnow_forecast_history()]. Resolution uses AirNow's
-#' current-forecast service, so it requires the area to have a forecast
-#' issued for today; areas without one cannot be resolved this way.
+#' current-forecast service. When the area has no forecast issued today, a
+#' ZIP code is looked up in AirNow's bundled ZIP-to-area crosswalk instead;
+#' coordinates cannot be resolved that way, so choose a code from
+#' [airnow_areas].
 #'
 #' @section Requests made:
 #' One request per distinct location per session; the result is cached in
@@ -31,8 +33,25 @@ get_airnow_reporting_area <- function(zip = NULL,
                                       latitude = NULL,
                                       longitude = NULL,
                                       api_key = get_airnow_key()) {
-  code <- resolve_area_code(
-    zip = zip, latitude = latitude, longitude = longitude, api_key = api_key
+  location <- check_location(zip, latitude, longitude)
+
+  code <- tryCatch(
+    resolve_area_code(
+      zip = location$zip,
+      latitude = location$latitude,
+      longitude = location$longitude,
+      api_key = api_key
+    ),
+    airnow_no_reporting_area = function(cnd) {
+      code <- NULL
+      if (location$type == "zipCode") {
+        code <- lookup_zip_area_code(location$zip)
+      }
+      if (is.null(code)) {
+        stop(cnd)
+      }
+      code
+    }
   )
 
   areas <- areas_table()
