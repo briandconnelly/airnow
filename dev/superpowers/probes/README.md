@@ -38,3 +38,11 @@ old-service half closes 2026-09-30.
   `new/forecast_current__zip_2026-09-12.json` taken at the same moment, which also had
   nothing valid for the 13th yet. So the historical service serves *today*; future
   validity dates are still unverified (re-probe after the afternoon issuance).
+
+## Added 2026-09-19 (future validity dates resolved)
+- Re-probed `/aq/forecast/historical/` for `ca132` at 16:05 PDT, after the
+  afternoon issuance, with `startDate=2026-09-19&endDate=2026-09-20`: five rows
+  issued 09-18 valid 09-19, and nothing valid 09-20. `/aq/forecast/current/` at
+  the same moment had both — five rows valid 09-19 and five issued 09-19 valid
+  09-20. So the historical service never serves future validity dates, even once
+  the forecast exists. `get_airnow_forecast_history()` now warns in that case.

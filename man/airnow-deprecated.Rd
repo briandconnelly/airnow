@@ -98,7 +98,10 @@ search a fixed radius for each reporting area.}
 \item{date}{Optional date of forecast as a \code{"YYYY-MM-DD"} string. Since
 airnow 0.2.0 this returns forecasts \emph{valid} on that date with a
 one-day lead time; the old service also returned forecasts \emph{issued} on
-that date. Use \code{\link[=get_airnow_forecast_history]{get_airnow_forecast_history()}} in new code.}
+that date. A future \code{date} returns no rows and warns, because AirNow
+serves dated forecasts only through today; call the function without
+\code{date} for upcoming forecasts. Use \code{\link[=get_airnow_forecast_history]{get_airnow_forecast_history()}} in
+new code.}
 
 \item{area}{Optional reporting area code such as \code{"ca064"}. This is an
 additive compatibility argument and must not be combined with \code{zip},

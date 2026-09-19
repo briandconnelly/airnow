@@ -9,7 +9,9 @@
 #' @param area Reporting area code such as `"ca064"` (required). See
 #'   [airnow_areas] or [get_airnow_reporting_area()].
 #' @param start_date,end_date First and last *valid* date to include, as
-#'   `Date` objects or `"YYYY-MM-DD"` strings.
+#'   `Date` objects or `"YYYY-MM-DD"` strings. AirNow serves these
+#'   forecasts only through today, so a future date returns no rows and
+#'   warns. Use [get_airnow_forecasts()] for upcoming forecasts.
 #' @param range Optional forecast lead time in days to keep (a positive
 #'   whole number). `NULL` (default) keeps every lead time.
 #' @param parameter Optional pollutant to keep: one of `"ozone"`,
@@ -47,6 +49,9 @@ get_airnow_forecast_history <- function(area,
   end_date <- check_date_arg(end_date, "end_date")
   if (as.Date(start_date) > as.Date(end_date)) {
     cli::cli_abort("{.arg start_date} must not be after {.arg end_date}")
+  }
+  if (as.Date(end_date) > Sys.Date()) {
+    cli::cli_warn("Dates in the future return no rows: AirNow's historical forecasts stop at today. Use {.fn get_airnow_forecasts} for upcoming forecasts.") # nolint
   }
   if (!is.null(range) &&
         (!is_integerish(range, n = 1) || is.na(range) || range < 1)) {

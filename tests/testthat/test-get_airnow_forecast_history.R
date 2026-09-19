@@ -55,3 +55,13 @@ test_that("get_airnow_forecast_history() returns the forecast contract", {
   expect_equal(narrowed$date_valid, as.Date("2026-01-13"))
   expect_equal(narrowed$date_issue, as.Date("2026-01-12"))
 })
+
+test_that("get_airnow_forecast_history() warns about future dates", {
+  tomorrow <- Sys.Date() + 1
+  httptest2::without_internet({
+    expect_warning(
+      try(get_airnow_forecast_history("md008", tomorrow, tomorrow), silent = TRUE), # nolint
+      "future"
+    )
+  })
+})

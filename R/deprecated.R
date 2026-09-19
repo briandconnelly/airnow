@@ -119,7 +119,10 @@ get_airnow_conditions <- function(zip = NULL,
 #' @param date Optional date of forecast as a `"YYYY-MM-DD"` string. Since
 #'   airnow 0.2.0 this returns forecasts *valid* on that date with a
 #'   one-day lead time; the old service also returned forecasts *issued* on
-#'   that date. Use [get_airnow_forecast_history()] in new code.
+#'   that date. A future `date` returns no rows and warns, because AirNow
+#'   serves dated forecasts only through today; call the function without
+#'   `date` for upcoming forecasts. Use [get_airnow_forecast_history()] in
+#'   new code.
 #' @param area Optional reporting area code such as `"ca064"`. This is an
 #'   additive compatibility argument and must not be combined with `zip`,
 #'   `latitude`, `longitude`, or `distance`. Prefer

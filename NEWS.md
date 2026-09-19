@@ -50,6 +50,9 @@ replacement services released in June 2026.
 * Unrecognized pollutant or category names now warn instead of silently
   becoming `NA`.
 * Derived UTC observation times account for half- and quarter-hour time zones.
+* `get_airnow_forecast_history()` warns when asked for dates in the future.
+  AirNow serves these forecasts only through today, so such requests return
+  no rows; `get_airnow_forecasts()` has the upcoming forecasts.
 
 # airnow 0.1.1
 

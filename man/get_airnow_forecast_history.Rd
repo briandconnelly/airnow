@@ -19,7 +19,9 @@ get_airnow_forecast_history(
 \link{airnow_areas} or \code{\link[=get_airnow_reporting_area]{get_airnow_reporting_area()}}.}
 
 \item{start_date, end_date}{First and last \emph{valid} date to include, as
-\code{Date} objects or \code{"YYYY-MM-DD"} strings.}
+\code{Date} objects or \code{"YYYY-MM-DD"} strings. AirNow serves these
+forecasts only through today, so a future date returns no rows and
+warns. Use \code{\link[=get_airnow_forecasts]{get_airnow_forecasts()}} for upcoming forecasts.}
 
 \item{range}{Optional forecast lead time in days to keep (a positive
 whole number). \code{NULL} (default) keeps every lead time.}
