@@ -139,8 +139,10 @@ get_airnow_forecast(
 
   Optional date of forecast as a `"YYYY-MM-DD"` string. Since airnow
   0.2.0 this returns forecasts *valid* on that date with a one-day lead
-  time; the old service also returned forecasts *issued* on that date.
-  Use
+  time; the old service also returned forecasts *issued* on that date. A
+  future `date` returns no rows and warns, because AirNow serves dated
+  forecasts only through today; call the function without `date` for
+  upcoming forecasts. Use
   [`get_airnow_forecast_history()`](https://briandconnelly.github.io/airnow/reference/get_airnow_forecast_history.md)
   in new code.
 

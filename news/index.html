@@ -68,6 +68,8 @@
 <code><a href="../reference/aqi.html">aqi_color()</a></code> and <code><a href="../reference/aqi.html">aqi_descriptor()</a></code> accept values above 500 (treated as Hazardous) and <code>NA</code>, and warn instead of erroring on negative values. Real AirNow data exceeds 500 during smoke events.</li>
 <li>Unrecognized pollutant or category names now warn instead of silently becoming <code>NA</code>.</li>
 <li>Derived UTC observation times account for half- and quarter-hour time zones.</li>
+<li>
+<code><a href="../reference/get_airnow_forecast_history.html">get_airnow_forecast_history()</a></code> warns when asked for dates in the future. AirNow serves these forecasts only through today, so such requests return no rows; <code><a href="../reference/get_airnow_forecasts.html">get_airnow_forecasts()</a></code> has the upcoming forecasts.</li>
 </ul></div>
 </div>
     <div class="section level2">

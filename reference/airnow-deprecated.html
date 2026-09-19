@@ -190,7 +190,10 @@ search a fixed radius for each reporting area.</p></dd>
 <dd><p>Optional date of forecast as a <code>"YYYY-MM-DD"</code> string. Since
 airnow 0.2.0 this returns forecasts <em>valid</em> on that date with a
 one-day lead time; the old service also returned forecasts <em>issued</em> on
-that date. Use <code><a href="get_airnow_forecast_history.html">get_airnow_forecast_history()</a></code> in new code.</p></dd>
+that date. A future <code>date</code> returns no rows and warns, because AirNow
+serves dated forecasts only through today; call the function without
+<code>date</code> for upcoming forecasts. Use <code><a href="get_airnow_forecast_history.html">get_airnow_forecast_history()</a></code> in
+new code.</p></dd>
 
 
 <dt id="arg-area">area<a class="anchor" aria-label="anchor" href="#arg-area"></a></dt>

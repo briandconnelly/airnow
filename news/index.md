@@ -71,6 +71,11 @@ services released in June 2026.
   becoming `NA`.
 - Derived UTC observation times account for half- and quarter-hour time
   zones.
+- [`get_airnow_forecast_history()`](https://briandconnelly.github.io/airnow/reference/get_airnow_forecast_history.md)
+  warns when asked for dates in the future. AirNow serves these
+  forecasts only through today, so such requests return no rows;
+  [`get_airnow_forecasts()`](https://briandconnelly.github.io/airnow/reference/get_airnow_forecasts.md)
+  has the upcoming forecasts.
 
 ## airnow 0.1.1
 

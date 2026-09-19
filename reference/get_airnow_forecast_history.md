@@ -31,7 +31,10 @@ get_airnow_forecast_history(
 - start_date, end_date:
 
   First and last *valid* date to include, as `Date` objects or
-  `"YYYY-MM-DD"` strings.
+  `"YYYY-MM-DD"` strings. AirNow serves these forecasts only through
+  today, so a future date returns no rows and warns. Use
+  [`get_airnow_forecasts()`](https://briandconnelly.github.io/airnow/reference/get_airnow_forecasts.md)
+  for upcoming forecasts.
 
 - range:
 

@@ -70,7 +70,9 @@ forecast issued the day before each valid date.</p>
 
 <dt id="arg-start-date-end-date">start_date, end_date<a class="anchor" aria-label="anchor" href="#arg-start-date-end-date"></a></dt>
 <dd><p>First and last <em>valid</em> date to include, as
-<code>Date</code> objects or <code>"YYYY-MM-DD"</code> strings.</p></dd>
+<code>Date</code> objects or <code>"YYYY-MM-DD"</code> strings. AirNow serves these
+forecasts only through today, so a future date returns no rows and
+warns. Use <code><a href="get_airnow_forecasts.html">get_airnow_forecasts()</a></code> for upcoming forecasts.</p></dd>
 
 
 <dt id="arg-range">range<a class="anchor" aria-label="anchor" href="#arg-range"></a></dt>
