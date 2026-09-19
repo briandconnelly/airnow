@@ -10,4 +10,5 @@ after which two of its exported functions stop working. Those functions
 are kept as deprecated wrappers around the new ones.
 
 Tests use recorded HTTP fixtures (httptest2) and make no network requests
-on CRAN; one live smoke test is guarded by skip_on_cran().
+on CRAN. Five live API tests run only when the AIRNOW_LIVE_TESTS
+environment variable is set, and are skipped on CRAN.
