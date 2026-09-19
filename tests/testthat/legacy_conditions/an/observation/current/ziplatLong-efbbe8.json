@@ -1,0 +1,47 @@
+[
+    {
+        "dateObserved": "2026-09-12",
+        "hourObserved": "14:00",
+        "localTimeZone": "PDT",
+        "reportingAreaName": "Seattle-Bellevue-Kent Valley",
+        "siteID": "530330030",
+        "siteName": "Seattle-10th & Weller",
+        "parameterName": "PM2.5",
+        "nowcastAQI": 33,
+        "aqiCategoryName": "Good",
+        "reportingAgency": "Washington Department of Ecology",
+        "lookupBehavior": "Closest Reading By Pollutant",
+        "consideredMonitors": "All",
+        "lookupBoundary": "50 Miles"
+    },
+    {
+        "dateObserved": "2026-09-12",
+        "hourObserved": "14:00",
+        "localTimeZone": "PDT",
+        "reportingAreaName": "Seattle-Bellevue-Kent Valley",
+        "siteID": "530330080",
+        "siteName": "Seattle-Beacon Hill",
+        "parameterName": "OZONE",
+        "nowcastAQI": 27,
+        "aqiCategoryName": "Good",
+        "reportingAgency": "Washington Department of Ecology",
+        "lookupBehavior": "Closest Reading By Pollutant",
+        "consideredMonitors": "All",
+        "lookupBoundary": "50 Miles"
+    },
+    {
+        "dateObserved": "2026-09-12",
+        "hourObserved": "14:00",
+        "localTimeZone": "PDT",
+        "reportingAreaName": "Seattle-Bellevue-Kent Valley",
+        "siteID": "530330080",
+        "siteName": "Seattle-Beacon Hill",
+        "parameterName": "PM10",
+        "nowcastAQI": 16,
+        "aqiCategoryName": "Good",
+        "reportingAgency": "Washington Department of Ecology",
+        "lookupBehavior": "Closest Reading By Pollutant",
+        "consideredMonitors": "All",
+        "lookupBoundary": "50 Miles"
+    }
+]

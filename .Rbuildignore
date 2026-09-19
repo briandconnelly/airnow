@@ -6,7 +6,12 @@
 ^testing.R$
 ^NOTES.md$
 ^\.github$
+^\.superpowers$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
 ^codecov\.yml$
+^CRAN-SUBMISSION$
+^data-raw$
+^dev$
+^ci$

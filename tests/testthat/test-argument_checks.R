@@ -151,21 +151,81 @@ test_that("check_bounding_box() returns expected values", {
   }
 })
 
-test_that("check_aqi() catches invalid input", {
-  expect_error(check_aqi(-1))
-  expect_error(check_aqi(501))
+test_that("check_aqi() rejects non-numeric input", {
   expect_error(check_aqi(NULL))
-  expect_error(check_aqi(NA_integer_))
   expect_error(check_aqi(c()))
+  expect_error(check_aqi("35"))
+  expect_error(check_aqi(1.5))
   expect_error(check_aqi(20, 30, -1))
   expect_error(check_aqi(20, 30, NULL))
 })
 
-test_that("check_aqi() returns expected values", {
+test_that("check_aqi() returns integers, clamps nothing, and tolerates NA", {
   valid_aqi <- as.integer(runif(100, min = 0, max = 500))
-
   for (i in valid_aqi) {
-    result <- check_aqi(i)
-    expect_equal(result, i)
+    expect_equal(check_aqi(i), i)
   }
+  expect_equal(check_aqi(874), 874L)
+  expect_equal(check_aqi(NA_integer_), NA_integer_)
+  expect_equal(check_aqi(NA), NA_integer_)
+  expect_equal(check_aqi(c(1, NA, 3)), c(1L, NA, 3L))
+})
+
+test_that("check_aqi() warns on negatives and replaces them with NA", {
+  expect_warning(result <- check_aqi(-1), "-1")
+  expect_equal(result, NA_integer_)
+  expect_warning(result <- check_aqi(c(10, -7)), "negative")
+  expect_equal(result, c(10L, NA))
+})
+
+test_that("check_clean_names() accepts only a single TRUE/FALSE", {
+  expect_equal(check_clean_names(TRUE), TRUE)
+  expect_equal(check_clean_names(FALSE), FALSE)
+  expect_error(check_clean_names(NULL))
+  expect_error(check_clean_names(NA))
+  expect_error(check_clean_names(1))
+  expect_error(check_clean_names(c(TRUE, FALSE)))
+})
+
+test_that("check_area_code() validates and lowercases", {
+  expect_equal(check_area_code("ca064"), "ca064")
+  expect_equal(check_area_code("CA064"), "ca064")
+  expect_error(check_area_code("ca64"))
+  expect_error(check_area_code("Napa"))
+  expect_error(check_area_code(NULL))
+  expect_error(check_area_code(NA_character_))
+  expect_error(check_area_code(c("ca064", "ca132")))
+})
+
+test_that("check_area_or_location() prefers area and warns about extras", {
+  result <- check_area_or_location(NULL, NULL, NULL, "ca064")
+  expect_equal(result$type, "area")
+  expect_equal(result$area, "ca064")
+  expect_null(result$zip)
+
+  expect_warning(
+    result <- check_area_or_location("90210", NULL, NULL, "ca064"),
+    "Ignoring"
+  )
+  expect_equal(result$type, "area")
+  expect_null(result$zip)
+
+  result <- check_area_or_location("90210", NULL, NULL, NULL)
+  expect_equal(result$type, "zipCode")
+  expect_null(result$area)
+
+  result <- check_area_or_location(NULL, 38.3, -122.3, NULL)
+  expect_equal(result$type, "latLong")
+
+  expect_error(check_area_or_location(NULL, NULL, NULL, NULL))
+})
+
+test_that("check_date_arg() accepts Dates and ISO strings", {
+  expect_equal(check_date_arg(as.Date("2026-01-13"), "d"), "2026-01-13")
+  expect_equal(check_date_arg("2026-01-13", "d"), "2026-01-13")
+  expect_error(check_date_arg("2026-13-45", "d"))
+  expect_error(check_date_arg("Jan 13 2026", "d"))
+  expect_error(check_date_arg(NULL, "d"))
+  expect_error(check_date_arg(as.Date(NA), "d"))
+  expect_error(check_date_arg(as.Date(c("2026-01-13", "2026-01-14")), "d"))
 })

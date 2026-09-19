@@ -1,0 +1,24 @@
+[
+    {
+        "dateObserved": "2026-09-12",
+        "hourObserved": "14:00",
+        "localTimeZone": "PDT",
+        "reportingAreaName": "Napa",
+        "reportingAreaAgency": "Bay Area Air District",
+        "reportingAreaCode": "ca064",
+        "aqiCategoryName": "Good",
+        "parameterName": "PM2.5",
+        "nowcastAQI": 49
+    },
+    {
+        "dateObserved": "2026-09-12",
+        "hourObserved": "14:00",
+        "localTimeZone": "PDT",
+        "reportingAreaName": "Napa",
+        "reportingAreaAgency": "Bay Area Air District",
+        "reportingAreaCode": "ca064",
+        "aqiCategoryName": "Good",
+        "parameterName": "OZONE",
+        "nowcastAQI": 34
+    }
+]

@@ -36,16 +36,16 @@ install directly from GitHub:
 remotes::install_github("briandconnelly/airnow")
 ```
 
-## Creating an API Token
+## Creating an API Key
 
 The [AirNow API](https://docs.airnowapi.org/) is generally free to use.
-The `set_airnow_token()` function can be used to help you create and
-configure your API token.
+The `set_airnow_key()` function can be used to help you create and
+configure your API key.
 
 ``` r
 library(airnow)
 
-set_airnow_token()
+set_airnow_key()
 ```
 
 ## Examples
@@ -59,15 +59,46 @@ ZIP code:
 ``` r
 library(airnow)
 
-get_airnow_conditions(zip = "98101")
-#> # A tibble: 2 × 11
-#>   date_observed hour_obs…¹ local…² repor…³ state…⁴ latit…⁵ longi…⁶ param…⁷   aqi
-#>   <date>             <int> <fct>   <fct>   <fct>     <dbl>   <dbl> <fct>   <int>
-#> 1 2022-10-31             6 PST     Seattl… WA         47.6   -122. O3         27
-#> 2 2022-10-31             6 PST     Seattl… WA         47.6   -122. PM2.5      30
-#> # … with 2 more variables: category_number <int>, category_name <fct>, and
-#> #   abbreviated variable names ¹​hour_observed, ²​local_time_zone,
-#> #   ³​reporting_area, ⁴​state_code, ⁵​latitude, ⁶​longitude, ⁷​parameter
+get_airnow_observations(zip = "98101")
+#> # A tibble: 3 × 21
+#>   date_observed hour_observed local_time_zone utc_datetime        reporting_area
+#>   <date>                <int> <chr>           <dttm>              <chr>         
+#> 1 2026-09-12               14 PDT             2026-09-12 21:00:00 Seattle-Belle…
+#> 2 2026-09-12               14 PDT             2026-09-12 21:00:00 Seattle-Belle…
+#> 3 2026-09-12               14 PDT             2026-09-12 21:00:00 Seattle-Belle…
+#> # ℹ 16 more variables: reporting_area_code <chr>, reporting_area_agency <chr>,
+#> #   state_code <chr>, latitude <dbl>, longitude <dbl>, site_id <chr>,
+#> #   site_name <chr>, reporting_agency <chr>, parameter <fct>, aqi <int>,
+#> #   category_number <int>, category_name <ord>, lookup_behavior <chr>,
+#> #   considered_monitors <chr>, lookup_boundary <chr>, source <fct>
+```
+
+### Tomorrow’s forecast for Napa, by reporting area
+
+Every location belongs to an AirNow *reporting area*. The bundled
+`airnow_areas` table lists them, and `get_airnow_reporting_area()` finds
+the one for a ZIP code or coordinate pair.
+
+``` r
+get_airnow_reporting_area(zip = "94558")
+#> # A tibble: 1 × 5
+#>   reporting_area_code reporting_area state_code latitude longitude
+#>   <chr>               <chr>          <chr>         <dbl>     <dbl>
+#> 1 ca064               Napa           CA             38.3     -122.
+
+get_airnow_forecasts(area = "ca064")
+#> # A tibble: 6 × 14
+#>   date_issue date_valid reporting_area reporting_area_code state_code latitude
+#>   <date>     <date>     <chr>          <chr>               <chr>         <dbl>
+#> 1 2026-09-12 2026-09-12 Napa           ca064               CA             38.3
+#> 2 2026-09-12 2026-09-13 Napa           ca064               CA             38.3
+#> 3 2026-09-12 2026-09-14 Napa           ca064               CA             38.3
+#> 4 2026-09-12 2026-09-15 Napa           ca064               CA             38.3
+#> 5 2026-09-12 2026-09-16 Napa           ca064               CA             38.3
+#> 6 2026-09-12 2026-09-17 Napa           ca064               CA             38.3
+#> # ℹ 8 more variables: longitude <dbl>, parameter <fct>, aqi <int>,
+#> #   category_number <int>, category_name <ord>, action_day <lgl>,
+#> #   discussion <chr>, forecast_agency <chr>
 ```
 
 ### Find the site with the lowest air quality near Washington state
@@ -76,17 +107,16 @@ get_airnow_conditions(zip = "98101")
 library(airnow)
 library(dplyr)
 
-get_airnow_area(
+get_airnow_monitors(
   box = c(-125.394211, 45.295897, -116.736984, 49.172497),
   verbose = TRUE
 ) |>
   slice_max(order_by = aqi, n = 1) |>
   select(site_name, site_agency, latitude, longitude, aqi, datetime_observed)
 #> # A tibble: 1 × 6
-#>   site_name         site_agency        latit…¹ longi…²   aqi datetime_observed  
-#>   <fct>             <fct>                <dbl>   <dbl> <int> <dttm>             
-#> 1 Clarkston-13th St Washington Depart…    46.4   -117.    56 2022-10-31 13:00:00
-#> # … with abbreviated variable names ¹​latitude, ²​longitude
+#>   site_name site_agency             latitude longitude   aqi datetime_observed  
+#>   <fct>     <fct>                      <dbl>     <dbl> <int> <dttm>             
+#> 1 Troy      Idaho Department of En…     46.7     -117.    67 2026-09-12 20:00:00
 ```
 
 ## Disclaimer

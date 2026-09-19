@@ -1,0 +1,58 @@
+[
+    {
+        "dateIssue": "2026-09-11",
+        "dateValid": "2026-09-12",
+        "reportingArea": "Seattle-Bellevue-Kent Valley",
+        "reportingAreaCode": "wa004",
+        "stateCode": "WA",
+        "parameterName": "PM2.5",
+        "aqi": 53,
+        "forecastAgency": "Puget Sound Clean Air Agency",
+        "categoryNumber": 2,
+        "categoryName": "Moderate",
+        "actionDay": false,
+        "discussion": "For Fri-Mon (Sep 11-14): Expect GOOD air quality overall through the weekend.  Potential for MODERATE to UNHEALTHY FOR SENSITIVE GROUPS air quality in Eastern King and Snohomish Counties starting late Friday night due to wildfire smoke.  Rain is expected Saturday afternoon into Sunday and should help clear out the smoke."
+    },
+    {
+        "dateIssue": "2026-09-11",
+        "dateValid": "2026-09-13",
+        "reportingArea": "Seattle-Bellevue-Kent Valley",
+        "reportingAreaCode": "wa004",
+        "stateCode": "WA",
+        "parameterName": "PM2.5",
+        "aqi": 33,
+        "forecastAgency": "Puget Sound Clean Air Agency",
+        "categoryNumber": 1,
+        "categoryName": "Good",
+        "actionDay": false,
+        "discussion": "For Fri-Mon (Sep 11-14): Expect GOOD air quality overall through the weekend.  Potential for MODERATE to UNHEALTHY FOR SENSITIVE GROUPS air quality in Eastern King and Snohomish Counties starting late Friday night due to wildfire smoke.  Rain is expected Saturday afternoon into Sunday and should help clear out the smoke."
+    },
+    {
+        "dateIssue": "2026-09-11",
+        "dateValid": "2026-09-14",
+        "reportingArea": "Seattle-Bellevue-Kent Valley",
+        "reportingAreaCode": "wa004",
+        "stateCode": "WA",
+        "parameterName": "PM2.5",
+        "aqi": 33,
+        "forecastAgency": "Puget Sound Clean Air Agency",
+        "categoryNumber": 1,
+        "categoryName": "Good",
+        "actionDay": false,
+        "discussion": "For Fri-Mon (Sep 11-14): Expect GOOD air quality overall through the weekend.  Potential for MODERATE to UNHEALTHY FOR SENSITIVE GROUPS air quality in Eastern King and Snohomish Counties starting late Friday night due to wildfire smoke.  Rain is expected Saturday afternoon into Sunday and should help clear out the smoke."
+    },
+    {
+        "dateIssue": "2026-09-11",
+        "dateValid": "2026-09-15",
+        "reportingArea": "Seattle-Bellevue-Kent Valley",
+        "reportingAreaCode": "wa004",
+        "stateCode": "WA",
+        "parameterName": "PM2.5",
+        "aqi": 44,
+        "forecastAgency": "Puget Sound Clean Air Agency",
+        "categoryNumber": 1,
+        "categoryName": "Good",
+        "actionDay": false,
+        "discussion": "For Fri-Mon (Sep 11-14): Expect GOOD air quality overall through the weekend.  Potential for MODERATE to UNHEALTHY FOR SENSITIVE GROUPS air quality in Eastern King and Snohomish Counties starting late Friday night due to wildfire smoke.  Rain is expected Saturday afternoon into Sunday and should help clear out the smoke."
+    }
+]

@@ -10,12 +10,12 @@ aqi_color(aqi)
 aqi_descriptor(aqi)
 }
 \arguments{
-\item{aqi}{An AQI value. AQI is an integer between 0 and 500, inclusive.}
+\item{aqi}{A vector of AQI values (whole numbers, \code{NA} allowed)}
 }
 \value{
-\code{aqi_color()} returns an RGB hex string
+\code{aqi_color()} returns a character vector of RGB hex strings
 
-\code{aqi_descriptor()} returns a string
+\code{aqi_descriptor()} returns a character vector
 }
 \description{
 \code{aqi_color()} returns the color that corresponds with the given
@@ -24,7 +24,15 @@ AQI value.
 \code{aqi_descriptor()} converts the given AQI value(s) into a
 descriptive string.
 }
+\details{
+The AQI scale nominally tops out at 500, but AirNow reports
+higher values during severe smoke events. Values above 500 are treated
+as Hazardous. \code{NA} inputs give \code{NA} outputs. Negative values (including
+AirNow's \code{-1} sentinel for a categorical forecast) give \code{NA} with a
+warning.
+}
 \examples{
 aqi_color(35)
+aqi_color(c(35, NA, 874))
 aqi_descriptor(35)
 }

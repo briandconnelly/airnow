@@ -1,0 +1,1352 @@
+[
+    {
+        "Latitude": 48.366058,
+        "Longitude": -124.610046,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 18,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.3442,
+        "Longitude": -124.2879,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 24,
+        "Category": 1
+    },
+    {
+        "Latitude": 49.114165,
+        "Longitude": -123.850165,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 51,
+        "Category": 2
+    },
+    {
+        "Latitude": 46.9772,
+        "Longitude": -123.8317,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 26,
+        "Category": 1
+    },
+    {
+        "Latitude": 45.454722,
+        "Longitude": -123.82,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 14,
+        "Category": 1
+    },
+    {
+        "Latitude": 46.68822,
+        "Longitude": -123.73176,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 20,
+        "Category": 1
+    },
+    {
+        "Latitude": 48.786114,
+        "Longitude": -123.717307,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 36,
+        "Category": 1
+    },
+    {
+        "Latitude": 48.874529,
+        "Longitude": -123.653929,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 27,
+        "Category": 1
+    },
+    {
+        "Latitude": 48.42389,
+        "Longitude": -123.49278,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 41,
+        "Category": 1
+    },
+    {
+        "Latitude": 48.115,
+        "Longitude": -123.436434,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 35,
+        "Category": 1
+    },
+    {
+        "Latitude": 48.441942,
+        "Longitude": -123.363165,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 46,
+        "Category": 1
+    },
+    {
+        "Latitude": 48.775556,
+        "Longitude": -123.128611,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 24,
+        "Category": 1
+    },
+    {
+        "Latitude": 49.14139,
+        "Longitude": -123.10833,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 29,
+        "Category": 1
+    },
+    {
+        "Latitude": 45.52483,
+        "Longitude": -123.10554,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 23,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.213551,
+        "Longitude": -123.100807,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 28,
+        "Category": 1
+    },
+    {
+        "Latitude": 49.009869,
+        "Longitude": -123.082017,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 29,
+        "Category": 1
+    },
+    {
+        "Latitude": 48.53541,
+        "Longitude": -123.0202,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 52,
+        "Category": 2
+    },
+    {
+        "Latitude": 45.528501,
+        "Longitude": -122.972398,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 27,
+        "Category": 1
+    },
+    {
+        "Latitude": 46.664089,
+        "Longitude": -122.967323,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 29,
+        "Category": 1
+    },
+    {
+        "Latitude": 46.1394,
+        "Longitude": -122.9619,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 33,
+        "Category": 1
+    },
+    {
+        "Latitude": 49.15833,
+        "Longitude": -122.90167,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 37,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.029301,
+        "Longitude": -122.821503,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 37,
+        "Category": 1
+    },
+    {
+        "Latitude": 45.4702,
+        "Longitude": -122.8159,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 21,
+        "Category": 1
+    },
+    {
+        "Latitude": 48.129101,
+        "Longitude": -122.7789,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 28,
+        "Category": 1
+    },
+    {
+        "Latitude": 45.768531,
+        "Longitude": -122.7721,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 28,
+        "Category": 1
+    },
+    {
+        "Latitude": 45.39916,
+        "Longitude": -122.7455,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 29,
+        "Category": 1
+    },
+    {
+        "Latitude": 49.13278,
+        "Longitude": -122.69417,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 40,
+        "Category": 1
+    },
+    {
+        "Latitude": 45.518136,
+        "Longitude": -122.688399,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 19,
+        "Category": 1
+    },
+    {
+        "Latitude": 45.52772,
+        "Longitude": -122.651146,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 21,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.592675,
+        "Longitude": -122.627397,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 48,
+        "Category": 1
+    },
+    {
+        "Latitude": 48.52008,
+        "Longitude": -122.613213,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 49,
+        "Category": 1
+    },
+    {
+        "Latitude": 45.496641,
+        "Longitude": -122.602877,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 28,
+        "Category": 1
+    },
+    {
+        "Latitude": 45.47142,
+        "Longitude": -122.60147,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 16,
+        "Category": 1
+    },
+    {
+        "Latitude": 45.38543,
+        "Longitude": -122.59656,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 16,
+        "Category": 1
+    },
+    {
+        "Latitude": 45.64336,
+        "Longitude": -122.58737,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 42,
+        "Category": 1
+    },
+    {
+        "Latitude": 45.5418,
+        "Longitude": -122.5795,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 22,
+        "Category": 1
+    },
+    {
+        "Latitude": 45.562203,
+        "Longitude": -122.575624,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 23,
+        "Category": 1
+    },
+    {
+        "Latitude": 49.09556,
+        "Longitude": -122.56694,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 48,
+        "Category": 1
+    },
+    {
+        "Latitude": 48.465352,
+        "Longitude": -122.560402,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 23,
+        "Category": 1
+    },
+    {
+        "Latitude": 48.950699,
+        "Longitude": -122.554398,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 38,
+        "Category": 1
+    },
+    {
+        "Latitude": 45.4962,
+        "Longitude": -122.4834,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 21,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.22805,
+        "Longitude": -122.47929,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 51,
+        "Category": 2
+    },
+    {
+        "Latitude": 47.22634,
+        "Longitude": -122.46256,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 54,
+        "Category": 2
+    },
+    {
+        "Latitude": 48.760036,
+        "Longitude": -122.456463,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 49,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.1864,
+        "Longitude": -122.4517,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 37,
+        "Category": 1
+    },
+    {
+        "Latitude": 45.867894,
+        "Longitude": -122.411926,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 22,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.559975,
+        "Longitude": -122.338265,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 38,
+        "Category": 1
+    },
+    {
+        "Latitude": 48.410198,
+        "Longitude": -122.337601,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 33,
+        "Category": 1
+    },
+    {
+        "Latitude": 49.021506,
+        "Longitude": -122.326556,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 48,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.5297,
+        "Longitude": -122.3203,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 42,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.597222,
+        "Longitude": -122.319722,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 33,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.4785,
+        "Longitude": -122.3111,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 40,
+        "Category": 1
+    },
+    {
+        "Latitude": 49.04278,
+        "Longitude": -122.30972,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 43,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.568236,
+        "Longitude": -122.308628,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 38,
+        "Category": 1
+    },
+    {
+        "Latitude": 48.066937,
+        "Longitude": -122.280856,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 44,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.498535,
+        "Longitude": -122.278385,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 48,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.753633,
+        "Longitude": -122.277192,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 35,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.89371,
+        "Longitude": -122.26982,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 28,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.39082,
+        "Longitude": -122.25585,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 39,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.2814,
+        "Longitude": -122.2233,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 34,
+        "Category": 1
+    },
+    {
+        "Latitude": 48.054315,
+        "Longitude": -122.171529,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 63,
+        "Category": 2
+    },
+    {
+        "Latitude": 47.600863,
+        "Longitude": -122.148397,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 29,
+        "Category": 1
+    },
+    {
+        "Latitude": 49.15611,
+        "Longitude": -121.94056,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 23,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.4902,
+        "Longitude": -121.772697,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 32,
+        "Category": 1
+    },
+    {
+        "Latitude": 48.246799,
+        "Longitude": -121.603104,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 55,
+        "Category": 2
+    },
+    {
+        "Latitude": 45.685138,
+        "Longitude": -121.527478,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 24,
+        "Category": 1
+    },
+    {
+        "Latitude": 45.73058,
+        "Longitude": -121.48718,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 27,
+        "Category": 1
+    },
+    {
+        "Latitude": 45.602419,
+        "Longitude": -121.203387,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 31,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.19704,
+        "Longitude": -120.95683,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 46,
+        "Category": 1
+    },
+    {
+        "Latitude": 45.82166,
+        "Longitude": -120.82295,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 26,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.5988,
+        "Longitude": -120.6647,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 53,
+        "Category": 2
+    },
+    {
+        "Latitude": 47.00526,
+        "Longitude": -120.55865,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 44,
+        "Category": 1
+    },
+    {
+        "Latitude": 46.9936,
+        "Longitude": -120.545,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 29,
+        "Category": 1
+    },
+    {
+        "Latitude": 46.98487,
+        "Longitude": -120.54404,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 39,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.00219,
+        "Longitude": -120.5404,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 41,
+        "Category": 1
+    },
+    {
+        "Latitude": 46.61722,
+        "Longitude": -120.52316,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 39,
+        "Category": 1
+    },
+    {
+        "Latitude": 46.594952,
+        "Longitude": -120.512283,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 46,
+        "Category": 1
+    },
+    {
+        "Latitude": 46.58131,
+        "Longitude": -120.51115,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 44,
+        "Category": 1
+    },
+    {
+        "Latitude": 46.59846,
+        "Longitude": -120.49134,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 38,
+        "Category": 1
+    },
+    {
+        "Latitude": 46.55597,
+        "Longitude": -120.48014,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 38,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.52003,
+        "Longitude": -120.47378,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 57,
+        "Category": 2
+    },
+    {
+        "Latitude": 46.55108,
+        "Longitude": -120.38185,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 44,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.43061,
+        "Longitude": -120.34195,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 47,
+        "Category": 1
+    },
+    {
+        "Latitude": 46.380199,
+        "Longitude": -120.332603,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 39,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.40757,
+        "Longitude": -120.30943,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 43,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.41887,
+        "Longitude": -120.27327,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 44,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.67565,
+        "Longitude": -120.20941,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 26,
+        "Category": 1
+    },
+    {
+        "Latitude": 46.34813,
+        "Longitude": -120.19381,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 56,
+        "Category": 2
+    },
+    {
+        "Latitude": 48.4772,
+        "Longitude": -120.1906,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 18,
+        "Category": 1
+    },
+    {
+        "Latitude": 48.36472,
+        "Longitude": -120.12007,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 26,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.83861,
+        "Longitude": -120.02306,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 35,
+        "Category": 1
+    },
+    {
+        "Latitude": 46.32033,
+        "Longitude": -119.9981,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 56,
+        "Category": 2
+    },
+    {
+        "Latitude": 46.255185,
+        "Longitude": -119.907227,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 46,
+        "Category": 1
+    },
+    {
+        "Latitude": 46.743414,
+        "Longitude": -119.893763,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 28,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.07613,
+        "Longitude": -119.85668,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 26,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.24126,
+        "Longitude": -119.84595,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 30,
+        "Category": 1
+    },
+    {
+        "Latitude": 48.09865,
+        "Longitude": -119.77963,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 13,
+        "Category": 1
+    },
+    {
+        "Latitude": 46.2089,
+        "Longitude": -119.75267,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 54,
+        "Category": 2
+    },
+    {
+        "Latitude": 46.91313,
+        "Longitude": -119.62687,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 28,
+        "Category": 1
+    },
+    {
+        "Latitude": 48.39999,
+        "Longitude": -119.518959,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 7,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.385564,
+        "Longitude": -119.489855,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 23,
+        "Category": 1
+    },
+    {
+        "Latitude": 48.70159,
+        "Longitude": -119.43466,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 9,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.1303,
+        "Longitude": -119.2737,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 33,
+        "Category": 1
+    },
+    {
+        "Latitude": 45.828968,
+        "Longitude": -119.262991,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 44,
+        "Category": 1
+    },
+    {
+        "Latitude": 46.204582,
+        "Longitude": -119.243743,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 41,
+        "Category": 1
+    },
+    {
+        "Latitude": 46.2183,
+        "Longitude": -119.2015,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 52,
+        "Category": 2
+    },
+    {
+        "Latitude": 46.15582,
+        "Longitude": -119.03497,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 51,
+        "Category": 2
+    },
+    {
+        "Latitude": 46.20011,
+        "Longitude": -119.00862,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 52,
+        "Category": 2
+    },
+    {
+        "Latitude": 46.5754,
+        "Longitude": -119.0021,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 44,
+        "Category": 1
+    },
+    {
+        "Latitude": 45.652231,
+        "Longitude": -118.823033,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 29,
+        "Category": 1
+    },
+    {
+        "Latitude": 48.64932,
+        "Longitude": -118.73854,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 18,
+        "Category": 1
+    },
+    {
+        "Latitude": 45.66408,
+        "Longitude": -118.68909,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 42,
+        "Category": 1
+    },
+    {
+        "Latitude": 49.031168,
+        "Longitude": -118.439088,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 17,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.128081,
+        "Longitude": -118.381868,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 32,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.65601,
+        "Longitude": -118.14775,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 21,
+        "Category": 1
+    },
+    {
+        "Latitude": 45.3235,
+        "Longitude": -118.0778,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 33,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.885201,
+        "Longitude": -117.988602,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 31,
+        "Category": 1
+    },
+    {
+        "Latitude": 46.318,
+        "Longitude": -117.985,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 29,
+        "Category": 1
+    },
+    {
+        "Latitude": 48.54469,
+        "Longitude": -117.903222,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 12,
+        "Category": 1
+    },
+    {
+        "Latitude": 46.8153,
+        "Longitude": -117.8739,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 27,
+        "Category": 1
+    },
+    {
+        "Latitude": 45.300884,
+        "Longitude": -117.812896,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 23,
+        "Category": 1
+    },
+    {
+        "Latitude": 46.474438,
+        "Longitude": -117.614764,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 33,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.645351,
+        "Longitude": -117.589027,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 18,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.416401,
+        "Longitude": -117.5298,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 24,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.69983,
+        "Longitude": -117.42631,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 26,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.67375,
+        "Longitude": -117.42023,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 22,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.73428,
+        "Longitude": -117.40114,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 24,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.71046,
+        "Longitude": -117.39897,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 25,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.68323,
+        "Longitude": -117.39115,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 22,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.65226,
+        "Longitude": -117.38467,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 19,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.61759,
+        "Longitude": -117.38058,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 20,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.69431,
+        "Longitude": -117.37217,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 22,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.231182,
+        "Longitude": -117.369134,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 29,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.65709,
+        "Longitude": -117.3678,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 26,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.808226,
+        "Longitude": -117.34327,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 27,
+        "Category": 1
+    },
+    {
+        "Latitude": 45.426351,
+        "Longitude": -117.296066,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 29,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.68417,
+        "Longitude": -117.29259,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 24,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.827202,
+        "Longitude": -117.2742,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 21,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.663962,
+        "Longitude": -117.25765,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 25,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.68729,
+        "Longitude": -117.24149,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 21,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.7025,
+        "Longitude": -117.19389,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 20,
+        "Category": 1
+    },
+    {
+        "Latitude": 46.724583,
+        "Longitude": -117.180379,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 30,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.66145,
+        "Longitude": -117.13367,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 23,
+        "Category": 1
+    },
+    {
+        "Latitude": 46.425598,
+        "Longitude": -117.059799,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 57,
+        "Category": 2
+    },
+    {
+        "Latitude": 48.181245,
+        "Longitude": -117.052746,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 18,
+        "Category": 1
+    },
+    {
+        "Latitude": 46.408501,
+        "Longitude": -116.991402,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 56,
+        "Category": 2
+    },
+    {
+        "Latitude": 46.728199,
+        "Longitude": -116.954597,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 25,
+        "Category": 1
+    },
+    {
+        "Latitude": 47.715385,
+        "Longitude": -116.827245,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 19,
+        "Category": 1
+    },
+    {
+        "Latitude": 46.3972,
+        "Longitude": -116.8062,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 58,
+        "Category": 2
+    },
+    {
+        "Latitude": 46.747669,
+        "Longitude": -116.769394,
+        "UTC": "2026-09-12T20:00",
+        "Parameter": "PM2.5",
+        "Unit": "UG/M3",
+        "AQI": 67,
+        "Category": 2
+    }
+]

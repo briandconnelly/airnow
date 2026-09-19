@@ -2,21 +2,29 @@ url: https://briandconnelly.github.io/airnow/
 template:
   bootstrap: 5
 reference:
-- title: Managing AirNow API tokens
+- title: Managing your AirNow API key
   desc: |
-    An API token allows you to interact with the AirNow API.
-    Tokens can be created at [airnowapi.org](https://docs.airnowapi.org).
+    An API key allows you to interact with the AirNow API.
+    Keys can be created at [airnowapi.org](https://docs.airnowapi.org).
 - contents:
-  - set_airnow_token
-  - get_airnow_token
+  - set_airnow_key
+  - get_airnow_key
 - title: Retrieving air quality data
-  desc: Retrieve forecasts and current/historical air quality data
+  desc: Current observations, forecasts, and monitor readings
 - contents:
-  - get_airnow_conditions
-  - get_airnow_area
-  - get_airnow_forecast
+  - get_airnow_observations
+  - get_airnow_forecasts
+  - get_airnow_forecast_history
+  - get_airnow_monitors
+- title: Reporting areas
+- contents:
+  - get_airnow_reporting_area
+  - airnow_areas
 - title: AQI values
   desc: Convert AQI values to color or text representations
 - contents:
   - aqi_color
   - aqi_descriptor
+- title: Deprecated
+- contents:
+  - airnow-deprecated

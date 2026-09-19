@@ -1,0 +1,47 @@
+[
+    {
+        "dateObserved": "2026-09-12",
+        "hourObserved": "14:00",
+        "localTimeZone": "PDT",
+        "reportingAreaName": "Napa",
+        "siteID": "060950004",
+        "siteName": "Vallejo",
+        "parameterName": "PM2.5",
+        "nowcastAQI": 49,
+        "aqiCategoryName": "Good",
+        "reportingAgency": "Bay Area Air District",
+        "lookupBehavior": "Closest Reading By Pollutant",
+        "consideredMonitors": "All",
+        "lookupBoundary": "50 Miles"
+    },
+    {
+        "dateObserved": "2026-09-12",
+        "hourObserved": "14:00",
+        "localTimeZone": "PDT",
+        "reportingAreaName": "Napa",
+        "siteID": "060950005",
+        "siteName": "Fairfield",
+        "parameterName": "OZONE",
+        "nowcastAQI": 35,
+        "aqiCategoryName": "Good",
+        "reportingAgency": "Bay Area Air District",
+        "lookupBehavior": "Closest Reading By Pollutant",
+        "consideredMonitors": "All",
+        "lookupBoundary": "50 Miles"
+    },
+    {
+        "dateObserved": "2026-09-12",
+        "hourObserved": "14:00",
+        "localTimeZone": "PDT",
+        "reportingAreaName": "Napa",
+        "siteID": "060670010",
+        "siteName": "Downtown Sacramento - T Street",
+        "parameterName": "PM10",
+        "nowcastAQI": 20,
+        "aqiCategoryName": "Good",
+        "reportingAgency": "California Air Resources Board",
+        "lookupBehavior": "Closest Reading By Pollutant",
+        "consideredMonitors": "All",
+        "lookupBoundary": "50 Miles"
+    }
+]

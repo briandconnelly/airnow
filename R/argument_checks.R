@@ -72,10 +72,10 @@ check_date <- function(x, arg_name = "date") {
 
 check_bounding_box <- function(box) {
   if (!is_double(box, n = 4, finite = TRUE) ||
-    (!all(abs(box) <= 180)) ||
-    (!all(abs(c(box[2], box[4])) <= 90)) ||
-    (box[1] > box[3]) ||
-    (box[2] > box[4])) {
+        (!all(abs(box) <= 180)) ||
+        (!all(abs(c(box[2], box[4])) <= 90)) ||
+        (box[1] > box[3]) ||
+        (box[2] > box[4])) {
     cli::cli_abort("{.arg box} must be a 4-element numeric vector with format {.emph (xmin, ymin, xmax, ymax)}, where {.emph lat1} and {.emph lat2} are between -90 and 90, inclusive, and {.emph lon1} and {.emph lon2} are between -180 and 180, inclusive.") # nolint
     # TODO: make sure xmin <= xmax and ymin <= ymax
   }
@@ -83,8 +83,72 @@ check_bounding_box <- function(box) {
 }
 
 check_aqi <- function(x, arg_name = "aqi") {
-  if (!is_integerish(x) || any(x < 0) || any(x > 500)) {
-    cli::cli_abort("{.arg {arg_name}} must be an integer between 0 and 500, inclusive") # nolint
+  # A bare logical NA (e.g. `NA`) is a legitimate missing value
+  if (is.logical(x) && length(x) > 0 && all(is.na(x))) {
+    x <- as.integer(x)
+  }
+
+  if (length(x) == 0 || !is_integerish(x)) {
+    cli::cli_abort("{.arg {arg_name}} must be a vector of whole numbers")
+  }
+
+  x <- as.integer(x)
+  negative <- !is.na(x) & x < 0
+
+  if (any(negative & x == -1)) {
+    cli::cli_warn("{.arg {arg_name}} contains -1, the AirNow sentinel for a categorical forecast; returning {.val NA} for those values") # nolint
+  }
+  if (any(negative & x != -1)) {
+    cli::cli_warn("{.arg {arg_name}} contains negative values; returning {.val NA} for those values") # nolint
+  }
+  x[negative] <- NA_integer_
+
+  x
+}
+
+check_clean_names <- function(x) {
+  if (!is_logical(x, n = 1) || is.na(x)) {
+    cli::cli_abort("{.arg clean_names} must be either `TRUE` or `FALSE`")
   }
   x
+}
+
+check_area_code <- function(x, arg_name = "area") {
+  if (!is_string(x) || is.na(x)) {
+    cli::cli_abort("{.arg {arg_name}} must be a single reporting area code such as {.val ca064}") # nolint
+  }
+  x <- tolower(x)
+  if (!grepl("^[a-z]{2}[0-9]{3}$", x)) {
+    cli::cli_abort("{.arg {arg_name}} must be a reporting area code such as {.val ca064}; see {.code airnow_areas} or {.fn get_airnow_reporting_area}") # nolint
+  }
+  x
+}
+
+check_area_or_location <- function(zip = NULL,
+                                   latitude = NULL,
+                                   longitude = NULL,
+                                   area = NULL) {
+  if (!is.null(area)) {
+    if (!is.null(zip) || !is.null(latitude) || !is.null(longitude)) {
+      cli::cli_warn("Ignoring {.arg zip}, {.arg latitude}, and {.arg longitude} because {.arg area} was provided") # nolint
+    }
+    return(list(
+      type = "area", zip = NULL, latitude = NULL, longitude = NULL,
+      area = check_area_code(area)
+    ))
+  }
+  location <- check_location(zip, latitude, longitude)
+  location$area <- NULL
+  location
+}
+
+check_date_arg <- function(x, arg_name) {
+  if (inherits(x, "Date") && length(x) == 1 && !is.na(x)) {
+    return(format(x, "%Y-%m-%d"))
+  }
+  if (is_string(x) && grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2}$", x) &&
+        !is.na(as.Date(x, format = "%Y-%m-%d", optional = TRUE))) {
+    return(x)
+  }
+  cli::cli_abort("{.arg {arg_name}} must be a single Date or a string in YYYY-MM-DD format") # nolint
 }

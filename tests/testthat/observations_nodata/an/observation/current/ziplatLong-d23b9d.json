@@ -1,0 +1,7 @@
+{
+    "WebServiceError": [
+        {
+            "Message": "There are no observations available for the requested latitude/longitude: No observations were found for all monitors within 50 miles."
+        }
+    ]
+}

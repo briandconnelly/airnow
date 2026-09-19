@@ -1,0 +1,15 @@
+[
+    {
+        "dateIssue": "2026-01-12",
+        "dateValid": "2026-01-13",
+        "reportingArea": "Northeast Maryland",
+        "reportingAreaCode": "md008",
+        "stateCode": "MD",
+        "parameterName": "PM2.5",
+        "aqi": 44,
+        "categoryNumber": 1,
+        "categoryName": "Good",
+        "actionDay": false,
+        "discussion": "The regional airmass will slowly degrade Tuesday and Wednesday as modestly lighter winds will allow mild accumulation of local pollutants.  Still, the regional background remains very clean, which should keep the region within the Good air quality range both Tuesday and Wednesday.  On Thursday, a strong surge of cold air accompanied by blustery conditions will also deliver a clean airmass, allowing Good air quality to persist across the region.  For the latest air quality information, please visit our website <a href=\"https://mde.maryland.gov/programs/air/AirQualityMonitoring/Pages/index.aspx\" target=\"_blank\">here.<\/a>  -MDE"
+    }
+]
