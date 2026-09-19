@@ -47,7 +47,7 @@ replacement services released in June 2026.
 * `aqi_color()` and `aqi_descriptor()` accept values above 500 (treated as
   Hazardous) and `NA`, and warn instead of erroring on negative values.
   Real AirNow data exceeds 500 during smoke events.
-* Unrecognised pollutant or category names now warn instead of silently
+* Unrecognized pollutant or category names now warn instead of silently
   becoming `NA`.
 * Derived UTC observation times account for half- and quarter-hour time zones.
 

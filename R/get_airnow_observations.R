@@ -90,7 +90,7 @@ finish_observations <- function(x,
 #' against AirNow's 500-per-hour limit.
 #'
 #' @section Time columns:
-#' `hour_observed` uses AirNow's convention of labelling an hour by its
+#' `hour_observed` uses AirNow's convention of labeling an hour by its
 #' **end**: `18` means the period 17:00-17:59. `date_observed` and
 #' `hour_observed` are local to each reporting area, and `local_time_zone`
 #' is an abbreviation R cannot interpret. `utc_datetime` is derived from the

@@ -61,7 +61,7 @@ against AirNow's 500-per-hour limit.
 
 \section{Time columns}{
 
-\code{hour_observed} uses AirNow's convention of labelling an hour by its
+\code{hour_observed} uses AirNow's convention of labeling an hour by its
 \strong{end}: \code{18} means the period 17:00-17:59. \code{date_observed} and
 \code{hour_observed} are local to each reporting area, and \code{local_time_zone}
 is an abbreviation R cannot interpret. \code{utc_datetime} is derived from the

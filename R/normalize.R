@@ -16,7 +16,7 @@ factor_with_warning <- function(x, levels, what, ordered = FALSE) {
   unmatched <- unique(x[!is.na(x) & !(x %in% levels)])
   if (length(unmatched) > 0) {
     cli::cli_warn(c(
-      "Unrecognised {what} value{?s}: {.val {unmatched}}",
+      "Unrecognized {what} value{?s}: {.val {unmatched}}",
       "i" = "These will become {.val NA}. Please report this at {.url https://github.com/briandconnelly/airnow/issues}" # nolint
     ))
   }
@@ -40,7 +40,7 @@ to_parameter_factor <- function(x) {
     # nolint next: object_usage_linter. used below via glue interpolation
     unmatched_orig <- unique(orig_x[is_unmatched])
     cli::cli_warn(c(
-      "Unrecognised parameter value{?s}: {.val {unmatched_orig}}",
+      "Unrecognized parameter value{?s}: {.val {unmatched_orig}}",
       "i" = "These will become {.val NA}. Please report this at {.url https://github.com/briandconnelly/airnow/issues}" # nolint
     ))
   }

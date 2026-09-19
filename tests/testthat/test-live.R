@@ -67,7 +67,7 @@ test_that("live: area names still join and time columns are sane", {
   expect_true(all(obs$utc_datetime >= Sys.time() - 6 * 3600))
 })
 
-test_that("live: pollutant and category vocabularies are still recognised", {
+test_that("live: pollutant and category vocabularies are still recognized", {
   skip_if_no_live_key()
   fc <- expect_no_warning(get_airnow_forecasts(zip = "90210"))
   expect_false(anyNA(fc$parameter))
