@@ -17,3 +17,8 @@ Useful links:
 
 **Maintainer**: Brian Connelly <bdc@bconnelly.net>
 ([ORCID](https://orcid.org/0000-0002-9948-0379)) \[copyright holder\]
+
+Authors:
+
+- Brian Connelly <bdc@bconnelly.net>
+  ([ORCID](https://orcid.org/0000-0002-9948-0379)) \[copyright holder\]

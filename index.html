@@ -7,8 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Retrieve AirNow Air Quality Observations and Forecasts • airnow</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Retrieve AirNow Air Quality Observations and Forecasts">
 <meta name="description" content="Retrieve air quality data via the AirNow &lt;https://www.airnow.gov/&gt; API.">
@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">airnow</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,13 +64,13 @@
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"briandconnelly/airnow"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="creating-an-api-token">Creating an API Token<a class="anchor" aria-label="anchor" href="#creating-an-api-token"></a>
+<h2 id="creating-an-api-key">Creating an API Key<a class="anchor" aria-label="anchor" href="#creating-an-api-key"></a>
 </h2>
-<p>The <a href="https://docs.airnowapi.org/" class="external-link">AirNow API</a> is generally free to use. The <code><a href="reference/get_airnow_token.html">set_airnow_token()</a></code> function can be used to help you create and configure your API token.</p>
+<p>The <a href="https://docs.airnowapi.org/" class="external-link">AirNow API</a> is generally free to use. The <code><a href="reference/get_airnow_key.html">set_airnow_key()</a></code> function can be used to help you create and configure your API key.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://briandconnelly.github.io/airnow/">airnow</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/get_airnow_token.html">set_airnow_token</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="reference/get_airnow_key.html">set_airnow_key</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
@@ -82,34 +82,61 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://briandconnelly.github.io/airnow/">airnow</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/get_airnow_conditions.html">get_airnow_conditions</a></span><span class="op">(</span>zip <span class="op">=</span> <span class="st">"98101"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 2 × 11</span></span>
-<span><span class="co">#&gt;   date_observed hour_obs…¹ local…² repor…³ state…⁴ latit…⁵ longi…⁶ param…⁷   aqi</span></span>
-<span><span class="co">#&gt;   &lt;date&gt;             &lt;int&gt; &lt;fct&gt;   &lt;fct&gt;   &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt;   &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1 2022-10-31             6 PST     Seattl… WA         47.6   -122. O3         27</span></span>
-<span><span class="co">#&gt; 2 2022-10-31             6 PST     Seattl… WA         47.6   -122. PM2.5      30</span></span>
-<span><span class="co">#&gt; # … with 2 more variables: category_number &lt;int&gt;, category_name &lt;fct&gt;, and</span></span>
-<span><span class="co">#&gt; #   abbreviated variable names ¹​hour_observed, ²​local_time_zone,</span></span>
-<span><span class="co">#&gt; #   ³​reporting_area, ⁴​state_code, ⁵​latitude, ⁶​longitude, ⁷​parameter</span></span></code></pre></div>
+<span><span class="fu"><a href="reference/get_airnow_observations.html">get_airnow_observations</a></span><span class="op">(</span>zip <span class="op">=</span> <span class="st">"98101"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 21</span></span>
+<span><span class="co">#&gt;   date_observed hour_observed local_time_zone utc_datetime        reporting_area</span></span>
+<span><span class="co">#&gt;   &lt;date&gt;                &lt;int&gt; &lt;chr&gt;           &lt;dttm&gt;              &lt;chr&gt;         </span></span>
+<span><span class="co">#&gt; 1 2026-09-12               14 PDT             2026-09-12 21:00:00 Seattle-Belle…</span></span>
+<span><span class="co">#&gt; 2 2026-09-12               14 PDT             2026-09-12 21:00:00 Seattle-Belle…</span></span>
+<span><span class="co">#&gt; 3 2026-09-12               14 PDT             2026-09-12 21:00:00 Seattle-Belle…</span></span>
+<span><span class="co">#&gt; # ℹ 16 more variables: reporting_area_code &lt;chr&gt;, reporting_area_agency &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   state_code &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;, site_id &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   site_name &lt;chr&gt;, reporting_agency &lt;chr&gt;, parameter &lt;fct&gt;, aqi &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   category_number &lt;int&gt;, category_name &lt;ord&gt;, lookup_behavior &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   considered_monitors &lt;chr&gt;, lookup_boundary &lt;chr&gt;, source &lt;fct&gt;</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="tomorrows-forecast-for-napa-by-reporting-area">Tomorrow’s forecast for Napa, by reporting area<a class="anchor" aria-label="anchor" href="#tomorrows-forecast-for-napa-by-reporting-area"></a>
+</h3>
+<p>Every location belongs to an AirNow <em>reporting area</em>. The bundled <code>airnow_areas</code> table lists them, and <code><a href="reference/get_airnow_reporting_area.html">get_airnow_reporting_area()</a></code> finds the one for a ZIP code or coordinate pair.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/get_airnow_reporting_area.html">get_airnow_reporting_area</a></span><span class="op">(</span>zip <span class="op">=</span> <span class="st">"94558"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 5</span></span>
+<span><span class="co">#&gt;   reporting_area_code reporting_area state_code latitude longitude</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;               &lt;chr&gt;          &lt;chr&gt;         &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 ca064               Napa           CA             38.3     -122.</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/get_airnow_forecasts.html">get_airnow_forecasts</a></span><span class="op">(</span>area <span class="op">=</span> <span class="st">"ca064"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 14</span></span>
+<span><span class="co">#&gt;   date_issue date_valid reporting_area reporting_area_code state_code latitude</span></span>
+<span><span class="co">#&gt;   &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;          &lt;chr&gt;               &lt;chr&gt;         &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 2026-09-12 2026-09-12 Napa           ca064               CA             38.3</span></span>
+<span><span class="co">#&gt; 2 2026-09-12 2026-09-13 Napa           ca064               CA             38.3</span></span>
+<span><span class="co">#&gt; 3 2026-09-12 2026-09-14 Napa           ca064               CA             38.3</span></span>
+<span><span class="co">#&gt; 4 2026-09-12 2026-09-15 Napa           ca064               CA             38.3</span></span>
+<span><span class="co">#&gt; 5 2026-09-12 2026-09-16 Napa           ca064               CA             38.3</span></span>
+<span><span class="co">#&gt; 6 2026-09-12 2026-09-17 Napa           ca064               CA             38.3</span></span>
+<span><span class="co">#&gt; # ℹ 8 more variables: longitude &lt;dbl&gt;, parameter &lt;fct&gt;, aqi &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   category_number &lt;int&gt;, category_name &lt;ord&gt;, action_day &lt;lgl&gt;,</span></span>
+<span><span class="co">#&gt; #   discussion &lt;chr&gt;, forecast_agency &lt;chr&gt;</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="find-the-site-with-the-lowest-air-quality-near-washington-state">Find the site with the lowest air quality near Washington state<a class="anchor" aria-label="anchor" href="#find-the-site-with-the-lowest-air-quality-near-washington-state"></a>
 </h3>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://briandconnelly.github.io/airnow/">airnow</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/get_airnow_area.html">get_airnow_area</a></span><span class="op">(</span></span>
+<span><span class="fu"><a href="reference/get_airnow_monitors.html">get_airnow_monitors</a></span><span class="op">(</span></span>
 <span>  box <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">125.394211</span>, <span class="fl">45.295897</span>, <span class="op">-</span><span class="fl">116.736984</span>, <span class="fl">49.172497</span><span class="op">)</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">slice_max</span><span class="op">(</span>order_by <span class="op">=</span> <span class="va">aqi</span>, n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="va">site_name</span>, <span class="va">site_agency</span>, <span class="va">latitude</span>, <span class="va">longitude</span>, <span class="va">aqi</span>, <span class="va">datetime_observed</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1 × 6</span></span>
-<span><span class="co">#&gt;   site_name         site_agency        latit…¹ longi…²   aqi datetime_observed  </span></span>
-<span><span class="co">#&gt;   &lt;fct&gt;             &lt;fct&gt;                &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt; &lt;dttm&gt;             </span></span>
-<span><span class="co">#&gt; 1 Clarkston-13th St Washington Depart…    46.4   -117.    56 2022-10-31 13:00:00</span></span>
-<span><span class="co">#&gt; # … with abbreviated variable names ¹​latitude, ²​longitude</span></span></code></pre></div>
+<span><span class="co">#&gt;   site_name site_agency             latitude longitude   aqi datetime_observed  </span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;     &lt;fct&gt;                      &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt; &lt;dttm&gt;             </span></span>
+<span><span class="co">#&gt; 1 Troy      Idaho Department of En…     46.7     -117.    67 2026-09-12 20:00:00</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -169,7 +196,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

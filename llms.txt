@@ -11,6 +11,7 @@ well as forecasts can be retrieved as tidy data frames.
 You can install the stable version of airnow from CRAN:
 
 ``` r
+
 install.packages("airnow")
 ```
 
@@ -18,21 +19,23 @@ If you’d like to try out the development version of airnow, you can
 install directly from GitHub:
 
 ``` r
+
 # install.packages("remotes")
 remotes::install_github("briandconnelly/airnow")
 ```
 
-## Creating an API Token
+## Creating an API Key
 
 The [AirNow API](https://docs.airnowapi.org/) is generally free to use.
 The
-[`set_airnow_token()`](https://briandconnelly.github.io/airnow/reference/get_airnow_token.md)
-function can be used to help you create and configure your API token.
+[`set_airnow_key()`](https://briandconnelly.github.io/airnow/reference/get_airnow_key.md)
+function can be used to help you create and configure your API key.
 
 ``` r
+
 library(airnow)
 
-set_airnow_token()
+set_airnow_key()
 ```
 
 ## Examples
@@ -44,36 +47,70 @@ latitude/longitude. Here, we’ll get the current conditions in Seattle by
 ZIP code:
 
 ``` r
+
 library(airnow)
 
-get_airnow_conditions(zip = "98101")
-#> # A tibble: 2 × 11
-#>   date_observed hour_obs…¹ local…² repor…³ state…⁴ latit…⁵ longi…⁶ param…⁷   aqi
-#>   <date>             <int> <fct>   <fct>   <fct>     <dbl>   <dbl> <fct>   <int>
-#> 1 2022-10-31             6 PST     Seattl… WA         47.6   -122. O3         27
-#> 2 2022-10-31             6 PST     Seattl… WA         47.6   -122. PM2.5      30
-#> # … with 2 more variables: category_number <int>, category_name <fct>, and
-#> #   abbreviated variable names ¹​hour_observed, ²​local_time_zone,
-#> #   ³​reporting_area, ⁴​state_code, ⁵​latitude, ⁶​longitude, ⁷​parameter
+get_airnow_observations(zip = "98101")
+#> # A tibble: 3 × 21
+#>   date_observed hour_observed local_time_zone utc_datetime        reporting_area
+#>   <date>                <int> <chr>           <dttm>              <chr>         
+#> 1 2026-09-12               14 PDT             2026-09-12 21:00:00 Seattle-Belle…
+#> 2 2026-09-12               14 PDT             2026-09-12 21:00:00 Seattle-Belle…
+#> 3 2026-09-12               14 PDT             2026-09-12 21:00:00 Seattle-Belle…
+#> # ℹ 16 more variables: reporting_area_code <chr>, reporting_area_agency <chr>,
+#> #   state_code <chr>, latitude <dbl>, longitude <dbl>, site_id <chr>,
+#> #   site_name <chr>, reporting_agency <chr>, parameter <fct>, aqi <int>,
+#> #   category_number <int>, category_name <ord>, lookup_behavior <chr>,
+#> #   considered_monitors <chr>, lookup_boundary <chr>, source <fct>
+```
+
+### Tomorrow’s forecast for Napa, by reporting area
+
+Every location belongs to an AirNow *reporting area*. The bundled
+`airnow_areas` table lists them, and
+[`get_airnow_reporting_area()`](https://briandconnelly.github.io/airnow/reference/get_airnow_reporting_area.md)
+finds the one for a ZIP code or coordinate pair.
+
+``` r
+
+get_airnow_reporting_area(zip = "94558")
+#> # A tibble: 1 × 5
+#>   reporting_area_code reporting_area state_code latitude longitude
+#>   <chr>               <chr>          <chr>         <dbl>     <dbl>
+#> 1 ca064               Napa           CA             38.3     -122.
+
+get_airnow_forecasts(area = "ca064")
+#> # A tibble: 6 × 14
+#>   date_issue date_valid reporting_area reporting_area_code state_code latitude
+#>   <date>     <date>     <chr>          <chr>               <chr>         <dbl>
+#> 1 2026-09-12 2026-09-12 Napa           ca064               CA             38.3
+#> 2 2026-09-12 2026-09-13 Napa           ca064               CA             38.3
+#> 3 2026-09-12 2026-09-14 Napa           ca064               CA             38.3
+#> 4 2026-09-12 2026-09-15 Napa           ca064               CA             38.3
+#> 5 2026-09-12 2026-09-16 Napa           ca064               CA             38.3
+#> 6 2026-09-12 2026-09-17 Napa           ca064               CA             38.3
+#> # ℹ 8 more variables: longitude <dbl>, parameter <fct>, aqi <int>,
+#> #   category_number <int>, category_name <ord>, action_day <lgl>,
+#> #   discussion <chr>, forecast_agency <chr>
 ```
 
 ### Find the site with the lowest air quality near Washington state
 
 ``` r
+
 library(airnow)
 library(dplyr)
 
-get_airnow_area(
+get_airnow_monitors(
   box = c(-125.394211, 45.295897, -116.736984, 49.172497),
   verbose = TRUE
 ) |>
   slice_max(order_by = aqi, n = 1) |>
   select(site_name, site_agency, latitude, longitude, aqi, datetime_observed)
 #> # A tibble: 1 × 6
-#>   site_name         site_agency        latit…¹ longi…²   aqi datetime_observed  
-#>   <fct>             <fct>                <dbl>   <dbl> <int> <dttm>             
-#> 1 Clarkston-13th St Washington Depart…    46.4   -117.    56 2022-10-31 13:00:00
-#> # … with abbreviated variable names ¹​latitude, ²​longitude
+#>   site_name site_agency             latitude longitude   aqi datetime_observed  
+#>   <fct>     <fct>                      <dbl>     <dbl> <int> <dttm>             
+#> 1 Troy      Idaho Department of En…     46.7     -117.    67 2026-09-12 20:00:00
 ```
 
 ## Disclaimer
@@ -88,25 +125,34 @@ limit your request rate.
 
 # Package index
 
-## Managing AirNow API tokens
+## Managing your AirNow API key
 
-An API token allows you to interact with the AirNow API. Tokens can be
+An API key allows you to interact with the AirNow API. Keys can be
 created at [airnowapi.org](https://docs.airnowapi.org).
 
-- [`get_airnow_token()`](https://briandconnelly.github.io/airnow/reference/get_airnow_token.md)
-  [`set_airnow_token()`](https://briandconnelly.github.io/airnow/reference/get_airnow_token.md)
-  : Manage AirNow API Tokens
+- [`get_airnow_key()`](https://briandconnelly.github.io/airnow/reference/get_airnow_key.md)
+  [`set_airnow_key()`](https://briandconnelly.github.io/airnow/reference/get_airnow_key.md)
+  : Manage your AirNow API key
 
 ## Retrieving air quality data
 
-Retrieve forecasts and current/historical air quality data
+Current observations, forecasts, and monitor readings
 
-- [`get_airnow_conditions()`](https://briandconnelly.github.io/airnow/reference/get_airnow_conditions.md)
-  : Get current air quality conditions
-- [`get_airnow_area()`](https://briandconnelly.github.io/airnow/reference/get_airnow_area.md)
-  : Get air quality data for a given region
-- [`get_airnow_forecast()`](https://briandconnelly.github.io/airnow/reference/get_airnow_forecast.md)
-  : Get air quality forecast
+- [`get_airnow_observations()`](https://briandconnelly.github.io/airnow/reference/get_airnow_observations.md)
+  : Get current air quality observations
+- [`get_airnow_forecasts()`](https://briandconnelly.github.io/airnow/reference/get_airnow_forecasts.md)
+  : Get current air quality forecasts
+- [`get_airnow_forecast_history()`](https://briandconnelly.github.io/airnow/reference/get_airnow_forecast_history.md)
+  : Get past air quality forecasts
+- [`get_airnow_monitors()`](https://briandconnelly.github.io/airnow/reference/get_airnow_monitors.md)
+  : Get air quality data from monitoring sites in a region
+
+## Reporting areas
+
+- [`get_airnow_reporting_area()`](https://briandconnelly.github.io/airnow/reference/get_airnow_reporting_area.md)
+  : Find the AirNow reporting area for a location
+- [`airnow_areas`](https://briandconnelly.github.io/airnow/reference/airnow_areas.md)
+  : AirNow reporting areas
 
 ## AQI values
 
@@ -115,4 +161,13 @@ Convert AQI values to color or text representations
 - [`aqi_color()`](https://briandconnelly.github.io/airnow/reference/aqi.md)
   [`aqi_descriptor()`](https://briandconnelly.github.io/airnow/reference/aqi.md)
   : Label AQI Values
+
+## Deprecated
+
+- [`get_airnow_token()`](https://briandconnelly.github.io/airnow/reference/airnow-deprecated.md)
+  [`set_airnow_token()`](https://briandconnelly.github.io/airnow/reference/airnow-deprecated.md)
+  [`get_airnow_area()`](https://briandconnelly.github.io/airnow/reference/airnow-deprecated.md)
+  [`get_airnow_conditions()`](https://briandconnelly.github.io/airnow/reference/airnow-deprecated.md)
+  [`get_airnow_forecast()`](https://briandconnelly.github.io/airnow/reference/airnow-deprecated.md)
+  : Deprecated functions
 

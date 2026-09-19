@@ -5,12 +5,16 @@
 <url><loc>https://briandconnelly.github.io/airnow/authors.html</loc></url>
 <url><loc>https://briandconnelly.github.io/airnow/index.html</loc></url>
 <url><loc>https://briandconnelly.github.io/airnow/news/index.html</loc></url>
+<url><loc>https://briandconnelly.github.io/airnow/reference/airnow-deprecated.html</loc></url>
 <url><loc>https://briandconnelly.github.io/airnow/reference/airnow-package.html</loc></url>
+<url><loc>https://briandconnelly.github.io/airnow/reference/airnow_areas.html</loc></url>
 <url><loc>https://briandconnelly.github.io/airnow/reference/aqi.html</loc></url>
-<url><loc>https://briandconnelly.github.io/airnow/reference/get_airnow_area.html</loc></url>
-<url><loc>https://briandconnelly.github.io/airnow/reference/get_airnow_conditions.html</loc></url>
-<url><loc>https://briandconnelly.github.io/airnow/reference/get_airnow_forecast.html</loc></url>
-<url><loc>https://briandconnelly.github.io/airnow/reference/get_airnow_token.html</loc></url>
+<url><loc>https://briandconnelly.github.io/airnow/reference/get_airnow_forecast_history.html</loc></url>
+<url><loc>https://briandconnelly.github.io/airnow/reference/get_airnow_forecasts.html</loc></url>
+<url><loc>https://briandconnelly.github.io/airnow/reference/get_airnow_key.html</loc></url>
+<url><loc>https://briandconnelly.github.io/airnow/reference/get_airnow_monitors.html</loc></url>
+<url><loc>https://briandconnelly.github.io/airnow/reference/get_airnow_observations.html</loc></url>
+<url><loc>https://briandconnelly.github.io/airnow/reference/get_airnow_reporting_area.html</loc></url>
 <url><loc>https://briandconnelly.github.io/airnow/reference/index.html</loc></url>
 </urlset>
 
