@@ -84,3 +84,18 @@ test_that("get_airnow_conditions() produces the expected outputs", {
     )
   )
 })
+
+test_that("get_airnow_conditions() warns that distance is ignored", {
+  httptest2::with_mock_dir("legacy_conditions", {
+    lifecycle::expect_deprecated(
+      expect_warning(
+        result <- get_airnow_conditions(zip = "98101", distance = 25),
+        "distance.*is ignored"
+      )
+    )
+    lifecycle::expect_deprecated(
+      expected <- get_airnow_conditions(zip = "98101")
+    )
+  })
+  expect_identical(result, expected)
+})

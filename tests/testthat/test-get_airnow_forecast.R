@@ -105,6 +105,21 @@ test_that("get_airnow_forecast(date = ) narrows to forecasts valid that day", { 
   expect_equal(unique(result$date_issued), as.Date("2026-01-12"))
 })
 
+test_that("get_airnow_forecast() warns that distance is ignored", {
+  httptest2::with_mock_dir("legacy_forecast", {
+    lifecycle::expect_deprecated(
+      expect_warning(
+        result <- get_airnow_forecast(zip = "98101", distance = 25),
+        "distance.*is ignored"
+      )
+    )
+    lifecycle::expect_deprecated(
+      expected <- get_airnow_forecast(zip = "98101")
+    )
+  })
+  expect_identical(result, expected)
+})
+
 test_that("dated legacy forecast uses the offline ZIP crosswalk", {
   testthat::local_mocked_bindings(
     resolve_area_code = function(...) stop("live resolver must not be called")
